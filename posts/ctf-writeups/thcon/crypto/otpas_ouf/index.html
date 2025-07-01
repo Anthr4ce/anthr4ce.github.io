@@ -1,0 +1,94 @@
+<!doctype html><html lang=en><head><title>THCon - Crypto · Anthrace | CTF Writeups</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Anthrace"><meta name=description content="
+
+  Overview of the Challenge
+  
+    
+    Link to heading
+  
+
+In this challenge we are given a Python script that performs a one-time pad (OTP) encryption on a file and a crypted file.
+Here’s what happens:
+
+  1.OTP Generation:
+  
+    
+    Link to heading
+  
+
+A 10-byte pad is generated using random bytes.
+def generate_OTP():
+    OTP = b''
+    for _ in range(10):
+        # Generates a random byte (0–255) and appends it to the OTP.
+        OTP += int.to_bytes(randint(0,255), 1, 'big')
+    return OTP
+
+  2.File Encryption:
+  
+    
+    Link to heading
+  
+
+The script reads the input file in binary mode and encrypts it by XORing  each byte with a corresponding byte from the OTP (repeating the OTP cyclically)."><meta name=keywords content="ctf,hacking,cybersecurity,writeups,web,osint,forensic,crypto"><meta name=twitter:card content="summary"><meta name=twitter:title content="THCon - Crypto"><meta name=twitter:description content="Overview of the Challenge Link to heading In this challenge we are given a Python script that performs a one-time pad (OTP) encryption on a file and a crypted file.
+Here’s what happens:
+1.OTP Generation: Link to heading A 10-byte pad is generated using random bytes.
+def generate_OTP(): OTP = b'' for _ in range(10): # Generates a random byte (0–255) and appends it to the OTP. OTP += int.to_bytes(randint(0,255), 1, 'big') return OTP 2.File Encryption: Link to heading The script reads the input file in binary mode and encrypts it by XORing each byte with a corresponding byte from the OTP (repeating the OTP cyclically)."><meta property="og:url" content="https://anthr4ce.github.io/posts/ctf-writeups/thcon/crypto/otpas_ouf/"><meta property="og:site_name" content="Anthrace | CTF Writeups"><meta property="og:title" content="THCon - Crypto"><meta property="og:description" content="Overview of the Challenge Link to heading In this challenge we are given a Python script that performs a one-time pad (OTP) encryption on a file and a crypted file.
+Here’s what happens:
+1.OTP Generation: Link to heading A 10-byte pad is generated using random bytes.
+def generate_OTP(): OTP = b'' for _ in range(10): # Generates a random byte (0–255) and appends it to the OTP. OTP += int.to_bytes(randint(0,255), 1, 'big') return OTP 2.File Encryption: Link to heading The script reads the input file in binary mode and encrypts it by XORing each byte with a corresponding byte from the OTP (repeating the OTP cyclically)."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-07-01T00:00:00+00:00"><meta property="article:modified_time" content="2025-07-01T00:00:00+00:00"><meta property="article:tag" content="Thcon"><meta property="article:tag" content="Crypto"><meta property="article:tag" content="Writeup"><link rel=canonical href=https://anthr4ce.github.io/posts/ctf-writeups/thcon/crypto/otpas_ouf/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/custom.min.75326735890e03135640e4833ec87ef2e4225b45c1ae12a57061d53d72f4157d.css integrity="sha256-dTJnNYkOAxNWQOSDPsh+8uQiW0XBrhKlcGHVPXL0FX0=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-light"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://anthr4ce.github.io/>Anthrace | CTF Writeups
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/posts/>Writeups</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title><a class=title-link href=https://anthr4ce.github.io/posts/ctf-writeups/thcon/crypto/otpas_ouf/>THCon - Crypto</a></h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fa-solid fa-calendar" aria-hidden=true></i>
+<time datetime=2025-07-01T00:00:00Z>2025-07-01
+</time></span><span class=reading-time><i class="fa-solid fa-clock" aria-hidden=true></i>
+3-minute read</span></div><div class=tags><i class="fa-solid fa-tag" aria-hidden=true></i>
+<span class=tag><a href=/tags/thcon/>Thcon</a>
+</span><span class=separator>•</span>
+<span class=tag><a href=/tags/crypto/>Crypto</a>
+</span><span class=separator>•</span>
+<span class=tag><a href=/tags/writeup/>Writeup</a></span></div></div></header><div class=post-content><p><img src=images/image1.png alt=Screenshot></p><h1 id=overview-of-the-challenge>Overview of the Challenge
+<a class=heading-link href=#overview-of-the-challenge><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h1><p>In this challenge we are given a Python script that performs a one-time pad (OTP) encryption on a file and a crypted file.</p><p>Here’s what happens:</p><h3 id=1otp-generation>1.OTP Generation:
+<a class=heading-link href=#1otp-generation><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>A 10-byte pad is generated using random bytes.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>generate_OTP</span>():
+</span></span><span style=display:flex><span>    OTP <span style=color:#f92672>=</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;&#39;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>10</span>):
+</span></span><span style=display:flex><span>        <span style=color:#75715e># Generates a random byte (0–255) and appends it to the OTP.</span>
+</span></span><span style=display:flex><span>        OTP <span style=color:#f92672>+=</span> int<span style=color:#f92672>.</span>to_bytes(randint(<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>255</span>), <span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;big&#39;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> OTP
+</span></span></code></pre></div><h3 id=2file-encryption>2.File Encryption:
+<a class=heading-link href=#2file-encryption><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>The script reads the input file in binary mode and encrypts it by XORing each byte with a corresponding byte from the OTP (repeating the OTP cyclically).</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>encrypt_file</span>(input_file: str, output_file: str, passwd: bytes):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> open(input_file, <span style=color:#e6db74>&#34;rb&#34;</span>) <span style=color:#66d9ef>as</span> ifile:
+</span></span><span style=display:flex><span>        input_data <span style=color:#f92672>=</span> ifile<span style=color:#f92672>.</span>read()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> open(output_file, <span style=color:#e6db74>&#39;wb&#39;</span>) <span style=color:#66d9ef>as</span> ofile:
+</span></span><span style=display:flex><span>        <span style=color:#75715e># XOR each byte with the OTP (repeated every 10 bytes)</span>
+</span></span><span style=display:flex><span>        buffer <span style=color:#f92672>=</span> bytes([(input_data[k] <span style=color:#f92672>^</span> passwd[k <span style=color:#f92672>%</span> len(passwd)]) 
+</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(len(input_data))])
+</span></span><span style=display:flex><span>        ofile<span style=color:#f92672>.</span>write(buffer)
+</span></span></code></pre></div><h3 id=3challenge-setup>3.Challenge Setup:
+<a class=heading-link href=#3challenge-setup><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>The twist in this challenge is that, although a one-time pad is generally secure when used correctly, reusing a short pad makes it vulnerable. In our case, we know that the encrypted file is a JPEG image. JPEG files always start with a standard header, meaning that the first 10 bytes of the file are known. A typical JPEG header starts with:</p><h2 id=why-the-encryption-is-vulnerable>Why the Encryption is Vulnerable
+<a class=heading-link href=#why-the-encryption-is-vulnerable><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The encryption process uses a short, repeated OTP (only 10 random bytes). If we have access to part of the original plaintext, we can recover those 10 bytes by XORing the known plaintext with the encrypted ciphertext.</p><p>And guess what? We actually know the first 10 random bytes! Thanks to Zhyperion and Mammoth not being the sharpest tools in the shed ;)</p><p><img src=images/image2.png alt=Screenshot></p><p>Thanks to the name of the image we know we are dealing with a .jpg, ergo we have the first 10 random bytes</p><p>JPEG files have a standard header. A typical JPEG header begins with the following bytes:</p><ul><li><p>Byte 0: 0xFF</p></li><li><p>Byte 1: 0xD8</p></li><li><p>Byte 2: 0xFF</p></li><li><p>Byte 3: 0xE0</p></li><li><p>Byte 4: 0x00</p></li><li><p>Byte 5: 0x10</p></li><li><p>Byte 6: 0x4A</p></li><li><p>Byte 7: 0x46</p></li><li><p>Byte 8: 0x49</p></li><li><p>Byte 9: 0x46</p></li></ul><p>Since the encryption is done with XOR (which is its own inverse), we can recover the OTP for these 10 bytes by XORing the encrypted file&rsquo;s first 10 bytes with the known header.</p><p>So, following this logic I crafter a script to help me decrypt the file:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>jpeg_header <span style=color:#f92672>=</span> bytes([<span style=color:#ae81ff>0xFF</span>, <span style=color:#ae81ff>0xD8</span>, <span style=color:#ae81ff>0xFF</span>, <span style=color:#ae81ff>0xE0</span>, <span style=color:#ae81ff>0x00</span>, <span style=color:#ae81ff>0x10</span>, <span style=color:#ae81ff>0x4A</span>, <span style=color:#ae81ff>0x46</span>, <span style=color:#ae81ff>0x49</span>, <span style=color:#ae81ff>0x46</span>])
+</span></span><span style=display:flex><span>file <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;picture.jpg.encrypted&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>encrypted_file <span style=color:#f92672>=</span> file 
+</span></span><span style=display:flex><span><span style=color:#66d9ef>with</span> open(encrypted_file, <span style=color:#e6db74>&#34;rb&#34;</span>) <span style=color:#66d9ef>as</span> f:
+</span></span><span style=display:flex><span>    encrypted_data <span style=color:#f92672>=</span> f<span style=color:#f92672>.</span>read()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>otp <span style=color:#f92672>=</span> bytes([encrypted_data[i] <span style=color:#f92672>^</span> jpeg_header[i] <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>10</span>)])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>decrypted_data <span style=color:#f92672>=</span> bytes([encrypted_data[k] <span style=color:#f92672>^</span> otp[k <span style=color:#f92672>%</span> <span style=color:#ae81ff>10</span>] <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> range(len(encrypted_data))])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>decrypted_file <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;image3.jpg&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>with</span> open(decrypted_file, <span style=color:#e6db74>&#34;wb&#34;</span>) <span style=color:#66d9ef>as</span> f:
+</span></span><span style=display:flex><span>    f<span style=color:#f92672>.</span>write(decrypted_data)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;done&#34;</span>)   
+</span></span></code></pre></div><p>When this script is executed, the decrypted image file is produced. The flag is revealed within this image.</p><p><img src=images/image3.jpg alt=Screenshot></p></div><footer></footer></article></section></div><footer class=footer><section class=container>©
+2025
+Anthrace
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Web on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/web/</link><description>Recent content in Web on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/web/index.xml" rel="self" type="application/rss+xml"/><item><title>DVCTF 2025 - WEB LouvreArchives</title><link>https://anthr4ce.github.io/posts/ctf-writeups/dvctf-2025/web-louvrearchives/louvrearchives/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/dvctf-2025/web-louvrearchives/louvrearchives/</guid><description>&lt;p>&lt;img src="images/img1.png" alt="Screenshot">&lt;/p>
+&lt;p>Dans ce chall il faut acceder flag.webp et on le code source.&lt;/p>
+&lt;p>En explorant un peu la page, j’ai remarqué une longue chaîne encodée en base64. Une fois décodée et réorganisée, elle contenait plusieurs images &lt;code>.webp&lt;/code> portant des noms étranges comme &lt;code>1991781613.webp&lt;/code>, &lt;code>1273827392.webp&lt;/code>, etc.&lt;/p>
+&lt;p>En consultant le code source :&lt;/p>
+&lt;p>&lt;img src="images/img2.png" alt="Screenshot">&lt;/p>
+&lt;p>On comprend que les noms des fichiers sont générés avec &lt;code>getrandbits(32)&lt;/code> de Python, c’est-à-dire 32 bits aléatoires produits par la fonction &lt;code>random.getrandbits&lt;/code>.&lt;/p></description></item><item><title>E-CTF-2025 - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/web/chatroom/chatroom/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/web/chatroom/chatroom/</guid><description>&lt;h2 id="chatroom">
+ &lt;strong>🎯Chatroom&lt;/strong>
+ &lt;a class="heading-link" href="#chatroom">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="images/chatroom_1.png" alt="Screenshot">&lt;/p>
+&lt;p>Dans ce challenge, on nous donne accès à un &lt;strong>chatroom&lt;/strong> où un message explique que l’&lt;strong>admin lira notre message dans 30 secondes&lt;/strong>.&lt;/p>
+&lt;p>🧐 Dès cette indication, je pense immédiatement à une potentielle &lt;strong>vulnérabilité XSS&lt;/strong> (&lt;strong>Cross-Site Scripting&lt;/strong>), car si un message est stocké et exécuté dans le navigateur de l’admin, on pourrait &lt;strong>injecter du JavaScript malveillant&lt;/strong>.&lt;/p>
+&lt;hr>
+&lt;h2 id="-étape-1---tester-une-injection-xss">
+ &lt;strong>🔎 Étape 1 - Tester une Injection XSS&lt;/strong>
+ &lt;a class="heading-link" href="#-%c3%a9tape-1---tester-une-injection-xss">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>Pour vérifier si l’input est vulnérable au &lt;strong>XSS&lt;/strong>, j’essaye un &lt;strong>payload simple&lt;/strong> :&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/internal-blog/internal-blog_en/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/internal-blog/internal-blog_en/</guid><description>&lt;h3 id="exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit">
+ &lt;strong>Exploiting an XSS Vulnerability in a Blog with Moderator Visit&lt;/strong>
+ &lt;a class="heading-link" href="#exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>&lt;img src="images/blog_chall.png" alt="Screenshot">&lt;/p>
+&lt;p>In this challenge, we have a blog with a user registration and login system.&lt;br>
+We know that the &lt;strong>admin (or the moderator bot) will visit our profile&lt;/strong> when we register and when we post an article.&lt;/p>
+&lt;p>A &lt;strong>source code leak&lt;/strong> is also available.&lt;/p>
+&lt;p>&lt;img src="images/blog_leak.png" alt="Screenshot">&lt;/p>
+&lt;hr>
+&lt;h3 id="step-1-analyzing-the-source-code">
+ &lt;strong>Step 1: Analyzing the Source Code&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-analyzing-the-source-code">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>Looking at the leaked source code, we notice an &lt;strong>attempt at sanitization&lt;/strong> of the fields, but it is performed &lt;strong>after the .save()&lt;/strong>, meaning that &lt;strong>even if an error is displayed, the data is already stored in the database&lt;/strong>.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/internal-blog/internal-blog_fr/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/internal-blog/internal-blog_fr/</guid><description>&lt;h3 id="exploitation-d">
+ &lt;strong>Exploitation d&amp;rsquo;une faille XSS dans un blog avec visite de modérateur&lt;/strong>
+ &lt;a class="heading-link" href="#exploitation-d">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>&lt;img src="images/blog_chall.png" alt="Screenshot">&lt;/p>
+&lt;p>Dans ce challenge, on a un blog avec un système d&amp;rsquo;enregistrement et de connexion des utilisateurs.&lt;br>
+On sait que l&amp;rsquo;&lt;strong>admin (ou le bot modérateur) visitera notre profil&lt;/strong> lorsqu&amp;rsquo;on s&amp;rsquo;enregistre et lorsqu&amp;rsquo;on poste un article.&lt;/p>
+&lt;p>Un &lt;strong>leak du code source&lt;/strong> est également présent.&lt;/p>
+&lt;p>&lt;img src="images/blog_leak.png" alt="Screenshot">&lt;/p>
+&lt;hr>
+&lt;h3 id="étape-1--analyser-le-code-source">
+ &lt;strong>Étape 1 : Analyser le code source&lt;/strong>
+ &lt;a class="heading-link" href="#%c3%a9tape-1--analyser-le-code-source">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>En regardant le leak de code, on remarque une &lt;strong>tentative de sanitization&lt;/strong> des champs, mais celle-ci est effectuée &lt;strong>après le &lt;code>.save()&lt;/code>&lt;/strong>, ce qui signifie que &lt;strong>même si une erreur s&amp;rsquo;affiche, les données sont déjà enregistrées en base&lt;/strong>.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/open-the-door/open-the-door_en/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/open-the-door/open-the-door_en/</guid><description>&lt;h3 id="flask-web-challenge---template-injection-analysis">
+ &lt;strong>Flask Web Challenge - Template Injection Analysis&lt;/strong>
+ &lt;a class="heading-link" href="#flask-web-challenge---template-injection-analysis">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>In this challenge, we have a downloadable folder containing several files.&lt;/p>
+&lt;p>&lt;img src="images/door_files.png" alt="Screenshot">&lt;/p>
+&lt;hr>
+&lt;h3 id="step-1-identifying-the-web-framework">
+ &lt;strong>Step 1: Identifying the Web Framework&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-identifying-the-web-framework">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>By examining the &lt;code>requirements.txt&lt;/code> and &lt;code>app.py&lt;/code> files, we confirm that the application is built using &lt;strong>Flask&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="images/door_flask_infos.png" alt="Screenshot">&lt;/p>
+&lt;hr>
+&lt;h3 id="step-2-examining-the-docker-configuration">
+ &lt;strong>Step 2: Examining the Docker Configuration&lt;/strong>
+ &lt;a class="heading-link" href="#step-2-examining-the-docker-configuration">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>Looking into the &lt;code>docker-compose.yaml&lt;/code> file, we notice that the application is using &lt;strong>templates&lt;/strong> as an environment variable, which could be a potential security risk.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/open-the-door/open-the-door_fr/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/open-the-door/open-the-door_fr/</guid><description>&lt;h3 id="flask-web-challenge---template-injection-analysis">
+ &lt;strong>Flask Web Challenge - Template Injection Analysis&lt;/strong>
+ &lt;a class="heading-link" href="#flask-web-challenge---template-injection-analysis">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>In this challenge, we have a downloadable folder containing several files.&lt;/p>
+&lt;p>&lt;img src="images/door_files.png" alt="Screenshot">&lt;/p>
+&lt;hr>
+&lt;h3 id="step-1-identifying-the-web-framework">
+ &lt;strong>Step 1: Identifying the Web Framework&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-identifying-the-web-framework">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>By examining the &lt;code>requirements.txt&lt;/code> and &lt;code>app.py&lt;/code> files, we confirm that the application is built using &lt;strong>Flask&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="images/door_flask_infos.png" alt="Screenshot">&lt;/p>
+&lt;hr>
+&lt;h3 id="step-2-examining-the-docker-configuration">
+ &lt;strong>Step 2: Examining the Docker Configuration&lt;/strong>
+ &lt;a class="heading-link" href="#step-2-examining-the-docker-configuration">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>Looking into the &lt;code>docker-compose.yaml&lt;/code> file, we notice that the application is using &lt;strong>templates&lt;/strong> as an environment variable, which could be a potential security risk.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/the-analytical-engine-leak/the-analytical-engine-leak_en/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/the-analytical-engine-leak/the-analytical-engine-leak_en/</guid><description>&lt;h3 id="sql-injection-and-extracting-sensitive-data">
+ &lt;strong>SQL Injection and Extracting Sensitive Data&lt;/strong>
+ &lt;a class="heading-link" href="#sql-injection-and-extracting-sensitive-data">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>In this challenge, we have a form with two fields: &lt;code>username&lt;/code> and &lt;code>password&lt;/code>. Our goal is to exploit an SQL Injection vulnerability to extract sensitive data from the database.&lt;/p>
+&lt;p>&lt;img src="images/web_chall_description.png" alt="Screenshot">&lt;/p>
+&lt;hr>
+&lt;h4 id="step-1-testing-a-basic-sql-injection">
+ &lt;strong>Step 1: Testing a Basic SQL Injection&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-testing-a-basic-sql-injection">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h4>
+&lt;p>I started by testing a simple SQL injection in the &lt;code>password&lt;/code> field. Here is the payload used:&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/the-analytical-engine-leak/the-analytical-engine-leak_fr/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/the-analytical-engine-leak/the-analytical-engine-leak_fr/</guid><description>&lt;p>&lt;strong>SQL Injection et récupération de données sensibles&lt;/strong>&lt;/p>
+&lt;h2 id="screenshot">
+ Dans ce challenge, on a un formulaire avec deux champs : &lt;code>username&lt;/code> et &lt;code>password&lt;/code>. Notre objectif est d&amp;rsquo;exploiter une faille SQL Injection pour extraire des données sensibles de la base de données.
+&lt;img src="images/web_chall_description.png" alt="Screenshot">
+ &lt;a class="heading-link" href="#screenshot">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;h4 id="étape-1--tester-une-injection-basique">
+ &lt;strong>Étape 1 : Tester une injection basique&lt;/strong>
+ &lt;a class="heading-link" href="#%c3%a9tape-1--tester-une-injection-basique">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h4>
+&lt;p>J&amp;rsquo;ai commencé par tester une injection SQL simple dans le champ &lt;code>password&lt;/code>. Voici le payload utilisé :&lt;/p></description></item><item><title>Nullcon-Goa-HackIM-2025 - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/crahp/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/crahp/</guid><description>&lt;h1 id="web-challenge---crc-hash-collision-exploit">
+ &lt;strong>Web Challenge - CRC Hash Collision Exploit&lt;/strong>
+ &lt;a class="heading-link" href="#web-challenge---crc-hash-collision-exploit">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;h2 id="challenge-description">
+ &lt;strong>Challenge Description&lt;/strong>
+ &lt;a class="heading-link" href="#challenge-description">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>Dans ce challenge, nous avons accès au code source d&amp;rsquo;un script PHP ainsi qu&amp;rsquo;à deux indices :&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Indice 1&lt;/strong> : &lt;a href="https://www.php.net/manual/en/function.crc32.php#28012" class="external-link" target="_blank" rel="noopener">Lien vers la documentation PHP sur crc32()&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Indice 2&lt;/strong> : &lt;a href="https://stackoverflow.com/questions/507041/crc8-check-in-php/73305496#73305496" class="external-link" target="_blank" rel="noopener">Lien vers une implémentation CRC8 en PHP&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>L&amp;rsquo;objectif est d&amp;rsquo;obtenir le &lt;strong>flag&lt;/strong> en contournant un mécanisme d&amp;rsquo;authentification basé sur des &lt;strong>hashes CRC&lt;/strong>.&lt;/p></description></item></channel></rss>

@@ -1,0 +1,57 @@
+<!doctype html><html lang=en><head><title>HackDay - Forensic · Anthrace | CTF Writeups</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Anthrace"><meta name=description content="
+  Forensic Challenge - Extracting the Hidden Flag
+  
+    
+    Link to heading
+  
+
+In this challenge, we are given a ZIP file containing a log file and two images.
+
+
+  Step 1: Analyzing the Log File
+  
+    
+    Link to heading
+  
+
+I started by analyzing the log file, and I found five encoded words. I used dcode.fr to decode them:
+
+ercbafr (ROT13) → reponse
+
+
+
+c29sdXRpb24= (Base64) → solution
+
+"><meta name=keywords content="ctf,hacking,cybersecurity,writeups,web,osint,forensic,crypto"><meta name=twitter:card content="summary"><meta name=twitter:title content="HackDay - Forensic"><meta name=twitter:description content="Forensic Challenge - Extracting the Hidden Flag Link to heading In this challenge, we are given a ZIP file containing a log file and two images.
+Step 1: Analyzing the Log File Link to heading I started by analyzing the log file, and I found five encoded words. I used dcode.fr to decode them:
+ercbafr (ROT13) → reponse c29sdXRpb24= (Base64) → solution"><meta property="og:url" content="https://anthr4ce.github.io/posts/ctf-writeups/hackday/forensic/i-believe-you-cant-fly_en/"><meta property="og:site_name" content="Anthrace | CTF Writeups"><meta property="og:title" content="HackDay - Forensic"><meta property="og:description" content="Forensic Challenge - Extracting the Hidden Flag Link to heading In this challenge, we are given a ZIP file containing a log file and two images.
+Step 1: Analyzing the Log File Link to heading I started by analyzing the log file, and I found five encoded words. I used dcode.fr to decode them:
+ercbafr (ROT13) → reponse c29sdXRpb24= (Base64) → solution"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-07-01T00:00:00+00:00"><meta property="article:modified_time" content="2025-07-01T00:00:00+00:00"><meta property="article:tag" content="Hackday"><meta property="article:tag" content="Forensic"><meta property="article:tag" content="Writeup"><link rel=canonical href=https://anthr4ce.github.io/posts/ctf-writeups/hackday/forensic/i-believe-you-cant-fly_en/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/custom.min.75326735890e03135640e4833ec87ef2e4225b45c1ae12a57061d53d72f4157d.css integrity="sha256-dTJnNYkOAxNWQOSDPsh+8uQiW0XBrhKlcGHVPXL0FX0=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-light"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://anthr4ce.github.io/>Anthrace | CTF Writeups
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/posts/>Writeups</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title><a class=title-link href=https://anthr4ce.github.io/posts/ctf-writeups/hackday/forensic/i-believe-you-cant-fly_en/>HackDay - Forensic</a></h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fa-solid fa-calendar" aria-hidden=true></i>
+<time datetime=2025-07-01T00:00:00Z>2025-07-01
+</time></span><span class=reading-time><i class="fa-solid fa-clock" aria-hidden=true></i>
+2-minute read</span></div><div class=tags><i class="fa-solid fa-tag" aria-hidden=true></i>
+<span class=tag><a href=/tags/hackday/>Hackday</a>
+</span><span class=separator>•</span>
+<span class=tag><a href=/tags/forensic/>Forensic</a>
+</span><span class=separator>•</span>
+<span class=tag><a href=/tags/writeup/>Writeup</a></span></div></div></header><div class=post-content><h3 id=forensic-challenge---extracting-the-hidden-flag><strong>Forensic Challenge - Extracting the Hidden Flag</strong>
+<a class=heading-link href=#forensic-challenge---extracting-the-hidden-flag><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>In this challenge, we are given a <strong>ZIP file</strong> containing a <strong>log file</strong> and <strong>two images</strong>.</p><hr><h3 id=step-1-analyzing-the-log-file><strong>Step 1: Analyzing the Log File</strong>
+<a class=heading-link href=#step-1-analyzing-the-log-file><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>I started by analyzing the log file, and I found <strong>five encoded words</strong>. I used <strong>dcode.fr</strong> to decode them:</p><ul><li><code>ercbafr</code> (ROT13) → <strong>reponse</strong></li></ul><p><img src=images/forensic_1.png alt=Screenshot></p><ul><li><code>c29sdXRpb24=</code> (Base64) → <strong>solution</strong></li></ul><p><img src=images/forensic_2.png alt=Screenshot></p><ul><li><code>636c6566</code> (Hex to ASCII) → <strong>clef</strong></li></ul><p><img src=images/forensic_3.png alt=Screenshot></p><ul><li><code>0110001011111011011000110110100001100101</code> (Binary to text) → <strong>bûche</strong></li></ul><p><img src=images/forensic_4.png alt=Screenshot></p><ul><li><code>KDFNGD\\~dPbCbiU6H</code> → <strong>Unknown</strong></li></ul><p>For the last string, <strong>dcode.fr couldn&rsquo;t decode it</strong>, so I used <strong>CyberChef</strong> with a <strong>ROT47 brute force</strong>, which revealed:</p><p><strong><code>KDFNGD\\~dPbCbiU6H</code> → <code>HACKDAY{aM_@_fR3E</code></strong></p><p><img src=images/forensic_5.png alt=Screenshot></p><hr><h3 id=step-2-analyzing-the-two-images-with-aperisolve><strong>Step 2: Analyzing the Two Images with Aperisolve</strong>
+<a class=heading-link href=#step-2-analyzing-the-two-images-with-aperisolve><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Next, I analyzed the two images using <strong>Aperisolve</strong>.</p><h4 id=image-1-analysis><strong>Image 1 Analysis</strong>
+<a class=heading-link href=#image-1-analysis><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h4><p>Results found:</p><ul><li><strong><code>HACKDAY{08139b20df9f789b7763}</code></strong></li><li><strong><code>securepassword</code></strong></li></ul><p><img src=images/forensic_6.png alt=Screenshot></p><h4 id=image-2-analysis><strong>Image 2 Analysis</strong>
+<a class=heading-link href=#image-2-analysis><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h4><p>Results found:</p><ul><li><strong><code>secure password</code></strong></li><li><strong><code>-@LbaRT0s5}</code></strong></li></ul><p><img src=images/forensic_7.png alt=Screenshot></p><hr><h3 id=step-3-reconstructing-the-flag><strong>Step 3: Reconstructing the Flag</strong>
+<a class=heading-link href=#step-3-reconstructing-the-flag><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>From the extracted data, I was able to <strong>reconstruct the second half of the flag</strong>:</p><p>🔹 <strong>Final flag:</strong><br><code>HACKDAY{aM_@_fR3E-@LbaRT0s5}</code></p><hr><h3 id=conclusion><strong>Conclusion</strong>
+<a class=heading-link href=#conclusion><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>This challenge demonstrated the importance of <strong>multiple forensic analysis techniques</strong>:</p><ul><li>Using <strong>dcode.fr and CyberChef</strong> to decode manually tampered text strings from logs.</li><li>Using <strong>Aperisolve</strong> to extract <strong>hidden strings and metadata</strong> from images.</li><li><strong>Piecing together</strong> the fragments of the flag from different sources.</li></ul><p>This approach helped uncover <strong>the full flag hidden within encoded text and steganographic markers</strong>.</p></div><footer></footer></article></section></div><footer class=footer><section class=container>©
+2025
+Anthrace
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Forensic on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/forensic/</link><description>Recent content in Forensic on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/forensic/index.xml" rel="self" type="application/rss+xml"/><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/capture-the-hidden/capture-the-hidden/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/capture-the-hidden/capture-the-hidden/</guid><description>&lt;p>&lt;img src="images/hidden_1.png" alt="Screenshot">&lt;/p>
+&lt;h2 id="étape-1--ouverture-du-fichier-zip">
+ &lt;strong>Étape 1 : Ouverture du fichier ZIP&lt;/strong>
+ &lt;a class="heading-link" href="#%c3%a9tape-1--ouverture-du-fichier-zip">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>Le challenge nous fournit un &lt;strong>fichier ZIP&lt;/strong> qui contient un &lt;strong>fichier PCAP&lt;/strong>.&lt;/p>
+&lt;p>📌 &lt;strong>Objectif :&lt;/strong>&lt;br>
+Analyser le &lt;strong>PCAP&lt;/strong> pour identifier une &lt;strong>exfiltration de données&lt;/strong> et récupérer le &lt;strong>flag&lt;/strong>.&lt;/p>
+&lt;hr>
+&lt;h2 id="étape-2--analyse-initiale-du-pcap">
+ &lt;strong>Étape 2 : Analyse initiale du PCAP&lt;/strong>
+ &lt;a class="heading-link" href="#%c3%a9tape-2--analyse-initiale-du-pcap">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>J&amp;rsquo;ai ouvert le &lt;strong>fichier PCAP&lt;/strong> avec &lt;strong>Wireshark&lt;/strong> et commencé à analyser les paquets.&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/image-stolen/image-stolen/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/image-stolen/image-stolen/</guid><description>&lt;h2 id="-énoncé-du-challenge">
+ &lt;strong>📌 Énoncé du challenge&lt;/strong>
+ &lt;a class="heading-link" href="#-%c3%a9nonc%c3%a9-du-challenge">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="images/stolen1.png" alt="Screenshot">&lt;/p>
+&lt;p>On nous donne un fichier &lt;strong>.zip&lt;/strong> contenant un fichier &lt;strong>.pcap&lt;/strong>. L’énoncé indique &lt;strong>qu’une image a été volée&lt;/strong>, et il faut la retrouver dans le &lt;strong>fichier PCAP&lt;/strong>.&lt;/p>
+&lt;hr>
+&lt;h2 id="-étape-1--analyse-du-fichier-pcap">
+ &lt;strong>🔎 Étape 1 : Analyse du fichier PCAP&lt;/strong>
+ &lt;a class="heading-link" href="#-%c3%a9tape-1--analyse-du-fichier-pcap">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>J’ai ouvert &lt;strong>le fichier &lt;code>.pcap&lt;/code>&lt;/strong> avec &lt;strong>Wireshark&lt;/strong> pour inspecter les communications réseau.&lt;/p>
+&lt;p>&lt;img src="images/stolen2.png" alt="Screenshot">&lt;/p>
+&lt;p>📌 &lt;strong>Observations :&lt;/strong>&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/my-dearest/my-dearest/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/my-dearest/my-dearest/</guid><description>&lt;p>&lt;img src="images/dearest1.png" alt="Screenshot">&lt;/p>
+&lt;h2 id="étape-1--téléchargement-du-fichier-zip">
+ &lt;strong>Étape 1 : Téléchargement du fichier ZIP&lt;/strong>
+ &lt;a class="heading-link" href="#%c3%a9tape-1--t%c3%a9l%c3%a9chargement-du-fichier-zip">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>Le challenge nous fournit un &lt;strong>fichier ZIP&lt;/strong> contenant un &lt;strong>fichier DOCX&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="images/dearest2.png" alt="Screenshot">&lt;/p>
+&lt;p>📌 &lt;strong>Hypothèse :&lt;/strong>&lt;br>
+Un fichier &lt;strong>DOCX&lt;/strong> est en réalité une &lt;strong>archive ZIP&lt;/strong>, ce qui signifie qu&amp;rsquo;on peut &lt;strong>l&amp;rsquo;extraire&lt;/strong> pour voir son contenu interne.&lt;/p>
+&lt;hr>
+&lt;h2 id="étape-2--extraction-du-contenu-du-docx">
+ &lt;strong>Étape 2 : Extraction du contenu du DOCX&lt;/strong>
+ &lt;a class="heading-link" href="#%c3%a9tape-2--extraction-du-contenu-du-docx">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="images/dearest3.png" alt="Screenshot">&lt;/p>
+&lt;p>J’ai utilisé &lt;strong>unzip&lt;/strong> pour &lt;strong>extraire&lt;/strong> le contenu du &lt;strong>fichier DOCX&lt;/strong>.&lt;/p></description></item><item><title>HackDay - Forensic</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/forensic/i-believe-you-cant-fly_en/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/forensic/i-believe-you-cant-fly_en/</guid><description>&lt;h3 id="forensic-challenge---extracting-the-hidden-flag">
+ &lt;strong>Forensic Challenge - Extracting the Hidden Flag&lt;/strong>
+ &lt;a class="heading-link" href="#forensic-challenge---extracting-the-hidden-flag">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>In this challenge, we are given a &lt;strong>ZIP file&lt;/strong> containing a &lt;strong>log file&lt;/strong> and &lt;strong>two images&lt;/strong>.&lt;/p>
+&lt;hr>
+&lt;h3 id="step-1-analyzing-the-log-file">
+ &lt;strong>Step 1: Analyzing the Log File&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-analyzing-the-log-file">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>I started by analyzing the log file, and I found &lt;strong>five encoded words&lt;/strong>. I used &lt;strong>dcode.fr&lt;/strong> to decode them:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>ercbafr&lt;/code> (ROT13) → &lt;strong>reponse&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="images/forensic_1.png" alt="Screenshot">&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>c29sdXRpb24=&lt;/code> (Base64) → &lt;strong>solution&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="images/forensic_2.png" alt="Screenshot">&lt;/p></description></item></channel></rss>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Web-Traineetrainee on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/web-traineetrainee/</link><description>Recent content in Web-Traineetrainee on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/web-traineetrainee/index.xml" rel="self" type="application/rss+xml"/><item><title>RootMeCTF-20K - WEB-TraineeTrainee</title><link>https://anthr4ce.github.io/posts/ctf-writeups/rootmectf-20k/web-traineetrainee/traineetrainee/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/rootmectf-20k/web-traineetrainee/traineetrainee/</guid><description>&lt;p>Description:&lt;/p>
+&lt;p>&lt;img src="images/trainee-desc.png" alt="Screenshot">&lt;/p>
+&lt;p>The trainee made a weird commit that’s flooding the server with requests—and eventually blocking connections. We’re hinted that something strange is lurking in their Nginx setup.&lt;/p>
+&lt;p>As soon as we connect we have a file reader form.
+I stared with a whatweb&lt;/p>
+&lt;p>&lt;img src="images/trainee-whatweb.png" alt="Screenshot">&lt;/p>
+&lt;p>With this we know the backend runs a Nginx 1.24.0.
+I tried to research for a file like a file.txt, example.txt localhost and /etc/nginx because of what could be anginx misconfiguration.&lt;/p></description></item></channel></rss>

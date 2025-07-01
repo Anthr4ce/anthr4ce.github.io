@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Crypto on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/crypto/</link><description>Recent content in Crypto on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/crypto/index.xml" rel="self" type="application/rss+xml"/><item><title>DVCTF 2025 - WEB LouvreArchives</title><link>https://anthr4ce.github.io/posts/ctf-writeups/dvctf-2025/web-louvrearchives/louvrearchives/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/dvctf-2025/web-louvrearchives/louvrearchives/</guid><description>&lt;p>&lt;img src="images/img1.png" alt="Screenshot">&lt;/p>
+&lt;p>Dans ce chall il faut acceder flag.webp et on le code source.&lt;/p>
+&lt;p>En explorant un peu la page, j’ai remarqué une longue chaîne encodée en base64. Une fois décodée et réorganisée, elle contenait plusieurs images &lt;code>.webp&lt;/code> portant des noms étranges comme &lt;code>1991781613.webp&lt;/code>, &lt;code>1273827392.webp&lt;/code>, etc.&lt;/p>
+&lt;p>En consultant le code source :&lt;/p>
+&lt;p>&lt;img src="images/img2.png" alt="Screenshot">&lt;/p>
+&lt;p>On comprend que les noms des fichiers sont générés avec &lt;code>getrandbits(32)&lt;/code> de Python, c’est-à-dire 32 bits aléatoires produits par la fonction &lt;code>random.getrandbits&lt;/code>.&lt;/p></description></item><item><title>E-CTF-2025 - Crypto</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/crypto/ascii-everything-but-not-the-flag/ascii-everything-but-not-the-flag/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/crypto/ascii-everything-but-not-the-flag/ascii-everything-but-not-the-flag/</guid><description>&lt;h2 id="étape-1--analyse-de-l">
+ &lt;strong>Étape 1 : Analyse de l&amp;rsquo;énoncé&lt;/strong>
+ &lt;a class="heading-link" href="#%c3%a9tape-1--analyse-de-l">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="images/chall_screen.png" alt="Screenshot">&lt;/p>
+&lt;p>Le challenge nous donne une série de &lt;strong>nombres en ASCII&lt;/strong> et une phrase intrigante :&lt;/p>
+&lt;p>&lt;code>108 100 111 109 123 85 99 49 122 95 106 53 95 79 111 51 95 88 52 116 95 48 109 95 51 111 88 121 90 107 97 106 48 105 125 10 10 69 98 111 98 32 102 112 32 118 108 114 111 32 104 98 118 44 32 100 108 108 97 32 105 114 122 104 32 58 32 72 66 86 72 66 86 10 10 87 101 108 108 32 100 111 110 101 44 32 98 117 116 32 110 111 119 32 100 111 32 121 111 117 32 107 110 111 119 32 97 98 111 117 116 32 116 104 101 32 103 117 121 32 119 104 111 32 103 111 116 32 115 116 97 98 98 101 100 32 50 51 32 116 105 109 101 115 32 63&lt;/code>&lt;/p></description></item><item><title>Nullcon-Goa-HackIM-2025 - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/crahp/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/crahp/</guid><description>&lt;h1 id="web-challenge---crc-hash-collision-exploit">
+ &lt;strong>Web Challenge - CRC Hash Collision Exploit&lt;/strong>
+ &lt;a class="heading-link" href="#web-challenge---crc-hash-collision-exploit">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h1>
+&lt;hr>
+&lt;h2 id="challenge-description">
+ &lt;strong>Challenge Description&lt;/strong>
+ &lt;a class="heading-link" href="#challenge-description">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>Dans ce challenge, nous avons accès au code source d&amp;rsquo;un script PHP ainsi qu&amp;rsquo;à deux indices :&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Indice 1&lt;/strong> : &lt;a href="https://www.php.net/manual/en/function.crc32.php#28012" class="external-link" target="_blank" rel="noopener">Lien vers la documentation PHP sur crc32()&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Indice 2&lt;/strong> : &lt;a href="https://stackoverflow.com/questions/507041/crc8-check-in-php/73305496#73305496" class="external-link" target="_blank" rel="noopener">Lien vers une implémentation CRC8 en PHP&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>L&amp;rsquo;objectif est d&amp;rsquo;obtenir le &lt;strong>flag&lt;/strong> en contournant un mécanisme d&amp;rsquo;authentification basé sur des &lt;strong>hashes CRC&lt;/strong>.&lt;/p></description></item><item><title>THCon - Crypto</title><link>https://anthr4ce.github.io/posts/ctf-writeups/thcon/crypto/otpas_ouf/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/thcon/crypto/otpas_ouf/</guid><description>&lt;p>&lt;img src="images/image1.png" alt="Screenshot">&lt;/p>
+&lt;h1 id="overview-of-the-challenge">
+ Overview of the Challenge
+ &lt;a class="heading-link" href="#overview-of-the-challenge">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h1>
+&lt;p>In this challenge we are given a Python script that performs a one-time pad (OTP) encryption on a file and a crypted file.&lt;/p>
+&lt;p>Here’s what happens:&lt;/p>
+&lt;h3 id="1otp-generation">
+ 1.OTP Generation:
+ &lt;a class="heading-link" href="#1otp-generation">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>A 10-byte pad is generated using random bytes.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">generate_OTP&lt;/span>():
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> OTP &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">b&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> _ &lt;span style="color:#f92672">in&lt;/span> range(&lt;span style="color:#ae81ff">10&lt;/span>):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># Generates a random byte (0–255) and appends it to the OTP.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> OTP &lt;span style="color:#f92672">+=&lt;/span> int&lt;span style="color:#f92672">.&lt;/span>to_bytes(randint(&lt;span style="color:#ae81ff">0&lt;/span>,&lt;span style="color:#ae81ff">255&lt;/span>), &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;big&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> OTP
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="2file-encryption">
+ 2.File Encryption:
+ &lt;a class="heading-link" href="#2file-encryption">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h3>
+&lt;p>The script reads the input file in binary mode and encrypts it by XORing each byte with a corresponding byte from the OTP (repeating the OTP cyclically).&lt;/p></description></item></channel></rss>

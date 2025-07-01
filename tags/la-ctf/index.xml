@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>La-Ctf on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/la-ctf/</link><description>Recent content in La-Ctf on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/la-ctf/index.xml" rel="self" type="application/rss+xml"/><item><title>LA-CTF - I spy...</title><link>https://anthr4ce.github.io/posts/ctf-writeups/la-ctf/web/i-spy.../i_spy/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/la-ctf/web/i-spy.../i_spy/</guid><description>&lt;h2 id="-description-du-challenge">
+ &lt;strong>📌 Description du Challenge&lt;/strong>
+ &lt;a class="heading-link" href="#-description-du-challenge">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>Dans ce challenge, il y a un formulaire où l&amp;rsquo;on doit soumettre des tokens.&lt;br>
+L&amp;rsquo;énoncé et les indices indiquent que plusieurs tokens sont cachés à différents endroits de l&amp;rsquo;application web.&lt;br>
+L&amp;rsquo;objectif est de &lt;strong>trouver et soumettre tous les tokens pour obtenir le flag&lt;/strong>.&lt;/p>
+&lt;hr>
+&lt;h2 id="-étape-1--comprendre-où-chercher-les-tokens">
+ &lt;strong>🛠️ Étape 1 : Comprendre où chercher les tokens&lt;/strong>
+ &lt;a class="heading-link" href="#-%c3%a9tape-1--comprendre-o%c3%b9-chercher-les-tokens">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>Les tokens sont dispersés dans plusieurs endroits classiques où des informations cachées peuvent être stockées :&lt;/p></description></item><item><title>LA-CTF - Lucky flag</title><link>https://anthr4ce.github.io/posts/ctf-writeups/la-ctf/web/lucky-flag/lucky-flag/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/la-ctf/web/lucky-flag/lucky-flag/</guid><description>&lt;h2 id="-description-du-challenge">
+ &lt;strong>📌 Description du challenge&lt;/strong>
+ &lt;a class="heading-link" href="#-description-du-challenge">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>Dans ce challenge, je suis face à une &lt;strong>page web remplie de milliers de boutons&lt;/strong> portant tous l’étiquette &amp;ldquo;flag&amp;rdquo;.&lt;/p>
+&lt;p>&lt;img src="images/flag1.png" alt="Screenshot">&lt;/p>
+&lt;p>L&amp;rsquo;objectif est de &lt;strong>trouver le bon bouton qui affiche le flag&lt;/strong>.&lt;/p>
+&lt;hr>
+&lt;h2 id="-étape-1--inspection-du-code-source">
+ &lt;strong>🔍 Étape 1 : Inspection du code source&lt;/strong>
+ &lt;a class="heading-link" href="#-%c3%a9tape-1--inspection-du-code-source">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>Plutôt que de cliquer sur &lt;strong>des milliers de boutons&lt;/strong> je trouve un fichier &lt;strong>&lt;code>main.js&lt;/code>&lt;/strong> qui gère le fonctionnement des boutons.&lt;/p></description></item></channel></rss>

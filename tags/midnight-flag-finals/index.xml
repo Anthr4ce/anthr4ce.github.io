@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Midnight-Flag-Finals on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/midnight-flag-finals/</link><description>Recent content in Midnight-Flag-Finals on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/midnight-flag-finals/index.xml" rel="self" type="application/rss+xml"/><item><title>Midnight-Flag-Finals - Osint</title><link>https://anthr4ce.github.io/posts/ctf-writeups/midnight-flag-finals/osint/operationsilenthunt/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/midnight-flag-finals/osint/operationsilenthunt/</guid><description>&lt;h1 id="operation-silent-hunt">
+ Operation Silent Hunt
+ &lt;a class="heading-link" href="#operation-silent-hunt">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h1>
+&lt;h2 id="challenge-description">
+ Challenge Description
+ &lt;a class="heading-link" href="#challenge-description">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;blockquote>
+&lt;p>During the theft of a hard drive containing sensitive data, the attacker made a mistake: they lost their phone at the scene.&lt;br>
+&lt;strong>Your mission:&lt;/strong> follow the clues and locate the &lt;strong>exact address&lt;/strong> where the hard drive is hidden.&lt;/p>
+&lt;p>But be careful&amp;hellip; getting caught could compromise the entire operation.&lt;/p>
+&lt;p>🔍 Only use the following websites for your investigation:&lt;/p></description></item></channel></rss>

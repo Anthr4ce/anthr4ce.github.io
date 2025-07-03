@@ -1,0 +1,60 @@
+<!doctype html><html lang=en><head><title>E-CTF-2025 - Forensic · Anthrace | CTF Writeups</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Anthrace"><meta name=description content="
+
+
+  Step 1: Downloading the ZIP File
+  
+    
+    Link to heading
+  
+
+The challenge provides a ZIP file containing a DOCX file.
+
+Hypothesis:
+A DOCX file is actually a ZIP archive, meaning we can extract its internal content.
+
+
+  Step 2: Extracting the DOCX Content
+  
+    
+    Link to heading
+  
+
+
+I used unzip to extract the content of the DOCX file.
+Result:
+
+Several folders and XML files.
+A folder named word/ containing metadata and content.
+
+
+
+  Step 3: Analyzing Extracted Files
+  
+    
+    Link to heading
+  
+
+I explored all the files extracted from the DOCX, looking for hidden information."><meta name=keywords content="ctf,hacking,cybersecurity,writeups,web,osint,forensic,crypto"><meta name=twitter:card content="summary"><meta name=twitter:title content="E-CTF-2025 - Forensic"><meta name=twitter:description content="Step 1: Downloading the ZIP File Link to heading The challenge provides a ZIP file containing a DOCX file.
+Hypothesis: A DOCX file is actually a ZIP archive, meaning we can extract its internal content.
+Step 2: Extracting the DOCX Content Link to heading I used unzip to extract the content of the DOCX file.
+Result:
+Several folders and XML files. A folder named word/ containing metadata and content. Step 3: Analyzing Extracted Files Link to heading I explored all the files extracted from the DOCX, looking for hidden information."><meta property="og:url" content="https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/my-dearest/"><meta property="og:site_name" content="Anthrace | CTF Writeups"><meta property="og:title" content="E-CTF-2025 - Forensic"><meta property="og:description" content="Step 1: Downloading the ZIP File Link to heading The challenge provides a ZIP file containing a DOCX file.
+Hypothesis: A DOCX file is actually a ZIP archive, meaning we can extract its internal content.
+Step 2: Extracting the DOCX Content Link to heading I used unzip to extract the content of the DOCX file.
+Result:
+Several folders and XML files. A folder named word/ containing metadata and content. Step 3: Analyzing Extracted Files Link to heading I explored all the files extracted from the DOCX, looking for hidden information."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ctf-writeups"><meta property="article:published_time" content="2025-07-01T00:00:00+00:00"><meta property="article:modified_time" content="2025-07-01T00:00:00+00:00"><meta property="article:tag" content="E-CTF-2025"><meta property="article:tag" content="Forensic"><meta property="article:tag" content="Writeup"><link rel=canonical href=https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/my-dearest/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/custom.min.92a8af9d939d71a5316be0e14fcee81d71b93ab020897940098bf1c492367587.css integrity="sha256-kqivnZOdcaUxa+DhT87oHXG5OrAgiXlACYvxxJI2dYc=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-light"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://anthr4ce.github.io/>Anthrace | CTF Writeups
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/ctf-writeups/>Writeups</a></li><li class=navigation-item><a class=navigation-link href=/whoami/>Whoami</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/my-dearest/>E-CTF-2025 - Forensic</a></h1></header><hr><p><img src=images/dearest1.png alt=Screenshot></p><h2 id=step-1-downloading-the-zip-file><strong>Step 1: Downloading the ZIP File</strong>
+<a class=heading-link href=#step-1-downloading-the-zip-file><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The challenge provides a <strong>ZIP file</strong> containing a <strong>DOCX file</strong>.</p><p><img src=images/dearest2.png alt=Screenshot></p><p><strong>Hypothesis:</strong>
+A <strong>DOCX file</strong> is actually a <strong>ZIP archive</strong>, meaning we can <strong>extract</strong> its internal content.</p><hr><h2 id=step-2-extracting-the-docx-content><strong>Step 2: Extracting the DOCX Content</strong>
+<a class=heading-link href=#step-2-extracting-the-docx-content><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p><img src=images/dearest3.png alt=Screenshot></p><p>I used <strong>unzip</strong> to <strong>extract</strong> the content of the <strong>DOCX file</strong>.</p><p><strong>Result:</strong></p><ul><li>Several folders and XML files.</li><li>A folder named <strong><code>word/</code></strong> containing metadata and content.</li></ul><hr><h2 id=step-3-analyzing-extracted-files><strong>Step 3: Analyzing Extracted Files</strong>
+<a class=heading-link href=#step-3-analyzing-extracted-files><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>I explored <strong>all the files</strong> extracted from the <strong>DOCX</strong>, looking for hidden information.</p><p><img src=images/dearest4.png alt=Screenshot></p><p><strong>What I found:</strong></p><ul><li><strong>The <code>word/</code> folder contained plain text.</strong></li><li><strong>The file <code>docProps/core.xml</code> contained metadata</strong>.</li></ul><hr><h2 id=step-4-retrieving-the-document-author><strong>Step 4: Retrieving the Document Author</strong>
+<a class=heading-link href=#step-4-retrieving-the-document-author><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Opening the file <strong><code>docProps/core.xml</code></strong>, I found <strong>key information</strong>:</p><p><strong>The name of the document&rsquo;s creator</strong>!</p><p><img src=images/dearest5.png alt=Screenshot></p></article></section></div><footer class=footer><section class=container>©
+2025
+Anthrace
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>

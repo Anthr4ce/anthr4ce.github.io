@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dontbelieveeverythingontheinternet on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/dontbelieveeverythingontheinternet/</link><description>Recent content in Dontbelieveeverythingontheinternet on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/dontbelieveeverythingontheinternet/index.xml" rel="self" type="application/rss+xml"/><item><title>Huntress-CTF - Don°tBelieveEverythingOnTheInternet</title><link>https://anthr4ce.github.io/posts/ctf-writeups/huntress-ctf/dontbelieveeverythingontheinternet/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/huntress-ctf/dontbelieveeverythingontheinternet/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Don&amp;#39;t believe everything you see on the Internet! 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Anyway, have you heard this intro soundtrack from Half-Life 3?
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Le challenge commence par le téléchargement d&amp;rsquo;un fichier .mp3. En essayant de le traiter en Python pour extraire les métadonnées, j&amp;rsquo;ai rencontré des erreurs. Après plusieurs tentatives, je me suis demandé s&amp;rsquo;il ne s&amp;rsquo;agissait pas d&amp;rsquo;un vrai MP3, mais d&amp;rsquo;autre chose. J&amp;rsquo;ai donc écrit une fonction pour déterminer le vrai type du fichier:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dontbelieveeverythingontheinternet on Anthrace | CTF Writeups</title>
+    <link>http://localhost:1313/tags/dontbelieveeverythingontheinternet/</link>
+    <description>Recent content in Dontbelieveeverythingontheinternet on Anthrace | CTF Writeups</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/tags/dontbelieveeverythingontheinternet/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

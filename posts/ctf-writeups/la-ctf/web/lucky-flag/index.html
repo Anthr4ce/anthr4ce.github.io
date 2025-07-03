@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  LA-CTF - Lucky flag · Anthrace | CTF Writeups
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Anthrace">
+<meta name="description" content="
+
+  Challenge Description
+  
+    
+    Link to heading
+  
+
+In this challenge, I was presented with a web page filled with thousands of buttons, all labeled &ldquo;flag&rdquo;.
+
+The goal was to find the correct button that reveals the flag.
+
+
+  Step 1: Inspecting the Source Code
+  
+    
+    Link to heading
+  
+
+Instead of clicking every single button, I looked into the main.js file which controls the behavior of the buttons.">
+<meta name="keywords" content="ctf, hacking, cybersecurity, writeups, web, osint, forensic, crypto">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LA-CTF - Lucky flag">
+  <meta name="twitter:description" content="Challenge Description Link to heading In this challenge, I was presented with a web page filled with thousands of buttons, all labeled “flag”.
+The goal was to find the correct button that reveals the flag.
+Step 1: Inspecting the Source Code Link to heading Instead of clicking every single button, I looked into the main.js file which controls the behavior of the buttons.">
+
+<meta property="og:url" content="http://localhost:1313/posts/ctf-writeups/la-ctf/web/lucky-flag/">
+  <meta property="og:site_name" content="Anthrace | CTF Writeups">
+  <meta property="og:title" content="LA-CTF - Lucky flag">
+  <meta property="og:description" content="Challenge Description Link to heading In this challenge, I was presented with a web page filled with thousands of buttons, all labeled “flag”.
+The goal was to find the correct button that reveals the flag.
+Step 1: Inspecting the Source Code Link to heading Instead of clicking every single button, I looked into the main.js file which controls the behavior of the buttons.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-01T00:00:00+00:00">
+    <meta property="article:tag" content="La-Ctf">
+    <meta property="article:tag" content="Web">
+    <meta property="article:tag" content="Writeup">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/posts/ctf-writeups/la-ctf/web/lucky-flag/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+ 
+  
+    
+    <link rel="stylesheet" href="/css/custom.css" media="screen">
+  
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+<body class="preload-transitions colorscheme-light">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Anthrace | CTF Writeups
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Writeups</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/whoami/">Whoami</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/posts/ctf-writeups/la-ctf/web/lucky-flag/">
+              LA-CTF - Lucky flag
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-07-01T00:00:00Z">
+                2025-07-01
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              2-minute read
+            </span>
+          </div>
+          
+          
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/la-ctf/">La-Ctf</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/web/">Web</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/writeup/">Writeup</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <hr>
+<h2 id="challenge-description">
+  Challenge Description
+  <a class="heading-link" href="#challenge-description">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>In this challenge, I was presented with a <strong>web page filled with thousands of buttons</strong>, all labeled &ldquo;flag&rdquo;.</p>
+<p><img src="images/flag1.png" alt="Screenshot"></p>
+<p>The goal was to <strong>find the correct button that reveals the flag</strong>.</p>
+<hr>
+<h2 id="step-1-inspecting-the-source-code">
+  Step 1: Inspecting the Source Code
+  <a class="heading-link" href="#step-1-inspecting-the-source-code">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Instead of clicking every single button, I looked into the <code>main.js</code> file which controls the behavior of the buttons.</p>
+<hr>
+<h2 id="step-2-analyzing-mainjs">
+  Step 2: Analyzing <code>main.js</code>
+  <a class="heading-link" href="#step-2-analyzing-mainjs">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="key-observations">
+  Key Observations
+  <a class="heading-link" href="#key-observations">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">boxes</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;.box&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">flagbox</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">boxes</span>[Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">boxes</span>.<span style="color:#a6e22e">length</span>)];
+</span></span></code></pre></div><ul>
+<li>The script selects <strong>one random button</strong> (<code>flagbox</code>) from all the <code>.box</code> elements.</li>
+<li>If the selected button is clicked, it reveals the flag.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">box</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">boxes</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">box</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">flagbox</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">enc</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;\\u000e\\u0003\\u0001\\u0016\\u0004\\u0019\\u0015V\\u0011=\\u000bU=\\u000e\\u0017\\u0001\\t=R\\u0010=\\u0011\\t\\u000bSS\\u001f\&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">enc</span>.<span style="color:#a6e22e">length</span>; <span style="color:#f92672">++</span><span style="color:#a6e22e">i</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">enc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">enc</span>);
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">rw</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">e</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">enc</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">charCodeAt</span>(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">^</span> <span style="color:#ae81ff">0x62</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">flag</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">x</span> =&gt; String.<span style="color:#a6e22e">fromCharCode</span>(<span style="color:#a6e22e">x</span>)).<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">`Congrats </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">flag</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">box</span>.<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> () =&gt; <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#39;no flag here&#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="how-is-the-flag-hidden">
+  How is the Flag Hidden?
+  <a class="heading-link" href="#how-is-the-flag-hidden">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ul>
+<li>The <code>enc</code> variable contains the <strong>flag encoded as Unicode escape sequences</strong>.</li>
+<li>The script <strong>parses and decodes</strong> it with <code>JSON.parse</code>.</li>
+<li>Each character is <strong>XOR-encrypted using 0x62</strong> (decimal 98).</li>
+<li>The decryption applies XOR again to restore the original characters.</li>
+</ul>
+<hr>
+<h2 id="step-3-extracting-the-flag">
+  Step 3: Extracting the Flag
+  <a class="heading-link" href="#step-3-extracting-the-flag">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Instead of relying on luck, I decoded the string manually using JavaScript in the browser console.</p>
+<h3 id="decryption-code">
+  Decryption Code
+  <a class="heading-link" href="#decryption-code">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">enc</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;\\u000e\\u0003\\u0001\\u0016\\u0004\\u0019\\u0015V\\u0011=\\u000bU=\\u000e\\u0017\\u0001\\t=R\\u0010=\\u0011\\t\\u000bSS\\u001f\&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">enc</span>.<span style="color:#a6e22e">length</span>; <span style="color:#f92672">++</span><span style="color:#a6e22e">i</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">enc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">enc</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">rw</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">e</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">enc</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">charCodeAt</span>(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">^</span> <span style="color:#ae81ff">0x62</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">flag</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">x</span> =&gt; String.<span style="color:#a6e22e">fromCharCode</span>(<span style="color:#a6e22e">x</span>)).<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">flag</span>);
+</span></span></code></pre></div><h3 id="result">
+  Result
+  <a class="heading-link" href="#result">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><img src="images/flag2.png" alt="Screenshot"></p>
+<p><code>lactf{w4s_i7_luck_0r_ski11}</code></p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     Anthrace 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

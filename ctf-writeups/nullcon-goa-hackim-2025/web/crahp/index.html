@@ -1,0 +1,130 @@
+<!doctype html><html lang=en><head><title>Nullcon-Goa-HackIM-2025 - Web · Anthrace | CTF Writeups</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Anthrace"><meta name=description content="
+
+  Web Challenge - CRC Hash Collision Exploit
+  
+    
+    Link to heading
+  
+
+
+
+  Challenge Description
+  
+    
+    Link to heading
+  
+
+In this challenge, we are provided with the source code of a PHP script along with two hints:
+
+Hint 1: PHP documentation link for crc32()
+Hint 2: A PHP CRC8 implementation
+
+The goal is to retrieve the flag by bypassing an authentication mechanism based on CRC hashes."><meta name=keywords content="ctf,hacking,cybersecurity,writeups,web,osint,forensic,crypto"><meta name=twitter:card content="summary"><meta name=twitter:title content="Nullcon-Goa-HackIM-2025 - Web"><meta name=twitter:description content="Web Challenge - CRC Hash Collision Exploit Link to heading Challenge Description Link to heading In this challenge, we are provided with the source code of a PHP script along with two hints:
+Hint 1: PHP documentation link for crc32() Hint 2: A PHP CRC8 implementation The goal is to retrieve the flag by bypassing an authentication mechanism based on CRC hashes."><meta property="og:url" content="https://anthr4ce.github.io/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/"><meta property="og:site_name" content="Anthrace | CTF Writeups"><meta property="og:title" content="Nullcon-Goa-HackIM-2025 - Web"><meta property="og:description" content="Web Challenge - CRC Hash Collision Exploit Link to heading Challenge Description Link to heading In this challenge, we are provided with the source code of a PHP script along with two hints:
+Hint 1: PHP documentation link for crc32() Hint 2: A PHP CRC8 implementation The goal is to retrieve the flag by bypassing an authentication mechanism based on CRC hashes."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ctf-writeups"><meta property="article:published_time" content="2025-07-01T00:00:00+00:00"><meta property="article:modified_time" content="2025-07-01T00:00:00+00:00"><meta property="article:tag" content="Nullcon-Goa-Hackim-2025"><meta property="article:tag" content="Web"><meta property="article:tag" content="Crypto"><meta property="article:tag" content="Writeup"><link rel=canonical href=https://anthr4ce.github.io/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/custom.min.92a8af9d939d71a5316be0e14fcee81d71b93ab020897940098bf1c492367587.css integrity="sha256-kqivnZOdcaUxa+DhT87oHXG5OrAgiXlACYvxxJI2dYc=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-light"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://anthr4ce.github.io/>Anthrace | CTF Writeups
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/ctf-writeups/>Writeups</a></li><li class=navigation-item><a class=navigation-link href=/whoami/>Whoami</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=https://anthr4ce.github.io/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/>Nullcon-Goa-HackIM-2025 - Web</a></h1></header><hr><h1 id=web-challenge---crc-hash-collision-exploit>Web Challenge - CRC Hash Collision Exploit
+<a class=heading-link href=#web-challenge---crc-hash-collision-exploit><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h1><hr><h2 id=challenge-description>Challenge Description
+<a class=heading-link href=#challenge-description><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>In this challenge, we are provided with the source code of a PHP script along with two hints:</p><ul><li><strong>Hint 1</strong>: <a href=https://www.php.net/manual/en/function.crc32.php#28012 class=external-link target=_blank rel=noopener>PHP documentation link for crc32()</a></li><li><strong>Hint 2</strong>: <a href=https://stackoverflow.com/questions/507041/crc8-check-in-php/73305496#73305496 class=external-link target=_blank rel=noopener>A PHP CRC8 implementation</a></li></ul><p>The goal is to retrieve the <strong>flag</strong> by bypassing an authentication mechanism based on <strong>CRC hashes</strong>.</p><h3 id=crc-crc16-and-crc8>CRC, CRC16 and CRC8
+<a class=heading-link href=#crc-crc16-and-crc8><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p><strong>CRC (Cyclic Redundancy Check)</strong>
+CRC is an error-detecting code commonly used to check data integrity during transmission or storage. It is <strong>not cryptographically secure</strong>, making it vulnerable to collisions.</p><p><strong>CRC16 and CRC8</strong>
+These are variants of CRC that produce 16-bit and 8-bit checksums respectively.</p><ul><li><strong>CRC16</strong>: yields values between <strong>0x0000 and 0xFFFF</strong> (65,536 possibilities)</li><li><strong>CRC8</strong>: yields values between <strong>0x00 and 0xFF</strong> (256 possibilities)</li></ul><p><strong>Why is this weak?</strong>
+Unlike cryptographic hashes like <strong>SHA-256</strong>, CRCs are <strong>easy to break</strong>. Different inputs can easily produce the <strong>same CRC</strong>, allowing us to exploit <strong>collisions</strong>.</p><p>✔️ <strong>Summary:</strong>
+CRC is a <strong>fast but insecure checksum</strong> used for <strong>error detection</strong>, not <strong>security</strong>.</p><hr><h2 id=code-analysis>Code Analysis
+<a class=heading-link href=#code-analysis><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Here are the relevant portions of the PHP code provided in the challenge:</p><h3 id=1-authentication-check>1. Authentication Check
+<a class=heading-link href=#1-authentication-check><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=display:flex><span><span style=color:#f92672>&lt;?</span><span style=color:#a6e22e>php</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>isset</span>($_POST[<span style=color:#e6db74>&#39;password&#39;</span>]) <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>strlen</span>($MYPASSWORD) <span style=color:#f92672>==</span> <span style=color:#a6e22e>strlen</span>($_POST[<span style=color:#e6db74>&#39;password&#39;</span>])) {
+</span></span><span style=display:flex><span>        $pwhash1 <span style=color:#f92672>=</span> <span style=color:#a6e22e>crc16</span>($MYPASSWORD);
+</span></span><span style=display:flex><span>        $pwhash2 <span style=color:#f92672>=</span> <span style=color:#a6e22e>crc8</span>($MYPASSWORD);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        $password <span style=color:#f92672>=</span> $_POST[<span style=color:#e6db74>&#39;password&#39;</span>];
+</span></span><span style=display:flex><span>        $pwhash3 <span style=color:#f92672>=</span> <span style=color:#a6e22e>crc16</span>($password);
+</span></span><span style=display:flex><span>        $pwhash4 <span style=color:#f92672>=</span> <span style=color:#a6e22e>crc8</span>($password);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span>($MYPASSWORD <span style=color:#f92672>==</span> $password) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>die</span>(<span style=color:#e6db74>&#34;oops. Try harder!&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span>($pwhash1 <span style=color:#f92672>!=</span> $pwhash3) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>die</span>(<span style=color:#e6db74>&#34;Oops. Nope. Try harder!&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span>($pwhash2 <span style=color:#f92672>!=</span> $pwhash4) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>die</span>(<span style=color:#e6db74>&#34;OoOps. Not quite. Try harder!&#34;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        $access <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span>($access) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;You win a flag: </span><span style=color:#e6db74>$FLAG</span><span style=color:#e6db74>&#34;</span>;
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;Denied! :(&#34;</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;Try harder!&#34;</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span><span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></span></span></code></pre></div><h3 id=2-key-observations>2. Key Observations
+<a class=heading-link href=#2-key-observations><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><ul><li><p>The original password is <code>AdM1nP@assW0rd!</code></p></li><li><p>You <strong>cannot</strong> submit the exact same password (<code>if($MYPASSWORD == $password)</code>).</p></li><li><p>The script validates with two CRC functions: <code>crc16</code> and <code>crc8</code>:</p><ul><li><code>crc16($MYPASSWORD) == crc16($password)</code></li><li><code>crc8($MYPASSWORD) == crc8($password)</code></li></ul></li><li><p>If both match and the passwords aren&rsquo;t equal, we get the flag.</p></li></ul><hr><h2 id=exploitation-crc-collision>Exploitation: CRC Collision
+<a class=heading-link href=#exploitation-crc-collision><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Since CRC16 and CRC8 are <strong>not secure</strong>, it&rsquo;s possible to find a <strong>different password</strong> that gives the <strong>same CRC values</strong>.</p><h3 id=goal>Goal
+<a class=heading-link href=#goal><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Find a password <strong>different</strong> from <code>AdM1nP@assW0rd!</code> that produces the <strong>same CRC16 and CRC8</strong>.</p><hr><h2 id=exploit-steps-python-script>Exploit Steps (Python Script)
+<a class=heading-link href=#exploit-steps-python-script><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>We use a Python script to:</p><h3 id=1-calculate-crc16-and-crc8>1. Calculate CRC16 and CRC8
+<a class=heading-link href=#1-calculate-crc16-and-crc8><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pwn <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> itertools
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> string
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> multiprocessing
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>crc16</span>(data: str):
+</span></span><span style=display:flex><span>    crc <span style=color:#f92672>=</span> <span style=color:#ae81ff>0xFFFF</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> char <span style=color:#f92672>in</span> data:
+</span></span><span style=display:flex><span>        crc <span style=color:#f92672>^=</span> ord(char)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>8</span>):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> crc <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>1</span>:
+</span></span><span style=display:flex><span>                crc <span style=color:#f92672>=</span> (crc <span style=color:#f92672>&gt;&gt;</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>^</span> <span style=color:#ae81ff>0xA001</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>                crc <span style=color:#f92672>&gt;&gt;=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> crc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>crc8</span>(data: str):
+</span></span><span style=display:flex><span>    crc8Table <span style=color:#f92672>=</span> [<span style=color:#f92672>...</span> all <span style=color:#ae81ff>256</span> values <span style=color:#f92672>...</span>]
+</span></span><span style=display:flex><span>    crc <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> char <span style=color:#f92672>in</span> data:
+</span></span><span style=display:flex><span>        crc <span style=color:#f92672>=</span> crc8Table[(crc <span style=color:#f92672>^</span> ord(char)) <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFF</span>]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> crc <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFF</span>
+</span></span></code></pre></div><h3 id=2-set-targets>2. Set Targets
+<a class=heading-link href=#2-set-targets><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>original_password <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;AdM1nP@assW0rd!&#34;</span>
+</span></span><span style=display:flex><span>crc16_target <span style=color:#f92672>=</span> crc16(original_password)
+</span></span><span style=display:flex><span>crc8_target <span style=color:#f92672>=</span> crc8(original_password)
+</span></span></code></pre></div><h3 id=3-brute-force-using-multithreading>3. Brute-force using Multithreading
+<a class=heading-link href=#3-brute-force-using-multithreading><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>charset <span style=color:#f92672>=</span> string<span style=color:#f92672>.</span>ascii_letters <span style=color:#f92672>+</span> string<span style=color:#f92672>.</span>digits <span style=color:#f92672>+</span> string<span style=color:#f92672>.</span>punctuation
+</span></span><span style=display:flex><span>password_length <span style=color:#f92672>=</span> len(original_password)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>brute_force</span>(start_idx):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> attempt <span style=color:#f92672>in</span> itertools<span style=color:#f92672>.</span>islice(itertools<span style=color:#f92672>.</span>product(charset, repeat<span style=color:#f92672>=</span>password_length), start_idx, <span style=color:#66d9ef>None</span>, multiprocessing<span style=color:#f92672>.</span>cpu_count()):
+</span></span><span style=display:flex><span>        test_password <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(attempt)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> test_password <span style=color:#f92672>!=</span> original_password <span style=color:#f92672>and</span> crc16(test_password) <span style=color:#f92672>==</span> crc16_target <span style=color:#f92672>and</span> crc8(test_password) <span style=color:#f92672>==</span> crc8_target:
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Collision found: </span><span style=color:#e6db74>{</span>test_password<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
+</span></span><span style=display:flex><span>    num_cores <span style=color:#f92672>=</span> multiprocessing<span style=color:#f92672>.</span>cpu_count()
+</span></span><span style=display:flex><span>    pool <span style=color:#f92672>=</span> multiprocessing<span style=color:#f92672>.</span>Pool(processes<span style=color:#f92672>=</span>num_cores)
+</span></span><span style=display:flex><span>    pool<span style=color:#f92672>.</span>map(brute_force, range(num_cores))
+</span></span></code></pre></div><hr><h3 id=collision-found>Collision Found
+<a class=heading-link href=#collision-found><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>After running the script, we successfully found <strong>multiple passwords</strong> different from <code>AdM1nP@assW0rd!</code> but producing the <strong>same CRC values</strong>.</p><p><img src=images/collision_found.png alt=Screenshot></p><h3 id=flag-retrieved>Flag Retrieved
+<a class=heading-link href=#flag-retrieved><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p><img src=images/collision_flag_found.png alt=Screenshot></p></article></section></div><footer class=footer><section class=container>©
+2025
+Anthrace
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>

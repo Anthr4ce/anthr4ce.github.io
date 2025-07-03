@@ -1,0 +1,62 @@
+<!doctype html><html lang=en><head><title>E-CTF-2025 - Forensic · Anthrace | CTF Writeups</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Anthrace"><meta name=description content="
+
+  Challenge Description
+  
+    
+    Link to heading
+  
+
+
+We are provided with a .zip file containing a .pcap file. The instructions indicate an image has been stolen, and we must recover it from the PCAP file.
+
+
+  Step 1: PCAP File Analysis
+  
+    
+    Link to heading
+  
+
+I opened the .pcap file with Wireshark to inspect the network traffic.
+
+Observations:
+
+I noticed suspicious DNS requests sent to data.exfil.attacker.com.
+This suggests data exfiltration via DNS by encoding the image within domain names.
+
+
+
+  Step 2: Extracting Exfiltrated Data
+  
+    
+    Link to heading
+  
+
+To extract all DNS queries from the PCAP, I used Tshark:"><meta name=keywords content="ctf,hacking,cybersecurity,writeups,web,osint,forensic,crypto"><meta name=twitter:card content="summary"><meta name=twitter:title content="E-CTF-2025 - Forensic"><meta name=twitter:description content="Challenge Description Link to heading We are provided with a .zip file containing a .pcap file. The instructions indicate an image has been stolen, and we must recover it from the PCAP file.
+Step 1: PCAP File Analysis Link to heading I opened the .pcap file with Wireshark to inspect the network traffic.
+Observations:
+I noticed suspicious DNS requests sent to data.exfil.attacker.com. This suggests data exfiltration via DNS by encoding the image within domain names. Step 2: Extracting Exfiltrated Data Link to heading To extract all DNS queries from the PCAP, I used Tshark:"><meta property="og:url" content="https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/image-stolen/"><meta property="og:site_name" content="Anthrace | CTF Writeups"><meta property="og:title" content="E-CTF-2025 - Forensic"><meta property="og:description" content="Challenge Description Link to heading We are provided with a .zip file containing a .pcap file. The instructions indicate an image has been stolen, and we must recover it from the PCAP file.
+Step 1: PCAP File Analysis Link to heading I opened the .pcap file with Wireshark to inspect the network traffic.
+Observations:
+I noticed suspicious DNS requests sent to data.exfil.attacker.com. This suggests data exfiltration via DNS by encoding the image within domain names. Step 2: Extracting Exfiltrated Data Link to heading To extract all DNS queries from the PCAP, I used Tshark:"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ctf-writeups"><meta property="article:published_time" content="2025-07-01T00:00:00+00:00"><meta property="article:modified_time" content="2025-07-01T00:00:00+00:00"><meta property="article:tag" content="E-CTF-2025"><meta property="article:tag" content="Forensic"><meta property="article:tag" content="Writeup"><link rel=canonical href=https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/image-stolen/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/custom.min.92a8af9d939d71a5316be0e14fcee81d71b93ab020897940098bf1c492367587.css integrity="sha256-kqivnZOdcaUxa+DhT87oHXG5OrAgiXlACYvxxJI2dYc=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-light"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://anthr4ce.github.io/>Anthrace | CTF Writeups
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/ctf-writeups/>Writeups</a></li><li class=navigation-item><a class=navigation-link href=/whoami/>Whoami</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/image-stolen/>E-CTF-2025 - Forensic</a></h1></header><hr><h2 id=challenge-description><strong>Challenge Description</strong>
+<a class=heading-link href=#challenge-description><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p><img src=images/stolen1.png alt=Screenshot></p><p>We are provided with a <strong>.zip</strong> file containing a <strong>.pcap</strong> file. The instructions indicate <strong>an image has been stolen</strong>, and we must recover it from the <strong>PCAP file</strong>.</p><hr><h2 id=step-1-pcap-file-analysis><strong>Step 1: PCAP File Analysis</strong>
+<a class=heading-link href=#step-1-pcap-file-analysis><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>I opened the <strong><code>.pcap</code> file</strong> with <strong>Wireshark</strong> to inspect the network traffic.</p><p><img src=images/stolen2.png alt=Screenshot></p><p><strong>Observations:</strong></p><ul><li>I noticed <strong>suspicious DNS requests</strong> sent to <strong><code>data.exfil.attacker.com</code></strong>.</li><li>This <strong>suggests data exfiltration via DNS</strong> by encoding the image within domain names.</li></ul><hr><h2 id=step-2-extracting-exfiltrated-data><strong>Step 2: Extracting Exfiltrated Data</strong>
+<a class=heading-link href=#step-2-extracting-exfiltrated-data><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>To extract all <strong>DNS queries</strong> from the PCAP, I used <strong>Tshark</strong>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>tshark -r justapcap.pcap -Y <span style=color:#e6db74>&#34;dns&#34;</span> -T fields -e dns.qry.name &gt; dns_exfil_data.txt
+</span></span></code></pre></div><p><strong>Explanation:</strong></p><ul><li><code>-r justapcap.pcap</code> → Analyzes the <strong>justapcap.pcap</strong> file.</li><li><code>-Y "dns"</code> → Filters only <strong>DNS requests</strong>.</li><li><code>-T fields -e dns.qry.name</code> → Extracts <strong>only domain names</strong> from DNS queries.</li><li><code>> dns_exfil_data.txt</code> → Saves the output into a <strong>text file</strong>.</li></ul><p><strong>Result:</strong></p><p><img src=images/stolen3.png alt=Screenshot></p><hr><h2 id=step-3-cleaning-and-reconstructing-data><strong>Step 3: Cleaning and Reconstructing Data</strong>
+<a class=heading-link href=#step-3-cleaning-and-reconstructing-data><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The data sent via DNS appeared to be <strong>hexadecimal-encoded</strong>.
+I used <strong><code>cut</code></strong> and <strong><code>xxd</code></strong> to reconstruct the stolen file:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cat dns_exfil_data.txt | cut -d<span style=color:#e6db74>&#39;.&#39;</span> -f1 | xxd -r -p &gt; extracted_file
+</span></span></code></pre></div><p><strong>Explanation:</strong></p><ul><li><strong><code>cut -d'.' -f1</code></strong> → Removes the <strong>indices and the <code>.exfil.attacker.com</code> domain</strong>, leaving only the hexadecimal.</li><li><strong><code>xxd -r -p</code></strong> → Converts <strong>hexadecimal to binary</strong>.</li><li><strong><code>> extracted_file</code></strong> → Stores the <strong>reconstructed file</strong> as <strong><code>extracted_file</code></strong>.</li></ul><hr><h2 id=step-4-checking-and-opening-the-image><strong>Step 4: Checking and Opening the Image</strong>
+<a class=heading-link href=#step-4-checking-and-opening-the-image><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>I verified the extracted file type using the <code>file</code> command and opened the image:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>file extracted_file
+</span></span></code></pre></div><p><strong>Result:</strong>
+The recovered image was indeed <strong>a PNG file</strong>!</p><p><strong>Retrieved Flag:</strong>
+<img src=images/stolen4.png alt="Flag found"></p></article></section></div><footer class=footer><section class=container>©
+2025
+Anthrace
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>

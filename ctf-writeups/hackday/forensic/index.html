@@ -1,0 +1,49 @@
+<!doctype html><html lang=en><head><title>HackDay - Stegano & Forensic · Anthrace | CTF Writeups</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Anthrace"><meta name=description content="
+
+  Forensic Challenge - Hidden Flag Extraction
+  
+    
+    Link to heading
+  
+
+In this challenge, we have a ZIP file containing a log file and two images.
+
+
+  Step 1: Log File Analysis
+  
+    
+    Link to heading
+  
+
+I began by analyzing the log file and found five encoded words. I used dcode.fr to decode them:
+
+ercbafr (ROT13) → reponse
+
+
+
+c29sdXRpb24= (Base64) → solution
+
+"><meta name=keywords content="ctf,hacking,cybersecurity,writeups,web,osint,forensic,crypto"><meta name=twitter:card content="summary"><meta name=twitter:title content="HackDay - Stegano & Forensic"><meta name=twitter:description content="Forensic Challenge - Hidden Flag Extraction Link to heading In this challenge, we have a ZIP file containing a log file and two images.
+Step 1: Log File Analysis Link to heading I began by analyzing the log file and found five encoded words. I used dcode.fr to decode them:
+ercbafr (ROT13) → reponse c29sdXRpb24= (Base64) → solution"><meta property="og:url" content="https://anthr4ce.github.io/ctf-writeups/hackday/forensic/"><meta property="og:site_name" content="Anthrace | CTF Writeups"><meta property="og:title" content="HackDay - Stegano & Forensic"><meta property="og:description" content="Forensic Challenge - Hidden Flag Extraction Link to heading In this challenge, we have a ZIP file containing a log file and two images.
+Step 1: Log File Analysis Link to heading I began by analyzing the log file and found five encoded words. I used dcode.fr to decode them:
+ercbafr (ROT13) → reponse c29sdXRpb24= (Base64) → solution"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ctf-writeups"><meta property="article:published_time" content="2025-07-01T00:00:00+00:00"><meta property="article:modified_time" content="2025-07-01T00:00:00+00:00"><meta property="article:tag" content="Hackday"><meta property="article:tag" content="Stegano"><meta property="article:tag" content="Forensic"><meta property="article:tag" content="Writeup"><link rel=canonical href=https://anthr4ce.github.io/ctf-writeups/hackday/forensic/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/custom.min.92a8af9d939d71a5316be0e14fcee81d71b93ab020897940098bf1c492367587.css integrity="sha256-kqivnZOdcaUxa+DhT87oHXG5OrAgiXlACYvxxJI2dYc=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-light"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://anthr4ce.github.io/>Anthrace | CTF Writeups
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/ctf-writeups/>Writeups</a></li><li class=navigation-item><a class=navigation-link href=/whoami/>Whoami</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=https://anthr4ce.github.io/ctf-writeups/hackday/forensic/>HackDay - Stegano & Forensic</a></h1></header><hr><h3 id=forensic-challenge---hidden-flag-extraction><strong>Forensic Challenge - Hidden Flag Extraction</strong>
+<a class=heading-link href=#forensic-challenge---hidden-flag-extraction><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>In this challenge, we have a <strong>ZIP file</strong> containing a <strong>log file</strong> and <strong>two images</strong>.</p><hr><h3 id=step-1-log-file-analysis><strong>Step 1: Log File Analysis</strong>
+<a class=heading-link href=#step-1-log-file-analysis><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>I began by analyzing the log file and found <strong>five encoded words</strong>. I used <strong>dcode.fr</strong> to decode them:</p><ul><li><code>ercbafr</code> (ROT13) → <strong>reponse</strong></li></ul><p><img src=images/forensic_1.png alt=Screenshot></p><ul><li><code>c29sdXRpb24=</code> (Base64) → <strong>solution</strong></li></ul><p><img src=images/forensic_2.png alt=Screenshot></p><ul><li><code>636c6566</code> (Hexadecimal to ASCII) → <strong>clef</strong></li></ul><p><img src=images/forensic_3.png alt=Screenshot></p><ul><li><code>0110001011111011011000110110100001100101</code> (Binary to text) → <strong>bûche</strong></li></ul><p><img src=images/forensic_4.png alt=Screenshot></p><ul><li><code>KDFNGD\~dPbCbiU6H</code> → <strong>Unknown</strong></li></ul><p>For this last string, <strong>dcode.fr couldn&rsquo;t decode it</strong>, so I used <strong>CyberChef</strong> with a <strong>ROT47 brute force</strong>, which revealed:</p><p><strong><code>KDFNGD\~dPbCbiU6H</code> → <code>HACKDAY{aM_@_fR3E</code></strong></p><p><img src=images/forensic_5.png alt=Screenshot></p><hr><h3 id=step-2-image-analysis-with-aperisolve><strong>Step 2: Image Analysis with Aperisolve</strong>
+<a class=heading-link href=#step-2-image-analysis-with-aperisolve><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Next, I analyzed both images using <strong>Aperisolve</strong>.</p><h4 id=analysis-of-image-1><strong>Analysis of Image 1</strong>
+<a class=heading-link href=#analysis-of-image-1><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h4><p>Findings:</p><ul><li><strong><code>HACKDAY{08139b20df9f789b7763}</code></strong></li><li><strong><code>securepassword</code></strong></li></ul><p><img src=images/forensic_6.png alt=Screenshot></p><h4 id=analysis-of-image-2><strong>Analysis of Image 2</strong>
+<a class=heading-link href=#analysis-of-image-2><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h4><p>Findings:</p><ul><li><strong><code>secure password</code></strong></li><li><strong><code>-@LbaRT0s5}</code></strong></li></ul><p><img src=images/forensic_7.png alt=Screenshot></p><hr><h3 id=step-3-reconstructing-the-flag><strong>Step 3: Reconstructing the Flag</strong>
+<a class=heading-link href=#step-3-reconstructing-the-flag><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Using the extracted data, I reconstructed the second part of the flag:</p><p><strong>Final Flag:</strong>
+<code>HACKDAY{aM_@_fR3E-@LbaRT0s5}</code></p></article></section></div><footer class=footer><section class=container>©
+2025
+Anthrace
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>

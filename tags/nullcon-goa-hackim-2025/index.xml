@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nullcon-Goa-Hackim-2025 on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/nullcon-goa-hackim-2025/</link><description>Recent content in Nullcon-Goa-Hackim-2025 on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/nullcon-goa-hackim-2025/index.xml" rel="self" type="application/rss+xml"/><item><title>Nullcon-Goa-HackIM-2025 - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/crahp/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/crahp/</guid><description>&lt;h1 id="web-challenge---crc-hash-collision-exploit">
- &lt;strong>Web Challenge - CRC Hash Collision Exploit&lt;/strong>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nullcon-Goa-Hackim-2025 on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/nullcon-goa-hackim-2025/</link><description>Recent content in Nullcon-Goa-Hackim-2025 on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/nullcon-goa-hackim-2025/index.xml" rel="self" type="application/rss+xml"/><item><title>Nullcon-Goa-HackIM-2025 - Web</title><link>https://anthr4ce.github.io/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/</guid><description>&lt;hr>
+&lt;h1 id="web-challenge---crc-hash-collision-exploit">
+ Web Challenge - CRC Hash Collision Exploit
  &lt;a class="heading-link" href="#web-challenge---crc-hash-collision-exploit">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
@@ -7,15 +8,15 @@
 &lt;/h1>
 &lt;hr>
 &lt;h2 id="challenge-description">
- &lt;strong>Challenge Description&lt;/strong>
+ Challenge Description
  &lt;a class="heading-link" href="#challenge-description">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Dans ce challenge, nous avons accès au code source d&amp;rsquo;un script PHP ainsi qu&amp;rsquo;à deux indices :&lt;/p>
+&lt;p>In this challenge, we are provided with the source code of a PHP script along with two hints:&lt;/p>
 &lt;ul>
-&lt;li>&lt;strong>Indice 1&lt;/strong> : &lt;a href="https://www.php.net/manual/en/function.crc32.php#28012" class="external-link" target="_blank" rel="noopener">Lien vers la documentation PHP sur crc32()&lt;/a>&lt;/li>
-&lt;li>&lt;strong>Indice 2&lt;/strong> : &lt;a href="https://stackoverflow.com/questions/507041/crc8-check-in-php/73305496#73305496" class="external-link" target="_blank" rel="noopener">Lien vers une implémentation CRC8 en PHP&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Hint 1&lt;/strong>: &lt;a href="https://www.php.net/manual/en/function.crc32.php#28012" class="external-link" target="_blank" rel="noopener">PHP documentation link for crc32()&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Hint 2&lt;/strong>: &lt;a href="https://stackoverflow.com/questions/507041/crc8-check-in-php/73305496#73305496" class="external-link" target="_blank" rel="noopener">A PHP CRC8 implementation&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;p>L&amp;rsquo;objectif est d&amp;rsquo;obtenir le &lt;strong>flag&lt;/strong> en contournant un mécanisme d&amp;rsquo;authentification basé sur des &lt;strong>hashes CRC&lt;/strong>.&lt;/p></description></item></channel></rss>
+&lt;p>The goal is to retrieve the &lt;strong>flag&lt;/strong> by bypassing an authentication mechanism based on &lt;strong>CRC hashes&lt;/strong>.&lt;/p></description></item></channel></rss>

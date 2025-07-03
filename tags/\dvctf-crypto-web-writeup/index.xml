@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>\[&#34;Dvctf&#34;, &#34;Crypto&#34;, &#34;Web&#34;, &#34;Writeup&#34;] on Anthrace | CTF Writeups</title>
+    <link>http://localhost:1313/tags/%5Cdvctf-crypto-web-writeup/</link>
+    <description>Recent content in \[&#34;Dvctf&#34;, &#34;Crypto&#34;, &#34;Web&#34;, &#34;Writeup&#34;] on Anthrace | CTF Writeups</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/tags/%5Cdvctf-crypto-web-writeup/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

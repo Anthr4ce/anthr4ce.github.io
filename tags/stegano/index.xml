@@ -1,24 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Stegano on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/stegano/</link><description>Recent content in Stegano on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/stegano/index.xml" rel="self" type="application/rss+xml"/><item><title>HackDay - Stegano</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/forensic/i-believe-you-cant-fly_fr/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/forensic/i-believe-you-cant-fly_fr/</guid><description>&lt;h3 id="challenge-forensic---extraction-du-flag-caché">
- &lt;strong>Challenge Forensic - Extraction du Flag Caché&lt;/strong>
- &lt;a class="heading-link" href="#challenge-forensic---extraction-du-flag-cach%c3%a9">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>Dans ce challenge, nous avons un &lt;strong>fichier ZIP&lt;/strong> contenant un &lt;strong>fichier de log&lt;/strong> et &lt;strong>deux images&lt;/strong>.&lt;/p>
-&lt;hr>
-&lt;h3 id="étape-1--analyse-du-fichier-de-log">
- &lt;strong>Étape 1 : Analyse du Fichier de Log&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--analyse-du-fichier-de-log">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>J’ai commencé par analyser le fichier de log et j’ai trouvé &lt;strong>cinq mots encodés&lt;/strong>. J’ai utilisé &lt;strong>dcode.fr&lt;/strong> pour les décoder :&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>ercbafr&lt;/code> (ROT13) → &lt;strong>reponse&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="images/forensic_1.png" alt="Screenshot">&lt;/p></description></item><item><title>HackDay - Stegano</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/stegano/en_it-says-a-lot-when-there-is-no-music/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/stegano/en_it-says-a-lot-when-there-is-no-music/</guid><description>&lt;p>In this challenge, we are provided with a &lt;code>.wav&lt;/code> file that, at first glance, appears to be a simple audio file. Our task is to analyze the file and uncover a hidden flag.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Stegano on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/stegano/</link><description>Recent content in Stegano on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/stegano/index.xml" rel="self" type="application/rss+xml"/><item><title>HackDay - Stegano</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/stegano/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/stegano/</guid><description>&lt;hr>
+&lt;p>In this challenge, we are provided with a &lt;code>.wav&lt;/code> file that, at first glance, appears to be a simple audio file. Our task is to analyze the file and uncover a hidden flag.&lt;/p>
 &lt;hr>
 &lt;h4 id="step-1-playing-the-audio">
  &lt;strong>Step 1: Playing the Audio&lt;/strong>
@@ -27,19 +8,44 @@
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h4>
-&lt;p>I started by playing the audio, expecting something unusual—perhaps some hidden message or distortion—but everything sounded normal. There was no apparent clue in the audio playback.&lt;/p></description></item><item><title>HackDay - Stegano</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/stegano/fr_it-says-a-lot-when-there-is-no-music/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/stegano/fr_it-says-a-lot-when-there-is-no-music/</guid><description>&lt;h3 id="challenge--analyse-dun-fichier-wav-pour-trouver-des-données-cachées">
- Challenge : Analyse d’un fichier .wav pour trouver des données cachées
- &lt;a class="heading-link" href="#challenge--analyse-dun-fichier-wav-pour-trouver-des-donn%c3%a9es-cach%c3%a9es">
+&lt;p>I started by playing the audio, expecting something unusual—perhaps some hidden message or distortion—but everything sounded normal. There was no apparent clue in the audio playback.&lt;/p></description></item><item><title>HackDay - Stegano &amp; Forensic</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/forensic/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/forensic/</guid><description>&lt;hr>
+&lt;h3 id="forensic-challenge---hidden-flag-extraction">
+ &lt;strong>Forensic Challenge - Hidden Flag Extraction&lt;/strong>
+ &lt;a class="heading-link" href="#forensic-challenge---hidden-flag-extraction">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h3>
-&lt;p>Dans ce challenge, nous avions un fichier &lt;code>.wav&lt;/code> qui, à première vue, semblait être un simple fichier audio. Notre tâche consistait à analyser ce fichier et à découvrir un flag caché.&lt;/p>
-&lt;h4 id="étape-1--écoute-du-fichier-audio">
- &lt;strong>Étape 1 : Écoute du fichier audio&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--%c3%a9coute-du-fichier-audio">
+&lt;p>In this challenge, we have a &lt;strong>ZIP file&lt;/strong> containing a &lt;strong>log file&lt;/strong> and &lt;strong>two images&lt;/strong>.&lt;/p>
+&lt;hr>
+&lt;h3 id="step-1-log-file-analysis">
+ &lt;strong>Step 1: Log File Analysis&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-log-file-analysis">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
-&lt;/h4>
-&lt;p>J’ai commencé par écouter le fichier audio. Comme prévu, rien d’anormal n’a été détecté : il sonnait comme un fichier audio classique. Cela suggérait que les informations cachées se trouvaient à l&amp;rsquo;intérieur du fichier lui-même.&lt;/p></description></item></channel></rss>
+&lt;/h3>
+&lt;p>I began by analyzing the log file and found &lt;strong>five encoded words&lt;/strong>. I used &lt;strong>dcode.fr&lt;/strong> to decode them:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>ercbafr&lt;/code> (ROT13) → &lt;strong>reponse&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="images/forensic_1.png" alt="Screenshot">&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>c29sdXRpb24=&lt;/code> (Base64) → &lt;strong>solution&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="images/forensic_2.png" alt="Screenshot">&lt;/p></description></item><item><title>Huntress-CTF - DontBelieveEverythingOnTheInternet</title><link>https://anthr4ce.github.io/ctf-writeups/huntress-ctf/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/huntress-ctf/</guid><description>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Don&amp;#39;t believe everything you see on the Internet! 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Anyway, have you heard this intro soundtrack from Half-Life 3?
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The challenge starts by downloading an &lt;code>.mp3&lt;/code> file. While trying to process it in Python to extract metadata, I encountered errors. After several attempts, I started to wonder if it was actually an MP3 file—or something else. I wrote a function to determine the real file type:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> filetype
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">check_file_type&lt;/span>(filename): 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> kind &lt;span style="color:#f92672">=&lt;/span> filetype&lt;span style="color:#f92672">.&lt;/span>guess(filename) 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> kind &lt;span style="color:#f92672">is&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>: 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;unknown file type.&amp;#34;&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">f&lt;/span>&lt;span style="color:#e6db74">&amp;#34;type: &lt;/span>&lt;span style="color:#e6db74">{&lt;/span>kind&lt;span style="color:#f92672">.&lt;/span>mime&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">, extension: &lt;/span>&lt;span style="color:#e6db74">{&lt;/span>kind&lt;span style="color:#f92672">.&lt;/span>extension&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>filename &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;src/Half-Life_3_OST.mp3&amp;#39;&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(check_file_type(filename))
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Thanks to this script, I found out that the file was actually a PNG:&lt;/p></description></item></channel></rss>

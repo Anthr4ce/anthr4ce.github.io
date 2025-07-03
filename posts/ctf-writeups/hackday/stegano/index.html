@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  HackDay - Stegano · Anthrace | CTF Writeups
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Anthrace">
+<meta name="description" content="
+In this challenge, we are provided with a .wav file that, at first glance, appears to be a simple audio file. Our task is to analyze the file and uncover a hidden flag.
+
+
+  Step 1: Playing the Audio
+  
+    
+    Link to heading
+  
+
+I started by playing the audio, expecting something unusual—perhaps some hidden message or distortion—but everything sounded normal. There was no apparent clue in the audio playback.">
+<meta name="keywords" content="ctf, hacking, cybersecurity, writeups, web, osint, forensic, crypto">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="HackDay - Stegano">
+  <meta name="twitter:description" content="In this challenge, we are provided with a .wav file that, at first glance, appears to be a simple audio file. Our task is to analyze the file and uncover a hidden flag.
+Step 1: Playing the Audio Link to heading I started by playing the audio, expecting something unusual—perhaps some hidden message or distortion—but everything sounded normal. There was no apparent clue in the audio playback.">
+
+<meta property="og:url" content="http://localhost:1313/posts/ctf-writeups/hackday/stegano/">
+  <meta property="og:site_name" content="Anthrace | CTF Writeups">
+  <meta property="og:title" content="HackDay - Stegano">
+  <meta property="og:description" content="In this challenge, we are provided with a .wav file that, at first glance, appears to be a simple audio file. Our task is to analyze the file and uncover a hidden flag.
+Step 1: Playing the Audio Link to heading I started by playing the audio, expecting something unusual—perhaps some hidden message or distortion—but everything sounded normal. There was no apparent clue in the audio playback.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-01T00:00:00+00:00">
+    <meta property="article:tag" content="Hackday">
+    <meta property="article:tag" content="Stegano">
+    <meta property="article:tag" content="Writeup">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/posts/ctf-writeups/hackday/stegano/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+ 
+  
+    
+    <link rel="stylesheet" href="/css/custom.css" media="screen">
+  
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+<body class="preload-transitions colorscheme-light">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Anthrace | CTF Writeups
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Writeups</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/whoami/">Whoami</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/posts/ctf-writeups/hackday/stegano/">
+              HackDay - Stegano
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-07-01T00:00:00Z">
+                2025-07-01
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              3-minute read
+            </span>
+          </div>
+          
+          
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/hackday/">Hackday</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/stegano/">Stegano</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/writeup/">Writeup</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <hr>
+<p>In this challenge, we are provided with a <code>.wav</code> file that, at first glance, appears to be a simple audio file. Our task is to analyze the file and uncover a hidden flag.</p>
+<hr>
+<h4 id="step-1-playing-the-audio">
+  <strong>Step 1: Playing the Audio</strong>
+  <a class="heading-link" href="#step-1-playing-the-audio">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>I started by playing the audio, expecting something unusual—perhaps some hidden message or distortion—but everything sounded normal. There was no apparent clue in the audio playback.</p>
+<hr>
+<h4 id="step-2-using">
+  <strong>Step 2: Using <code>ffprobe</code> to Analyze Metadata</strong>
+  <a class="heading-link" href="#step-2-using">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>To dig deeper, I used <code>ffprobe</code>, a tool from the FFmpeg suite, to extract metadata and technical details from the <code>.wav</code> file.</p>
+<p><strong>What is <code>ffprobe</code>?</strong>
+<code>ffprobe</code> is a powerful command-line utility that provides detailed metadata and insights into the structure of media files.</p>
+<p><strong>Good for:</strong></p>
+<ul>
+<li>Extracting metadata</li>
+<li>Inspecting streams (audio, video, subtitles)</li>
+<li>Detecting hidden data</li>
+<li>Analyzing file formats</li>
+<li>Identifying hidden attachments</li>
+</ul>
+<p><img src="images/ffprobe_screen.png" alt="Screenshot"></p>
+<p>Unfortunately, nothing unusual was found in the metadata.</p>
+<hr>
+<h4 id="step-3-using">
+  <strong>Step 3: Using <code>exiftool</code> for Further Metadata Analysis</strong>
+  <a class="heading-link" href="#step-3-using">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Next, I used <code>exiftool</code> to analyze the file further, hoping to uncover hidden data or anomalies.</p>
+<p><strong>What is <code>exiftool</code>?</strong>
+<code>exiftool</code> is a command-line tool designed to extract and manipulate metadata from files like images, audio, and videos.</p>
+<p><strong>Good for:</strong></p>
+<ul>
+<li>Extracting metadata</li>
+<li>Identifying embedded data</li>
+<li>Analyzing file structures</li>
+<li>Revealing edits or manipulations</li>
+<li>Extracting hidden attachments</li>
+<li>Searching for anomalies</li>
+</ul>
+<p><img src="images/exiftool_screen.png" alt="Screenshot"></p>
+<p>Unfortunately, even <code>exiftool</code> revealed nothing suspicious.</p>
+<hr>
+<h4 id="step-4-extracting-strings-with">
+  <strong>Step 4: Extracting Strings with <code>strings</code></strong>
+  <a class="heading-link" href="#step-4-extracting-strings-with">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Since metadata analysis didn’t yield results, I moved on to search for hidden information in printable characters using <code>strings</code>.</p>
+<p><strong>What is <code>strings</code>?</strong>
+<code>strings</code> is a simple command-line tool that extracts printable ASCII and Unicode characters from binary files.</p>
+<p><strong>Good for:</strong></p>
+<ul>
+<li>Extracting printable characters</li>
+<li>Searching for keywords (grep-friendly)</li>
+<li>Revealing hidden data</li>
+<li>Locating steganographic markers (some tools leave identifiable markers in files)</li>
+</ul>
+<p><strong>Output:</strong>
+<img src="images/strings_screen.png" alt="Screenshot"></p>
+<p>Despite scanning for keywords and hidden data, there was no luck with <code>strings</code>.</p>
+<hr>
+<h4 id="step-5-binary-analysis-with-binwalk">
+  <strong>Step 5: Binary Analysis with Binwalk</strong>
+  <a class="heading-link" href="#step-5-binary-analysis-with-binwalk">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Still empty-handed, I decided to dig deeper into the binary structure using <code>binwalk</code>.</p>
+<p><strong>What is <code>binwalk</code>?</strong>
+<code>binwalk</code> is a tool for analyzing binary files to detect and extract:</p>
+<ul>
+<li>Embedded files (e.g., images, archives)</li>
+<li>Hidden data</li>
+<li>Compressed or encrypted sections</li>
+<li>Steganographic payloads</li>
+</ul>
+<p>Command used:
+<code>binwalk file.wav</code></p>
+<p>However, even <code>binwalk</code> failed to provide any significant clues.</p>
+<hr>
+<h4 id="step-6-hexadecimal-analysis-with">
+  <strong>Step 6: Hexadecimal Analysis with <code>xxd</code></strong>
+  <a class="heading-link" href="#step-6-hexadecimal-analysis-with">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Finally, I decided to inspect the file’s raw binary data using <code>xxd</code>.</p>
+<p><strong>What is <code>xxd</code>?</strong>
+<code>xxd</code> creates a hexadecimal dump of a file, allowing detailed inspection of binary content.</p>
+<p><strong>Good for:</strong></p>
+<ul>
+<li>Viewing raw data in hex and ASCII formats</li>
+<li>Searching for patterns or keywords</li>
+<li>Analyzing file structure at a low level</li>
+<li>Inspecting steganographic payloads or hidden data</li>
+</ul>
+<p>Command used:
+<code>xxd file.wav</code></p>
+<p>After carefully analyzing the binary data, I finally discovered the flag embedded deep within the file:
+<img src="images/xxd_screen.png" alt="Screenshot"></p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     Anthrace 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

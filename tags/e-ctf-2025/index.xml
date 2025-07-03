@@ -1,87 +1,135 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>E-Ctf-2025 on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/e-ctf-2025/</link><description>Recent content in E-Ctf-2025 on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/e-ctf-2025/index.xml" rel="self" type="application/rss+xml"/><item><title>E-CTF-2025 - Crypto</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/crypto/ascii-everything-but-not-the-flag/ascii-everything-but-not-the-flag/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/crypto/ascii-everything-but-not-the-flag/ascii-everything-but-not-the-flag/</guid><description>&lt;h2 id="étape-1--analyse-de-l">
- &lt;strong>Étape 1 : Analyse de l&amp;rsquo;énoncé&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--analyse-de-l">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>E-CTF-2025 on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/e-ctf-2025/</link><description>Recent content in E-CTF-2025 on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/e-ctf-2025/index.xml" rel="self" type="application/rss+xml"/><item><title>E-CTF-2025 - Crypto</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/crypto/ascii-everything-but-not-the-flag/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/crypto/ascii-everything-but-not-the-flag/</guid><description>&lt;hr>
+&lt;h2 id="step-1-analyzing-the-challenge">
+ &lt;strong>Step 1: Analyzing the Challenge&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-analyzing-the-challenge">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
 &lt;p>&lt;img src="images/chall_screen.png" alt="Screenshot">&lt;/p>
-&lt;p>Le challenge nous donne une série de &lt;strong>nombres en ASCII&lt;/strong> et une phrase intrigante :&lt;/p>
-&lt;p>&lt;code>108 100 111 109 123 85 99 49 122 95 106 53 95 79 111 51 95 88 52 116 95 48 109 95 51 111 88 121 90 107 97 106 48 105 125 10 10 69 98 111 98 32 102 112 32 118 108 114 111 32 104 98 118 44 32 100 108 108 97 32 105 114 122 104 32 58 32 72 66 86 72 66 86 10 10 87 101 108 108 32 100 111 110 101 44 32 98 117 116 32 110 111 119 32 100 111 32 121 111 117 32 107 110 111 119 32 97 98 111 117 116 32 116 104 101 32 103 117 121 32 119 104 111 32 103 111 116 32 115 116 97 98 98 101 100 32 50 51 32 116 105 109 101 115 32 63&lt;/code>&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/capture-the-hidden/capture-the-hidden/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/capture-the-hidden/capture-the-hidden/</guid><description>&lt;p>&lt;img src="images/hidden_1.png" alt="Screenshot">&lt;/p>
-&lt;h2 id="étape-1--ouverture-du-fichier-zip">
- &lt;strong>Étape 1 : Ouverture du fichier ZIP&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--ouverture-du-fichier-zip">
+&lt;p>The challenge provides a series of &lt;strong>ASCII numbers&lt;/strong> along with an intriguing phrase:&lt;/p>
+&lt;pre tabindex="0">&lt;code>108 100 111 109 123 85 99 49 122 95 106 53 95 79 111 51 95 88 52 116 95 48 109 95 51 111 88 121 90 107 97 106 48 105 125 10 10 69 98 111 98 32 102 112 32 118 108 114 111 32 104 98 118 44 32 100 108 108 97 32 105 114 122 104 32 58 32 72 66 86 72 66 86 10 10 87 101 108 108 32 100 111 110 101 44 32 98 117 116 32 110 111 119 32 100 111 32 121 111 117 32 107 110 111 119 32 97 98 111 117 116 32 116 104 101 32 103 117 121 32 119 104 111 32 103 111 116 32 115 116 97 98 98 101 100 32 50 51 32 116 105 109 101 115 32 63
+&lt;/code>&lt;/pre>&lt;hr>
+&lt;h2 id="step-2-decoding-ascii">
+ &lt;strong>Step 2: Decoding ASCII&lt;/strong>
+ &lt;a class="heading-link" href="#step-2-decoding-ascii">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Le challenge nous fournit un &lt;strong>fichier ZIP&lt;/strong> qui contient un &lt;strong>fichier PCAP&lt;/strong>.&lt;/p>
-&lt;p>📌 &lt;strong>Objectif :&lt;/strong>&lt;br>
-Analyser le &lt;strong>PCAP&lt;/strong> pour identifier une &lt;strong>exfiltration de données&lt;/strong> et récupérer le &lt;strong>flag&lt;/strong>.&lt;/p>
+&lt;p>I used &lt;strong>DCode&lt;/strong> to convert the ASCII numbers into text.&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/capture-the-hidden/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/capture-the-hidden/</guid><description>&lt;hr>
+&lt;p>&lt;img src="images/hidden_1.png" alt="Screenshot">&lt;/p>
+&lt;h2 id="step-1-opening-the-zip-file">
+ &lt;strong>Step 1: Opening the ZIP File&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-opening-the-zip-file">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>The challenge provides a &lt;strong>ZIP file&lt;/strong> containing a &lt;strong>PCAP file&lt;/strong>.&lt;/p>
+&lt;p>&lt;strong>Objective:&lt;/strong>
+Analyze the &lt;strong>PCAP&lt;/strong> to identify &lt;strong>data exfiltration&lt;/strong> and retrieve the &lt;strong>flag&lt;/strong>.&lt;/p>
 &lt;hr>
-&lt;h2 id="étape-2--analyse-initiale-du-pcap">
- &lt;strong>Étape 2 : Analyse initiale du PCAP&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-2--analyse-initiale-du-pcap">
+&lt;h2 id="step-2-initial-pcap-analysis">
+ &lt;strong>Step 2: Initial PCAP Analysis&lt;/strong>
+ &lt;a class="heading-link" href="#step-2-initial-pcap-analysis">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>J&amp;rsquo;ai ouvert le &lt;strong>fichier PCAP&lt;/strong> avec &lt;strong>Wireshark&lt;/strong> et commencé à analyser les paquets.&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/image-stolen/image-stolen/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/image-stolen/image-stolen/</guid><description>&lt;h2 id="-énoncé-du-challenge">
- &lt;strong>📌 Énoncé du challenge&lt;/strong>
- &lt;a class="heading-link" href="#-%c3%a9nonc%c3%a9-du-challenge">
+&lt;p>I opened the &lt;strong>PCAP file&lt;/strong> with &lt;strong>Wireshark&lt;/strong> and began analyzing the packets.&lt;/p>
+&lt;p>&lt;strong>Main observations:&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>Evidence of data exfiltration&lt;/strong> within network traffic.&lt;/li>
+&lt;li>&lt;strong>Interesting endpoints&lt;/strong> used for file transfer.&lt;/li>
+&lt;li>&lt;strong>A suspicious POST request&lt;/strong>.&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="images/hidden_2.png" alt="Screenshot">&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/image-stolen/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/image-stolen/</guid><description>&lt;hr>
+&lt;h2 id="challenge-description">
+ &lt;strong>Challenge Description&lt;/strong>
+ &lt;a class="heading-link" href="#challenge-description">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
 &lt;p>&lt;img src="images/stolen1.png" alt="Screenshot">&lt;/p>
-&lt;p>On nous donne un fichier &lt;strong>.zip&lt;/strong> contenant un fichier &lt;strong>.pcap&lt;/strong>. L’énoncé indique &lt;strong>qu’une image a été volée&lt;/strong>, et il faut la retrouver dans le &lt;strong>fichier PCAP&lt;/strong>.&lt;/p>
+&lt;p>We are provided with a &lt;strong>.zip&lt;/strong> file containing a &lt;strong>.pcap&lt;/strong> file. The instructions indicate &lt;strong>an image has been stolen&lt;/strong>, and we must recover it from the &lt;strong>PCAP file&lt;/strong>.&lt;/p>
 &lt;hr>
-&lt;h2 id="-étape-1--analyse-du-fichier-pcap">
- &lt;strong>🔎 Étape 1 : Analyse du fichier PCAP&lt;/strong>
- &lt;a class="heading-link" href="#-%c3%a9tape-1--analyse-du-fichier-pcap">
+&lt;h2 id="step-1-pcap-file-analysis">
+ &lt;strong>Step 1: PCAP File Analysis&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-pcap-file-analysis">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>J’ai ouvert &lt;strong>le fichier &lt;code>.pcap&lt;/code>&lt;/strong> avec &lt;strong>Wireshark&lt;/strong> pour inspecter les communications réseau.&lt;/p>
+&lt;p>I opened the &lt;strong>&lt;code>.pcap&lt;/code> file&lt;/strong> with &lt;strong>Wireshark&lt;/strong> to inspect the network traffic.&lt;/p>
 &lt;p>&lt;img src="images/stolen2.png" alt="Screenshot">&lt;/p>
-&lt;p>📌 &lt;strong>Observations :&lt;/strong>&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/my-dearest/my-dearest/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/my-dearest/my-dearest/</guid><description>&lt;p>&lt;img src="images/dearest1.png" alt="Screenshot">&lt;/p>
-&lt;h2 id="étape-1--téléchargement-du-fichier-zip">
- &lt;strong>Étape 1 : Téléchargement du fichier ZIP&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--t%c3%a9l%c3%a9chargement-du-fichier-zip">
+&lt;p>&lt;strong>Observations:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>I noticed &lt;strong>suspicious DNS requests&lt;/strong> sent to &lt;strong>&lt;code>data.exfil.attacker.com&lt;/code>&lt;/strong>.&lt;/li>
+&lt;li>This &lt;strong>suggests data exfiltration via DNS&lt;/strong> by encoding the image within domain names.&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="step-2-extracting-exfiltrated-data">
+ &lt;strong>Step 2: Extracting Exfiltrated Data&lt;/strong>
+ &lt;a class="heading-link" href="#step-2-extracting-exfiltrated-data">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Le challenge nous fournit un &lt;strong>fichier ZIP&lt;/strong> contenant un &lt;strong>fichier DOCX&lt;/strong>.&lt;/p>
+&lt;p>To extract all &lt;strong>DNS queries&lt;/strong> from the PCAP, I used &lt;strong>Tshark&lt;/strong>:&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/my-dearest/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/my-dearest/</guid><description>&lt;hr>
+&lt;p>&lt;img src="images/dearest1.png" alt="Screenshot">&lt;/p>
+&lt;h2 id="step-1-downloading-the-zip-file">
+ &lt;strong>Step 1: Downloading the ZIP File&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-downloading-the-zip-file">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>The challenge provides a &lt;strong>ZIP file&lt;/strong> containing a &lt;strong>DOCX file&lt;/strong>.&lt;/p>
 &lt;p>&lt;img src="images/dearest2.png" alt="Screenshot">&lt;/p>
-&lt;p>📌 &lt;strong>Hypothèse :&lt;/strong>&lt;br>
-Un fichier &lt;strong>DOCX&lt;/strong> est en réalité une &lt;strong>archive ZIP&lt;/strong>, ce qui signifie qu&amp;rsquo;on peut &lt;strong>l&amp;rsquo;extraire&lt;/strong> pour voir son contenu interne.&lt;/p>
+&lt;p>&lt;strong>Hypothesis:&lt;/strong>
+A &lt;strong>DOCX file&lt;/strong> is actually a &lt;strong>ZIP archive&lt;/strong>, meaning we can &lt;strong>extract&lt;/strong> its internal content.&lt;/p>
 &lt;hr>
-&lt;h2 id="étape-2--extraction-du-contenu-du-docx">
- &lt;strong>Étape 2 : Extraction du contenu du DOCX&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-2--extraction-du-contenu-du-docx">
+&lt;h2 id="step-2-extracting-the-docx-content">
+ &lt;strong>Step 2: Extracting the DOCX Content&lt;/strong>
+ &lt;a class="heading-link" href="#step-2-extracting-the-docx-content">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
 &lt;p>&lt;img src="images/dearest3.png" alt="Screenshot">&lt;/p>
-&lt;p>J’ai utilisé &lt;strong>unzip&lt;/strong> pour &lt;strong>extraire&lt;/strong> le contenu du &lt;strong>fichier DOCX&lt;/strong>.&lt;/p></description></item><item><title>E-CTF-2025 - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/web/chatroom/chatroom/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/web/chatroom/chatroom/</guid><description>&lt;h2 id="chatroom">
- &lt;strong>🎯Chatroom&lt;/strong>
+&lt;p>I used &lt;strong>unzip&lt;/strong> to &lt;strong>extract&lt;/strong> the content of the &lt;strong>DOCX file&lt;/strong>.&lt;/p>
+&lt;p>&lt;strong>Result:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Several folders and XML files.&lt;/li>
+&lt;li>A folder named &lt;strong>&lt;code>word/&lt;/code>&lt;/strong> containing metadata and content.&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="step-3-analyzing-extracted-files">
+ &lt;strong>Step 3: Analyzing Extracted Files&lt;/strong>
+ &lt;a class="heading-link" href="#step-3-analyzing-extracted-files">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>I explored &lt;strong>all the files&lt;/strong> extracted from the &lt;strong>DOCX&lt;/strong>, looking for hidden information.&lt;/p></description></item><item><title>E-CTF-2025 - Web</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/web/chatroom/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/web/chatroom/</guid><description>&lt;hr>
+&lt;h2 id="chatroom">
+ &lt;strong>Chatroom&lt;/strong>
  &lt;a class="heading-link" href="#chatroom">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
 &lt;p>&lt;img src="images/chatroom_1.png" alt="Screenshot">&lt;/p>
-&lt;p>Dans ce challenge, on nous donne accès à un &lt;strong>chatroom&lt;/strong> où un message explique que l’&lt;strong>admin lira notre message dans 30 secondes&lt;/strong>.&lt;/p>
-&lt;p>🧐 Dès cette indication, je pense immédiatement à une potentielle &lt;strong>vulnérabilité XSS&lt;/strong> (&lt;strong>Cross-Site Scripting&lt;/strong>), car si un message est stocké et exécuté dans le navigateur de l’admin, on pourrait &lt;strong>injecter du JavaScript malveillant&lt;/strong>.&lt;/p>
+&lt;p>In this challenge, we are provided with access to a &lt;strong>chatroom&lt;/strong>, where a message indicates that the &lt;strong>admin will read our message in 30 seconds&lt;/strong>.&lt;/p>
+&lt;p>Upon seeing this, I immediately suspect a possible &lt;strong>XSS (Cross-Site Scripting) vulnerability&lt;/strong>, as if the message is stored and executed in the admin’s browser, we could potentially &lt;strong>inject malicious JavaScript&lt;/strong>.&lt;/p>
 &lt;hr>
-&lt;h2 id="-étape-1---tester-une-injection-xss">
- &lt;strong>🔎 Étape 1 - Tester une Injection XSS&lt;/strong>
- &lt;a class="heading-link" href="#-%c3%a9tape-1---tester-une-injection-xss">
+&lt;h2 id="step-1---testing-for-xss-injection">
+ &lt;strong>Step 1 - Testing for XSS Injection&lt;/strong>
+ &lt;a class="heading-link" href="#step-1---testing-for-xss-injection">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Pour vérifier si l’input est vulnérable au &lt;strong>XSS&lt;/strong>, j’essaye un &lt;strong>payload simple&lt;/strong> :&lt;/p></description></item></channel></rss>
+&lt;p>To verify if the input is vulnerable to &lt;strong>XSS&lt;/strong>, I test a &lt;strong>simple payload&lt;/strong>:&lt;/p></description></item></channel></rss>

@@ -1,139 +1,146 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/</link><description>Recent content on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>DVCTF 2025 - WEB LouvreArchives</title><link>https://anthr4ce.github.io/posts/ctf-writeups/dvctf-2025/web-louvrearchives/louvrearchives/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/dvctf-2025/web-louvrearchives/louvrearchives/</guid><description>&lt;p>&lt;img src="images/img1.png" alt="Screenshot">&lt;/p>
-&lt;p>Dans ce chall il faut acceder flag.webp et on le code source.&lt;/p>
-&lt;p>En explorant un peu la page, j’ai remarqué une longue chaîne encodée en base64. Une fois décodée et réorganisée, elle contenait plusieurs images &lt;code>.webp&lt;/code> portant des noms étranges comme &lt;code>1991781613.webp&lt;/code>, &lt;code>1273827392.webp&lt;/code>, etc.&lt;/p>
-&lt;p>En consultant le code source :&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/</link><description>Recent content on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>DVCTF 2025 - WEB LouvreArchives</title><link>https://anthr4ce.github.io/ctf-writeups/dvctf-2025/web-louvrearchives/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/dvctf-2025/web-louvrearchives/</guid><description>&lt;hr>
+&lt;p>&lt;img src="images/img1.png" alt="Screenshot">&lt;/p>
+&lt;p>In this challenge, the goal is to access &lt;code>flag.webp&lt;/code> as indicated in the source code.&lt;/p>
+&lt;p>While exploring the page, I noticed a long base64-encoded string. Once decoded and reorganized, it contained several &lt;code>.webp&lt;/code> images with unusual names like &lt;code>1991781613.webp&lt;/code>, &lt;code>1273827392.webp&lt;/code>, etc.&lt;/p>
+&lt;p>Checking the source code:&lt;/p>
 &lt;p>&lt;img src="images/img2.png" alt="Screenshot">&lt;/p>
-&lt;p>On comprend que les noms des fichiers sont générés avec &lt;code>getrandbits(32)&lt;/code> de Python, c’est-à-dire 32 bits aléatoires produits par la fonction &lt;code>random.getrandbits&lt;/code>.&lt;/p></description></item><item><title>E-CTF-2025 - Crypto</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/crypto/ascii-everything-but-not-the-flag/ascii-everything-but-not-the-flag/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/crypto/ascii-everything-but-not-the-flag/ascii-everything-but-not-the-flag/</guid><description>&lt;h2 id="étape-1--analyse-de-l">
- &lt;strong>Étape 1 : Analyse de l&amp;rsquo;énoncé&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--analyse-de-l">
+&lt;p>We understand that filenames are generated using Python&amp;rsquo;s &lt;code>getrandbits(32)&lt;/code>, which produces 32 random bits via the &lt;code>random.getrandbits&lt;/code> function.&lt;/p>
+&lt;p>The interesting point here is that this function uses the &lt;strong>Mersenne Twister&lt;/strong> generator, a PRNG (Pseudo-Random Number Generator) that is &lt;strong>not cryptographically secure&lt;/strong>.&lt;/p></description></item><item><title>E-CTF-2025 - Crypto</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/crypto/ascii-everything-but-not-the-flag/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/crypto/ascii-everything-but-not-the-flag/</guid><description>&lt;hr>
+&lt;h2 id="step-1-analyzing-the-challenge">
+ &lt;strong>Step 1: Analyzing the Challenge&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-analyzing-the-challenge">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
 &lt;p>&lt;img src="images/chall_screen.png" alt="Screenshot">&lt;/p>
-&lt;p>Le challenge nous donne une série de &lt;strong>nombres en ASCII&lt;/strong> et une phrase intrigante :&lt;/p>
-&lt;p>&lt;code>108 100 111 109 123 85 99 49 122 95 106 53 95 79 111 51 95 88 52 116 95 48 109 95 51 111 88 121 90 107 97 106 48 105 125 10 10 69 98 111 98 32 102 112 32 118 108 114 111 32 104 98 118 44 32 100 108 108 97 32 105 114 122 104 32 58 32 72 66 86 72 66 86 10 10 87 101 108 108 32 100 111 110 101 44 32 98 117 116 32 110 111 119 32 100 111 32 121 111 117 32 107 110 111 119 32 97 98 111 117 116 32 116 104 101 32 103 117 121 32 119 104 111 32 103 111 116 32 115 116 97 98 98 101 100 32 50 51 32 116 105 109 101 115 32 63&lt;/code>&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/capture-the-hidden/capture-the-hidden/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/capture-the-hidden/capture-the-hidden/</guid><description>&lt;p>&lt;img src="images/hidden_1.png" alt="Screenshot">&lt;/p>
-&lt;h2 id="étape-1--ouverture-du-fichier-zip">
- &lt;strong>Étape 1 : Ouverture du fichier ZIP&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--ouverture-du-fichier-zip">
+&lt;p>The challenge provides a series of &lt;strong>ASCII numbers&lt;/strong> along with an intriguing phrase:&lt;/p>
+&lt;pre tabindex="0">&lt;code>108 100 111 109 123 85 99 49 122 95 106 53 95 79 111 51 95 88 52 116 95 48 109 95 51 111 88 121 90 107 97 106 48 105 125 10 10 69 98 111 98 32 102 112 32 118 108 114 111 32 104 98 118 44 32 100 108 108 97 32 105 114 122 104 32 58 32 72 66 86 72 66 86 10 10 87 101 108 108 32 100 111 110 101 44 32 98 117 116 32 110 111 119 32 100 111 32 121 111 117 32 107 110 111 119 32 97 98 111 117 116 32 116 104 101 32 103 117 121 32 119 104 111 32 103 111 116 32 115 116 97 98 98 101 100 32 50 51 32 116 105 109 101 115 32 63
+&lt;/code>&lt;/pre>&lt;hr>
+&lt;h2 id="step-2-decoding-ascii">
+ &lt;strong>Step 2: Decoding ASCII&lt;/strong>
+ &lt;a class="heading-link" href="#step-2-decoding-ascii">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Le challenge nous fournit un &lt;strong>fichier ZIP&lt;/strong> qui contient un &lt;strong>fichier PCAP&lt;/strong>.&lt;/p>
-&lt;p>📌 &lt;strong>Objectif :&lt;/strong>&lt;br>
-Analyser le &lt;strong>PCAP&lt;/strong> pour identifier une &lt;strong>exfiltration de données&lt;/strong> et récupérer le &lt;strong>flag&lt;/strong>.&lt;/p>
+&lt;p>I used &lt;strong>DCode&lt;/strong> to convert the ASCII numbers into text.&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/capture-the-hidden/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/capture-the-hidden/</guid><description>&lt;hr>
+&lt;p>&lt;img src="images/hidden_1.png" alt="Screenshot">&lt;/p>
+&lt;h2 id="step-1-opening-the-zip-file">
+ &lt;strong>Step 1: Opening the ZIP File&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-opening-the-zip-file">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>The challenge provides a &lt;strong>ZIP file&lt;/strong> containing a &lt;strong>PCAP file&lt;/strong>.&lt;/p>
+&lt;p>&lt;strong>Objective:&lt;/strong>
+Analyze the &lt;strong>PCAP&lt;/strong> to identify &lt;strong>data exfiltration&lt;/strong> and retrieve the &lt;strong>flag&lt;/strong>.&lt;/p>
 &lt;hr>
-&lt;h2 id="étape-2--analyse-initiale-du-pcap">
- &lt;strong>Étape 2 : Analyse initiale du PCAP&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-2--analyse-initiale-du-pcap">
+&lt;h2 id="step-2-initial-pcap-analysis">
+ &lt;strong>Step 2: Initial PCAP Analysis&lt;/strong>
+ &lt;a class="heading-link" href="#step-2-initial-pcap-analysis">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>J&amp;rsquo;ai ouvert le &lt;strong>fichier PCAP&lt;/strong> avec &lt;strong>Wireshark&lt;/strong> et commencé à analyser les paquets.&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/image-stolen/image-stolen/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/image-stolen/image-stolen/</guid><description>&lt;h2 id="-énoncé-du-challenge">
- &lt;strong>📌 Énoncé du challenge&lt;/strong>
- &lt;a class="heading-link" href="#-%c3%a9nonc%c3%a9-du-challenge">
+&lt;p>I opened the &lt;strong>PCAP file&lt;/strong> with &lt;strong>Wireshark&lt;/strong> and began analyzing the packets.&lt;/p>
+&lt;p>&lt;strong>Main observations:&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>Evidence of data exfiltration&lt;/strong> within network traffic.&lt;/li>
+&lt;li>&lt;strong>Interesting endpoints&lt;/strong> used for file transfer.&lt;/li>
+&lt;li>&lt;strong>A suspicious POST request&lt;/strong>.&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="images/hidden_2.png" alt="Screenshot">&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/image-stolen/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/image-stolen/</guid><description>&lt;hr>
+&lt;h2 id="challenge-description">
+ &lt;strong>Challenge Description&lt;/strong>
+ &lt;a class="heading-link" href="#challenge-description">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
 &lt;p>&lt;img src="images/stolen1.png" alt="Screenshot">&lt;/p>
-&lt;p>On nous donne un fichier &lt;strong>.zip&lt;/strong> contenant un fichier &lt;strong>.pcap&lt;/strong>. L’énoncé indique &lt;strong>qu’une image a été volée&lt;/strong>, et il faut la retrouver dans le &lt;strong>fichier PCAP&lt;/strong>.&lt;/p>
+&lt;p>We are provided with a &lt;strong>.zip&lt;/strong> file containing a &lt;strong>.pcap&lt;/strong> file. The instructions indicate &lt;strong>an image has been stolen&lt;/strong>, and we must recover it from the &lt;strong>PCAP file&lt;/strong>.&lt;/p>
 &lt;hr>
-&lt;h2 id="-étape-1--analyse-du-fichier-pcap">
- &lt;strong>🔎 Étape 1 : Analyse du fichier PCAP&lt;/strong>
- &lt;a class="heading-link" href="#-%c3%a9tape-1--analyse-du-fichier-pcap">
+&lt;h2 id="step-1-pcap-file-analysis">
+ &lt;strong>Step 1: PCAP File Analysis&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-pcap-file-analysis">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>J’ai ouvert &lt;strong>le fichier &lt;code>.pcap&lt;/code>&lt;/strong> avec &lt;strong>Wireshark&lt;/strong> pour inspecter les communications réseau.&lt;/p>
+&lt;p>I opened the &lt;strong>&lt;code>.pcap&lt;/code> file&lt;/strong> with &lt;strong>Wireshark&lt;/strong> to inspect the network traffic.&lt;/p>
 &lt;p>&lt;img src="images/stolen2.png" alt="Screenshot">&lt;/p>
-&lt;p>📌 &lt;strong>Observations :&lt;/strong>&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/my-dearest/my-dearest/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/forensic/my-dearest/my-dearest/</guid><description>&lt;p>&lt;img src="images/dearest1.png" alt="Screenshot">&lt;/p>
-&lt;h2 id="étape-1--téléchargement-du-fichier-zip">
- &lt;strong>Étape 1 : Téléchargement du fichier ZIP&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--t%c3%a9l%c3%a9chargement-du-fichier-zip">
+&lt;p>&lt;strong>Observations:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>I noticed &lt;strong>suspicious DNS requests&lt;/strong> sent to &lt;strong>&lt;code>data.exfil.attacker.com&lt;/code>&lt;/strong>.&lt;/li>
+&lt;li>This &lt;strong>suggests data exfiltration via DNS&lt;/strong> by encoding the image within domain names.&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="step-2-extracting-exfiltrated-data">
+ &lt;strong>Step 2: Extracting Exfiltrated Data&lt;/strong>
+ &lt;a class="heading-link" href="#step-2-extracting-exfiltrated-data">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Le challenge nous fournit un &lt;strong>fichier ZIP&lt;/strong> contenant un &lt;strong>fichier DOCX&lt;/strong>.&lt;/p>
+&lt;p>To extract all &lt;strong>DNS queries&lt;/strong> from the PCAP, I used &lt;strong>Tshark&lt;/strong>:&lt;/p></description></item><item><title>E-CTF-2025 - Forensic</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/my-dearest/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/forensic/my-dearest/</guid><description>&lt;hr>
+&lt;p>&lt;img src="images/dearest1.png" alt="Screenshot">&lt;/p>
+&lt;h2 id="step-1-downloading-the-zip-file">
+ &lt;strong>Step 1: Downloading the ZIP File&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-downloading-the-zip-file">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>The challenge provides a &lt;strong>ZIP file&lt;/strong> containing a &lt;strong>DOCX file&lt;/strong>.&lt;/p>
 &lt;p>&lt;img src="images/dearest2.png" alt="Screenshot">&lt;/p>
-&lt;p>📌 &lt;strong>Hypothèse :&lt;/strong>&lt;br>
-Un fichier &lt;strong>DOCX&lt;/strong> est en réalité une &lt;strong>archive ZIP&lt;/strong>, ce qui signifie qu&amp;rsquo;on peut &lt;strong>l&amp;rsquo;extraire&lt;/strong> pour voir son contenu interne.&lt;/p>
+&lt;p>&lt;strong>Hypothesis:&lt;/strong>
+A &lt;strong>DOCX file&lt;/strong> is actually a &lt;strong>ZIP archive&lt;/strong>, meaning we can &lt;strong>extract&lt;/strong> its internal content.&lt;/p>
 &lt;hr>
-&lt;h2 id="étape-2--extraction-du-contenu-du-docx">
- &lt;strong>Étape 2 : Extraction du contenu du DOCX&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-2--extraction-du-contenu-du-docx">
+&lt;h2 id="step-2-extracting-the-docx-content">
+ &lt;strong>Step 2: Extracting the DOCX Content&lt;/strong>
+ &lt;a class="heading-link" href="#step-2-extracting-the-docx-content">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
 &lt;p>&lt;img src="images/dearest3.png" alt="Screenshot">&lt;/p>
-&lt;p>J’ai utilisé &lt;strong>unzip&lt;/strong> pour &lt;strong>extraire&lt;/strong> le contenu du &lt;strong>fichier DOCX&lt;/strong>.&lt;/p></description></item><item><title>E-CTF-2025 - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/web/chatroom/chatroom/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/web/chatroom/chatroom/</guid><description>&lt;h2 id="chatroom">
- &lt;strong>🎯Chatroom&lt;/strong>
+&lt;p>I used &lt;strong>unzip&lt;/strong> to &lt;strong>extract&lt;/strong> the content of the &lt;strong>DOCX file&lt;/strong>.&lt;/p>
+&lt;p>&lt;strong>Result:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Several folders and XML files.&lt;/li>
+&lt;li>A folder named &lt;strong>&lt;code>word/&lt;/code>&lt;/strong> containing metadata and content.&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="step-3-analyzing-extracted-files">
+ &lt;strong>Step 3: Analyzing Extracted Files&lt;/strong>
+ &lt;a class="heading-link" href="#step-3-analyzing-extracted-files">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>I explored &lt;strong>all the files&lt;/strong> extracted from the &lt;strong>DOCX&lt;/strong>, looking for hidden information.&lt;/p></description></item><item><title>E-CTF-2025 - Web</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/web/chatroom/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/web/chatroom/</guid><description>&lt;hr>
+&lt;h2 id="chatroom">
+ &lt;strong>Chatroom&lt;/strong>
  &lt;a class="heading-link" href="#chatroom">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
 &lt;p>&lt;img src="images/chatroom_1.png" alt="Screenshot">&lt;/p>
-&lt;p>Dans ce challenge, on nous donne accès à un &lt;strong>chatroom&lt;/strong> où un message explique que l’&lt;strong>admin lira notre message dans 30 secondes&lt;/strong>.&lt;/p>
-&lt;p>🧐 Dès cette indication, je pense immédiatement à une potentielle &lt;strong>vulnérabilité XSS&lt;/strong> (&lt;strong>Cross-Site Scripting&lt;/strong>), car si un message est stocké et exécuté dans le navigateur de l’admin, on pourrait &lt;strong>injecter du JavaScript malveillant&lt;/strong>.&lt;/p>
+&lt;p>In this challenge, we are provided with access to a &lt;strong>chatroom&lt;/strong>, where a message indicates that the &lt;strong>admin will read our message in 30 seconds&lt;/strong>.&lt;/p>
+&lt;p>Upon seeing this, I immediately suspect a possible &lt;strong>XSS (Cross-Site Scripting) vulnerability&lt;/strong>, as if the message is stored and executed in the admin’s browser, we could potentially &lt;strong>inject malicious JavaScript&lt;/strong>.&lt;/p>
 &lt;hr>
-&lt;h2 id="-étape-1---tester-une-injection-xss">
- &lt;strong>🔎 Étape 1 - Tester une Injection XSS&lt;/strong>
- &lt;a class="heading-link" href="#-%c3%a9tape-1---tester-une-injection-xss">
+&lt;h2 id="step-1---testing-for-xss-injection">
+ &lt;strong>Step 1 - Testing for XSS Injection&lt;/strong>
+ &lt;a class="heading-link" href="#step-1---testing-for-xss-injection">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Pour vérifier si l’input est vulnérable au &lt;strong>XSS&lt;/strong>, j’essaye un &lt;strong>payload simple&lt;/strong> :&lt;/p></description></item><item><title>HackDay - Forensic</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/forensic/i-believe-you-cant-fly_en/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/forensic/i-believe-you-cant-fly_en/</guid><description>&lt;h3 id="forensic-challenge---extracting-the-hidden-flag">
- &lt;strong>Forensic Challenge - Extracting the Hidden Flag&lt;/strong>
- &lt;a class="heading-link" href="#forensic-challenge---extracting-the-hidden-flag">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>In this challenge, we are given a &lt;strong>ZIP file&lt;/strong> containing a &lt;strong>log file&lt;/strong> and &lt;strong>two images&lt;/strong>.&lt;/p>
-&lt;hr>
-&lt;h3 id="step-1-analyzing-the-log-file">
- &lt;strong>Step 1: Analyzing the Log File&lt;/strong>
- &lt;a class="heading-link" href="#step-1-analyzing-the-log-file">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>I started by analyzing the log file, and I found &lt;strong>five encoded words&lt;/strong>. I used &lt;strong>dcode.fr&lt;/strong> to decode them:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>ercbafr&lt;/code> (ROT13) → &lt;strong>reponse&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="images/forensic_1.png" alt="Screenshot">&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>c29sdXRpb24=&lt;/code> (Base64) → &lt;strong>solution&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="images/forensic_2.png" alt="Screenshot">&lt;/p></description></item><item><title>HackDay - Stegano</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/forensic/i-believe-you-cant-fly_fr/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/forensic/i-believe-you-cant-fly_fr/</guid><description>&lt;h3 id="challenge-forensic---extraction-du-flag-caché">
- &lt;strong>Challenge Forensic - Extraction du Flag Caché&lt;/strong>
- &lt;a class="heading-link" href="#challenge-forensic---extraction-du-flag-cach%c3%a9">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>Dans ce challenge, nous avons un &lt;strong>fichier ZIP&lt;/strong> contenant un &lt;strong>fichier de log&lt;/strong> et &lt;strong>deux images&lt;/strong>.&lt;/p>
-&lt;hr>
-&lt;h3 id="étape-1--analyse-du-fichier-de-log">
- &lt;strong>Étape 1 : Analyse du Fichier de Log&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--analyse-du-fichier-de-log">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>J’ai commencé par analyser le fichier de log et j’ai trouvé &lt;strong>cinq mots encodés&lt;/strong>. J’ai utilisé &lt;strong>dcode.fr&lt;/strong> pour les décoder :&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>ercbafr&lt;/code> (ROT13) → &lt;strong>reponse&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="images/forensic_1.png" alt="Screenshot">&lt;/p></description></item><item><title>HackDay - Stegano</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/stegano/en_it-says-a-lot-when-there-is-no-music/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/stegano/en_it-says-a-lot-when-there-is-no-music/</guid><description>&lt;p>In this challenge, we are provided with a &lt;code>.wav&lt;/code> file that, at first glance, appears to be a simple audio file. Our task is to analyze the file and uncover a hidden flag.&lt;/p>
+&lt;p>To verify if the input is vulnerable to &lt;strong>XSS&lt;/strong>, I test a &lt;strong>simple payload&lt;/strong>:&lt;/p></description></item><item><title>HackDay - Stegano</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/stegano/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/stegano/</guid><description>&lt;hr>
+&lt;p>In this challenge, we are provided with a &lt;code>.wav&lt;/code> file that, at first glance, appears to be a simple audio file. Our task is to analyze the file and uncover a hidden flag.&lt;/p>
 &lt;hr>
 &lt;h4 id="step-1-playing-the-audio">
  &lt;strong>Step 1: Playing the Audio&lt;/strong>
@@ -142,22 +149,32 @@ Un fichier &lt;strong>DOCX&lt;/strong> est en réalité une &lt;strong>archive Z
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h4>
-&lt;p>I started by playing the audio, expecting something unusual—perhaps some hidden message or distortion—but everything sounded normal. There was no apparent clue in the audio playback.&lt;/p></description></item><item><title>HackDay - Stegano</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/stegano/fr_it-says-a-lot-when-there-is-no-music/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/stegano/fr_it-says-a-lot-when-there-is-no-music/</guid><description>&lt;h3 id="challenge--analyse-dun-fichier-wav-pour-trouver-des-données-cachées">
- Challenge : Analyse d’un fichier .wav pour trouver des données cachées
- &lt;a class="heading-link" href="#challenge--analyse-dun-fichier-wav-pour-trouver-des-donn%c3%a9es-cach%c3%a9es">
+&lt;p>I started by playing the audio, expecting something unusual—perhaps some hidden message or distortion—but everything sounded normal. There was no apparent clue in the audio playback.&lt;/p></description></item><item><title>HackDay - Stegano &amp; Forensic</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/forensic/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/forensic/</guid><description>&lt;hr>
+&lt;h3 id="forensic-challenge---hidden-flag-extraction">
+ &lt;strong>Forensic Challenge - Hidden Flag Extraction&lt;/strong>
+ &lt;a class="heading-link" href="#forensic-challenge---hidden-flag-extraction">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h3>
-&lt;p>Dans ce challenge, nous avions un fichier &lt;code>.wav&lt;/code> qui, à première vue, semblait être un simple fichier audio. Notre tâche consistait à analyser ce fichier et à découvrir un flag caché.&lt;/p>
-&lt;h4 id="étape-1--écoute-du-fichier-audio">
- &lt;strong>Étape 1 : Écoute du fichier audio&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--%c3%a9coute-du-fichier-audio">
+&lt;p>In this challenge, we have a &lt;strong>ZIP file&lt;/strong> containing a &lt;strong>log file&lt;/strong> and &lt;strong>two images&lt;/strong>.&lt;/p>
+&lt;hr>
+&lt;h3 id="step-1-log-file-analysis">
+ &lt;strong>Step 1: Log File Analysis&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-log-file-analysis">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
-&lt;/h4>
-&lt;p>J’ai commencé par écouter le fichier audio. Comme prévu, rien d’anormal n’a été détecté : il sonnait comme un fichier audio classique. Cela suggérait que les informations cachées se trouvaient à l&amp;rsquo;intérieur du fichier lui-même.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/internal-blog/internal-blog_en/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/internal-blog/internal-blog_en/</guid><description>&lt;h3 id="exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit">
+&lt;/h3>
+&lt;p>I began by analyzing the log file and found &lt;strong>five encoded words&lt;/strong>. I used &lt;strong>dcode.fr&lt;/strong> to decode them:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>ercbafr&lt;/code> (ROT13) → &lt;strong>reponse&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="images/forensic_1.png" alt="Screenshot">&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>c29sdXRpb24=&lt;/code> (Base64) → &lt;strong>solution&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="images/forensic_2.png" alt="Screenshot">&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/internal-blog/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/internal-blog/</guid><description>&lt;h3 id="exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit">
  &lt;strong>Exploiting an XSS Vulnerability in a Blog with Moderator Visit&lt;/strong>
  &lt;a class="heading-link" href="#exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
@@ -177,27 +194,7 @@ We know that the &lt;strong>admin (or the moderator bot) will visit our profile&
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h3>
-&lt;p>Looking at the leaked source code, we notice an &lt;strong>attempt at sanitization&lt;/strong> of the fields, but it is performed &lt;strong>after the .save()&lt;/strong>, meaning that &lt;strong>even if an error is displayed, the data is already stored in the database&lt;/strong>.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/internal-blog/internal-blog_fr/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/internal-blog/internal-blog_fr/</guid><description>&lt;h3 id="exploitation-d">
- &lt;strong>Exploitation d&amp;rsquo;une faille XSS dans un blog avec visite de modérateur&lt;/strong>
- &lt;a class="heading-link" href="#exploitation-d">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>&lt;img src="images/blog_chall.png" alt="Screenshot">&lt;/p>
-&lt;p>Dans ce challenge, on a un blog avec un système d&amp;rsquo;enregistrement et de connexion des utilisateurs.&lt;br>
-On sait que l&amp;rsquo;&lt;strong>admin (ou le bot modérateur) visitera notre profil&lt;/strong> lorsqu&amp;rsquo;on s&amp;rsquo;enregistre et lorsqu&amp;rsquo;on poste un article.&lt;/p>
-&lt;p>Un &lt;strong>leak du code source&lt;/strong> est également présent.&lt;/p>
-&lt;p>&lt;img src="images/blog_leak.png" alt="Screenshot">&lt;/p>
-&lt;hr>
-&lt;h3 id="étape-1--analyser-le-code-source">
- &lt;strong>Étape 1 : Analyser le code source&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--analyser-le-code-source">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>En regardant le leak de code, on remarque une &lt;strong>tentative de sanitization&lt;/strong> des champs, mais celle-ci est effectuée &lt;strong>après le &lt;code>.save()&lt;/code>&lt;/strong>, ce qui signifie que &lt;strong>même si une erreur s&amp;rsquo;affiche, les données sont déjà enregistrées en base&lt;/strong>.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/open-the-door/open-the-door_en/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/open-the-door/open-the-door_en/</guid><description>&lt;h3 id="flask-web-challenge---template-injection-analysis">
+&lt;p>Looking at the leaked source code, we notice an &lt;strong>attempt at sanitization&lt;/strong> of the fields, but it is performed &lt;strong>after the .save()&lt;/strong>, meaning that &lt;strong>even if an error is displayed, the data is already stored in the database&lt;/strong>.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/open-the-door/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/open-the-door/</guid><description>&lt;h3 id="flask-web-challenge---template-injection-analysis">
  &lt;strong>Flask Web Challenge - Template Injection Analysis&lt;/strong>
  &lt;a class="heading-link" href="#flask-web-challenge---template-injection-analysis">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
@@ -224,174 +221,124 @@ On sait que l&amp;rsquo;&lt;strong>admin (ou le bot modérateur) visitera notre 
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h3>
-&lt;p>Looking into the &lt;code>docker-compose.yaml&lt;/code> file, we notice that the application is using &lt;strong>templates&lt;/strong> as an environment variable, which could be a potential security risk.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/open-the-door/open-the-door_fr/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/open-the-door/open-the-door_fr/</guid><description>&lt;h3 id="flask-web-challenge---template-injection-analysis">
- &lt;strong>Flask Web Challenge - Template Injection Analysis&lt;/strong>
- &lt;a class="heading-link" href="#flask-web-challenge---template-injection-analysis">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>In this challenge, we have a downloadable folder containing several files.&lt;/p>
-&lt;p>&lt;img src="images/door_files.png" alt="Screenshot">&lt;/p>
-&lt;hr>
-&lt;h3 id="step-1-identifying-the-web-framework">
- &lt;strong>Step 1: Identifying the Web Framework&lt;/strong>
- &lt;a class="heading-link" href="#step-1-identifying-the-web-framework">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>By examining the &lt;code>requirements.txt&lt;/code> and &lt;code>app.py&lt;/code> files, we confirm that the application is built using &lt;strong>Flask&lt;/strong>.&lt;/p>
-&lt;p>&lt;img src="images/door_flask_infos.png" alt="Screenshot">&lt;/p>
-&lt;hr>
-&lt;h3 id="step-2-examining-the-docker-configuration">
- &lt;strong>Step 2: Examining the Docker Configuration&lt;/strong>
- &lt;a class="heading-link" href="#step-2-examining-the-docker-configuration">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>Looking into the &lt;code>docker-compose.yaml&lt;/code> file, we notice that the application is using &lt;strong>templates&lt;/strong> as an environment variable, which could be a potential security risk.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/the-analytical-engine-leak/the-analytical-engine-leak_en/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/the-analytical-engine-leak/the-analytical-engine-leak_en/</guid><description>&lt;h3 id="sql-injection-and-extracting-sensitive-data">
- &lt;strong>SQL Injection and Extracting Sensitive Data&lt;/strong>
- &lt;a class="heading-link" href="#sql-injection-and-extracting-sensitive-data">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>In this challenge, we have a form with two fields: &lt;code>username&lt;/code> and &lt;code>password&lt;/code>. Our goal is to exploit an SQL Injection vulnerability to extract sensitive data from the database.&lt;/p>
+&lt;p>Looking into the &lt;code>docker-compose.yaml&lt;/code> file, we notice that the application is using &lt;strong>templates&lt;/strong> as an environment variable, which could be a potential security risk.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/the-analytical-engine-leak/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/the-analytical-engine-leak/</guid><description>&lt;hr>
+&lt;p>&lt;strong>SQL Injection and Sensitive Data Retrieval&lt;/strong>&lt;/p>
+&lt;p>In this challenge, we are given a form with two fields: &lt;code>username&lt;/code> and &lt;code>password&lt;/code>. Our goal is to exploit a SQL Injection vulnerability to extract sensitive data from the database.&lt;/p>
 &lt;p>&lt;img src="images/web_chall_description.png" alt="Screenshot">&lt;/p>
 &lt;hr>
-&lt;h4 id="step-1-testing-a-basic-sql-injection">
- &lt;strong>Step 1: Testing a Basic SQL Injection&lt;/strong>
- &lt;a class="heading-link" href="#step-1-testing-a-basic-sql-injection">
+&lt;h4 id="step-1-testing-basic-injection">
+ &lt;strong>Step 1: Testing Basic Injection&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-testing-basic-injection">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h4>
-&lt;p>I started by testing a simple SQL injection in the &lt;code>password&lt;/code> field. Here is the payload used:&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/the-analytical-engine-leak/the-analytical-engine-leak_fr/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/hackday/web/the-analytical-engine-leak/the-analytical-engine-leak_fr/</guid><description>&lt;p>&lt;strong>SQL Injection et récupération de données sensibles&lt;/strong>&lt;/p>
-&lt;h2 id="screenshot">
- Dans ce challenge, on a un formulaire avec deux champs : &lt;code>username&lt;/code> et &lt;code>password&lt;/code>. Notre objectif est d&amp;rsquo;exploiter une faille SQL Injection pour extraire des données sensibles de la base de données.
-&lt;img src="images/web_chall_description.png" alt="Screenshot">
- &lt;a class="heading-link" href="#screenshot">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;h4 id="étape-1--tester-une-injection-basique">
- &lt;strong>Étape 1 : Tester une injection basique&lt;/strong>
- &lt;a class="heading-link" href="#%c3%a9tape-1--tester-une-injection-basique">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h4>
-&lt;p>J&amp;rsquo;ai commencé par tester une injection SQL simple dans le champ &lt;code>password&lt;/code>. Voici le payload utilisé :&lt;/p></description></item><item><title>HeroCTF - DataScience</title><link>https://anthr4ce.github.io/posts/ctf-writeups/heroctf/datascience/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/heroctf/datascience/</guid><description>&lt;p>Dans ce challenge, nous devons trier des données et obtenir certains nombres.
-Aprés plusieurs essays, je suis arrivé à ce code:&lt;/p>
+&lt;p>I started by testing a simple SQL injection in the &lt;code>password&lt;/code> field. Here&amp;rsquo;s the payload I used:&lt;/p>
+&lt;p>&lt;code>username=admin&amp;amp;password='OR''='&lt;/code>&lt;/p>
+&lt;p>&lt;strong>Result:&lt;/strong>
+The server returns a list of users present in the database:&lt;/p></description></item><item><title>HeroCTF - DataScience</title><link>https://anthr4ce.github.io/ctf-writeups/heroctf/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/heroctf/</guid><description>&lt;hr>
+&lt;p>In this challenge, we had to sort data and calculate specific values.
+After several attempts, I arrived at the following code:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> pandas &lt;span style="color:#66d9ef">as&lt;/span> pd 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> math 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>df &lt;span style="color:#f92672">=&lt;/span> pd&lt;span style="color:#f92672">.&lt;/span>read_csv(&lt;span style="color:#e6db74">&amp;#34;orders.csv&amp;#34;&lt;/span>, parse_dates&lt;span style="color:#f92672">=&lt;/span>[&lt;span style="color:#e6db74">&amp;#34;date&amp;#34;&lt;/span>]) 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>df &lt;span style="color:#f92672">=&lt;/span> df[df[&lt;span style="color:#e6db74">&amp;#34;date&amp;#34;&lt;/span>] &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;2023-01-01&amp;#34;&lt;/span>] 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>initial_balance &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">10000&lt;/span> 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>user_balances &lt;span style="color:#f92672">=&lt;/span> {} 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>unique_users &lt;span style="color:#f92672">=&lt;/span> pd&lt;span style="color:#f92672">.&lt;/span>concat([df[&lt;span style="color:#e6db74">&amp;#34;buyer_id&amp;#34;&lt;/span>], df[&lt;span style="color:#e6db74">&amp;#34;seller_id&amp;#34;&lt;/span>]])&lt;span style="color:#f92672">.&lt;/span>unique() 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>user_balances &lt;span style="color:#f92672">=&lt;/span> {}
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> user_id &lt;span style="color:#f92672">in&lt;/span> unique_users:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> user_balances[user_id] &lt;span style="color:#f92672">=&lt;/span> initial_balance
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>total_discount_spared &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> _, row &lt;span style="color:#f92672">in&lt;/span> df&lt;span style="color:#f92672">.&lt;/span>iterrows(): 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> buyer_id &lt;span style="color:#f92672">=&lt;/span> row[&lt;span style="color:#e6db74">&amp;#34;buyer_id&amp;#34;&lt;/span>] 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> seller_id &lt;span style="color:#f92672">=&lt;/span> row[&lt;span style="color:#e6db74">&amp;#34;seller_id&amp;#34;&lt;/span>] 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> price &lt;span style="color:#f92672">=&lt;/span> row[&lt;span style="color:#e6db74">&amp;#34;price&amp;#34;&lt;/span>] 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> discount &lt;span style="color:#f92672">=&lt;/span> row[&lt;span style="color:#e6db74">&amp;#34;discount&amp;#34;&lt;/span>] 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> discounted_price &lt;span style="color:#f92672">=&lt;/span> price &lt;span style="color:#f92672">*&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">-&lt;/span> discount &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">100&lt;/span>) 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> amount_spared &lt;span style="color:#f92672">=&lt;/span> price &lt;span style="color:#f92672">-&lt;/span> discounted_price 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> total_discount_spared &lt;span style="color:#f92672">+=&lt;/span> amount_spared 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> user_balances[buyer_id] &lt;span style="color:#f92672">-=&lt;/span> discounted_price 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> user_balances[seller_id] &lt;span style="color:#f92672">+=&lt;/span> discounted_price 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#resp 1 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># resp 1 &lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>richest_user &lt;span style="color:#f92672">=&lt;/span> max(user_balances, key&lt;span style="color:#f92672">=&lt;/span>user_balances&lt;span style="color:#f92672">.&lt;/span>get) 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#resp 2 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># resp 2 &lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>total_discount_spared &lt;span style="color:#f92672">=&lt;/span> math&lt;span style="color:#f92672">.&lt;/span>floor(total_discount_spared) 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#resp 3 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># resp 3 &lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>negative_balance_count &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> balance &lt;span style="color:#f92672">in&lt;/span> user_balances&lt;span style="color:#f92672">.&lt;/span>values(): 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> balance &lt;span style="color:#f92672">in&lt;/span> user_balances&lt;span style="color:#f92672">.&lt;/span>values():
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> balance &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> negative_balance_count &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#print du flag &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#print the flag &lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>flag &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">f&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Hero&lt;/span>&lt;span style="color:#ae81ff">{{&lt;/span>&lt;span style="color:#e6db74">{&lt;/span>richest_user&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">_&lt;/span>&lt;span style="color:#e6db74">{&lt;/span>total_discount_spared&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">_&lt;/span>&lt;span style="color:#e6db74">{&lt;/span>negative_balance_count&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#ae81ff">}}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span> 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(flag)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-t" data-lang="t">&lt;span style="display:flex;">&lt;span>Hero{&lt;span style="color:#ae81ff">732669_188098001_3468&lt;/span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Huntress-CTF - Don°tBelieveEverythingOnTheInternet</title><link>https://anthr4ce.github.io/posts/ctf-writeups/huntress-ctf/dontbelieveeverythingontheinternet/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/huntress-ctf/dontbelieveeverythingontheinternet/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Don&amp;#39;t believe everything you see on the Internet! 
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Huntress-CTF - DontBelieveEverythingOnTheInternet</title><link>https://anthr4ce.github.io/ctf-writeups/huntress-ctf/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/huntress-ctf/</guid><description>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Don&amp;#39;t believe everything you see on the Internet! 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Anyway, have you heard this intro soundtrack from Half-Life 3?
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Le challenge commence par le téléchargement d&amp;rsquo;un fichier .mp3. En essayant de le traiter en Python pour extraire les métadonnées, j&amp;rsquo;ai rencontré des erreurs. Après plusieurs tentatives, je me suis demandé s&amp;rsquo;il ne s&amp;rsquo;agissait pas d&amp;rsquo;un vrai MP3, mais d&amp;rsquo;autre chose. J&amp;rsquo;ai donc écrit une fonction pour déterminer le vrai type du fichier:&lt;/p></description></item><item><title>Huntress-CTF - MessyQRCode</title><link>https://anthr4ce.github.io/posts/ctf-writeups/huntress-ctf/messyqrcode/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/huntress-ctf/messyqrcode/</guid><description>&lt;p>Le challenge comportait un QR code assez désordonné, trop &amp;ldquo;chargé&amp;rdquo; et désorganisé par rapport à un QR code classique.&lt;/p>
-&lt;p>J&amp;rsquo;ai téléchargé le QR code et l&amp;rsquo;ai analysé à l&amp;rsquo;aide de zxing.org, ce qui m&amp;rsquo;a permis d&amp;rsquo;obtenir le texte brut suivant:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-t" data-lang="t">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">\&lt;/span>x89PNG&lt;span style="color:#f92672">\&lt;/span>r&lt;span style="color:#f92672">\&lt;/span>n&lt;span style="color:#f92672">\&lt;/span>x1a&lt;span style="color:#f92672">\&lt;/span>n&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>rIHDR&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#e6db74">&amp;#39;\x00\x00\x00&amp;#39;&lt;/span>&lt;span style="color:#f92672">\&lt;/span>x01&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>xa4&lt;span style="color:#f92672">\&lt;/span>xd8l&lt;span style="color:#f92672">\&lt;/span>x98&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>xf5IDATx&lt;span style="color:#f92672">\&lt;/span>x9c&lt;span style="color:#f92672">\&lt;/span>x01&lt;span style="color:#f92672">\&lt;/span>xea&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x15&lt;span style="color:#f92672">\&lt;/span>xff&lt;span style="color:#f92672">\&lt;/span>x01&lt;span style="color:#f92672">\&lt;/span>xff&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>xff&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x80&lt;span style="color:#f92672">\&lt;/span>xa2&lt;span style="color:#f92672">\&lt;/span>xd9&lt;span style="color:#f92672">\&lt;/span>x1a&lt;span style="color:#f92672">\&lt;/span>x02&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>xbe&lt;span style="color:#f92672">\&lt;/span>xe6T&lt;span style="color:#f92672">~\&lt;/span>xfa&lt;span style="color:#f92672">\&lt;/span>x04&lt;span style="color:#f92672">\&lt;/span>xe4&lt;span style="color:#f92672">\&lt;/span>xff&lt;span style="color:#f92672">\&lt;/span>x0fh&lt;span style="color:#f92672">\&lt;/span>x90&lt;span style="color:#f92672">\&lt;/span>x02&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x1a&lt;span style="color:#f92672">\&lt;/span>x7f&lt;span style="color:#f92672">\&lt;/span>xdc&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x02&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>xde&lt;span style="color:#f92672">\&lt;/span>x01H&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>x00&lt;span style="color:#f92672">\&lt;/span>xbe&lt;span style="color:#f92672">\&lt;/span>xd5&lt;span style="color:#f92672">\&lt;/span>x95J&lt;span style="color:#f92672">\&lt;/span>xfa&lt;span style="color:#f92672">\&lt;/span>x04&lt;span style="color:#f92672">\&lt;/span>xc2&lt;span style="color:#f92672">*\&lt;/span>x15&lt;span style="color:#e6db74">`\x08\x00\xff\x9d.\x9f\xfe\x04\xfd#P\xc3\x0b\x02\x97\x0e:\x07d\x04/vIg\x19\x00\xbb\xcd\xf3-\xd2\x02\xfb\xd6d\xb5\x88\x02E\xc7^\xdf\xfc\x00\x84\xfb\x13\xf3J\x02\xfd\x88a\xefD\x00\xc8t$\x90\n\x01\xc7\x01\xee1\xf7\x043Q\x17\x0cH\x01\xa5\x03\x1c6d\x02\r\xf0\xbfV$\x00\xcf\x13d3\x06\x01\xee\x08J\xf5E\x00\x9b\xee\n\xac\xfa\x01\xea|\xf2\xe86\x04\xb3\xc9\x84\xf7\xb4\x02\t\x90U%\x14\x00\xbf g\xa5\xee\x02\xfbH\xf1#4\x00\xff\xa1!;\x86\x02\x81VB\xdf\xfc\x04&amp;gt;\xb1s\x00\x10\x02\xe4&amp;gt;\xab-p\x00\xa2\xc6\xfe\xf6\xee\x04\x00\x05\xcbl5\x02\x1c\xfc\x85;\xd0\x02\xc2\xfb\xe6A\x00\x01\xff\x00\x00\x00\xff\xf9\xdb_g\xf4\x9a\xddH\x00\x00\x00\x00IEND\xaeB`&lt;/span>&lt;span style="color:#f92672">\&lt;/span>x82
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Comme on peut le voir, le contenu indique qu&amp;rsquo;il s&amp;rsquo;agit d&amp;rsquo;une image .png (\x89PNG).&lt;/p>
-&lt;p>Pour récupérer l&amp;rsquo;image, j&amp;rsquo;ai créé un script Python:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>qr_code_data &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">b&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>&lt;span style="color:#ae81ff">\x89&lt;/span>&lt;span style="color:#e6db74">PNG&lt;/span>&lt;span style="color:#ae81ff">\r\n\x1a\n\x00\x00\x00\r&lt;/span>&lt;span style="color:#e6db74">IHDR&lt;/span>&lt;span style="color:#ae81ff">\x00\x00\x00&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&lt;/span>&lt;span style="color:#ae81ff">\x00\x00\x00&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&lt;/span>&lt;span style="color:#ae81ff">\x01\x00\x00\x00\x00\xa4\xd8&lt;/span>&lt;span style="color:#e6db74">l&lt;/span>&lt;span style="color:#ae81ff">\x98\x00\x00\x00\xf5&lt;/span>&lt;span style="color:#e6db74">IDATx&lt;/span>&lt;span style="color:#ae81ff">\x9c\x01\xea\x00\x15\xff\x01\xff\x00\x00\x00\xff\x00\x80\xa2\xd9\x1a\x02\x00\xbe\xe6&lt;/span>&lt;span style="color:#e6db74">T~&lt;/span>&lt;span style="color:#ae81ff">\xfa\x04\xe4\xff\x0f&lt;/span>&lt;span style="color:#e6db74">h&lt;/span>&lt;span style="color:#ae81ff">\x90\x02\x00\x1a\x7f\xdc\x00\x02\x00\xde\x01&lt;/span>&lt;span style="color:#e6db74">H&lt;/span>&lt;span style="color:#ae81ff">\x00\x00\xbe\xd5\x95&lt;/span>&lt;span style="color:#e6db74">J&lt;/span>&lt;span style="color:#ae81ff">\xfa\x04\xc2&lt;/span>&lt;span style="color:#e6db74">*&lt;/span>&lt;span style="color:#ae81ff">\x15&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>&lt;span style="color:#ae81ff">\x08\x00\xff\x9d&lt;/span>&lt;span style="color:#e6db74">.&lt;/span>&lt;span style="color:#ae81ff">\x9f\xfe\x04\xfd&lt;/span>&lt;span style="color:#e6db74">#P&lt;/span>&lt;span style="color:#ae81ff">\xc3\x0b\x02\x97\x0e&lt;/span>&lt;span style="color:#e6db74">:&lt;/span>&lt;span style="color:#ae81ff">\x07&lt;/span>&lt;span style="color:#e6db74">d&lt;/span>&lt;span style="color:#ae81ff">\x04&lt;/span>&lt;span style="color:#e6db74">/vIg&lt;/span>&lt;span style="color:#ae81ff">\x19\x00\xbb\xcd\xf3&lt;/span>&lt;span style="color:#e6db74">-&lt;/span>&lt;span style="color:#ae81ff">\xd2\x02\xfb\xd6&lt;/span>&lt;span style="color:#e6db74">d&lt;/span>&lt;span style="color:#ae81ff">\xb5\x88\x02&lt;/span>&lt;span style="color:#e6db74">E&lt;/span>&lt;span style="color:#ae81ff">\xc7&lt;/span>&lt;span style="color:#e6db74">^&lt;/span>&lt;span style="color:#ae81ff">\xdf\xfc\x00\x84\xfb\x13\xf3&lt;/span>&lt;span style="color:#e6db74">J&lt;/span>&lt;span style="color:#ae81ff">\x02\xfd\x88&lt;/span>&lt;span style="color:#e6db74">a&lt;/span>&lt;span style="color:#ae81ff">\xef&lt;/span>&lt;span style="color:#e6db74">D&lt;/span>&lt;span style="color:#ae81ff">\x00\xc8&lt;/span>&lt;span style="color:#e6db74">t$&lt;/span>&lt;span style="color:#ae81ff">\x90\n\x01\xc7\x01\xee&lt;/span>&lt;span style="color:#e6db74">1&lt;/span>&lt;span style="color:#ae81ff">\xf7\x04&lt;/span>&lt;span style="color:#e6db74">3Q&lt;/span>&lt;span style="color:#ae81ff">\x17\x0c&lt;/span>&lt;span style="color:#e6db74">H&lt;/span>&lt;span style="color:#ae81ff">\x01\xa5\x03\x1c&lt;/span>&lt;span style="color:#e6db74">6d&lt;/span>&lt;span style="color:#ae81ff">\x02\r\xf0\xbf&lt;/span>&lt;span style="color:#e6db74">V$&lt;/span>&lt;span style="color:#ae81ff">\x00\xcf\x13&lt;/span>&lt;span style="color:#e6db74">d3&lt;/span>&lt;span style="color:#ae81ff">\x06\x01\xee\x08&lt;/span>&lt;span style="color:#e6db74">J&lt;/span>&lt;span style="color:#ae81ff">\xf5&lt;/span>&lt;span style="color:#e6db74">E&lt;/span>&lt;span style="color:#ae81ff">\x00\x9b\xee\n\xac\xfa\x01\xea&lt;/span>&lt;span style="color:#e6db74">|&lt;/span>&lt;span style="color:#ae81ff">\xf2\xe8&lt;/span>&lt;span style="color:#e6db74">6&lt;/span>&lt;span style="color:#ae81ff">\x04\xb3\xc9\x84\xf7\xb4\x02\t\x90&lt;/span>&lt;span style="color:#e6db74">U%&lt;/span>&lt;span style="color:#ae81ff">\x14\x00\xbf&lt;/span>&lt;span style="color:#e6db74"> g&lt;/span>&lt;span style="color:#ae81ff">\xa5\xee\x02\xfb&lt;/span>&lt;span style="color:#e6db74">H&lt;/span>&lt;span style="color:#ae81ff">\xf1&lt;/span>&lt;span style="color:#e6db74">#4&lt;/span>&lt;span style="color:#ae81ff">\x00\xff\xa1&lt;/span>&lt;span style="color:#e6db74">!;&lt;/span>&lt;span style="color:#ae81ff">\x86\x02\x81&lt;/span>&lt;span style="color:#e6db74">VB&lt;/span>&lt;span style="color:#ae81ff">\xdf\xfc\x04&lt;/span>&lt;span style="color:#e6db74">&amp;gt;&lt;/span>&lt;span style="color:#ae81ff">\xb1&lt;/span>&lt;span style="color:#e6db74">s&lt;/span>&lt;span style="color:#ae81ff">\x00\x10\x02\xe4&lt;/span>&lt;span style="color:#e6db74">&amp;gt;&lt;/span>&lt;span style="color:#ae81ff">\xab&lt;/span>&lt;span style="color:#e6db74">-p&lt;/span>&lt;span style="color:#ae81ff">\x00\xa2\xc6\xfe\xf6\xee\x04\x00\x05\xcb&lt;/span>&lt;span style="color:#e6db74">l5&lt;/span>&lt;span style="color:#ae81ff">\x02\x1c\xfc\x85&lt;/span>&lt;span style="color:#e6db74">;&lt;/span>&lt;span style="color:#ae81ff">\xd0\x02\xc2\xfb\xe6&lt;/span>&lt;span style="color:#e6db74">A&lt;/span>&lt;span style="color:#ae81ff">\x00\x01\xff\x00\x00\x00\xff\xf9\xdb&lt;/span>&lt;span style="color:#e6db74">_g&lt;/span>&lt;span style="color:#ae81ff">\xf4\x9a\xdd&lt;/span>&lt;span style="color:#e6db74">H&lt;/span>&lt;span style="color:#ae81ff">\x00\x00\x00\x00&lt;/span>&lt;span style="color:#e6db74">IEND&lt;/span>&lt;span style="color:#ae81ff">\xae&lt;/span>&lt;span style="color:#e6db74">B`&lt;/span>&lt;span style="color:#ae81ff">\x82&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The challenge starts by downloading an &lt;code>.mp3&lt;/code> file. While trying to process it in Python to extract metadata, I encountered errors. After several attempts, I started to wonder if it was actually an MP3 file—or something else. I wrote a function to determine the real file type:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> filetype
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">with&lt;/span> open(&lt;span style="color:#e6db74">&amp;#34;qr_code_image.png&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;wb&amp;#34;&lt;/span>) &lt;span style="color:#66d9ef">as&lt;/span> f:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> f&lt;span style="color:#f92672">.&lt;/span>write(qr_code_data)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">check_file_type&lt;/span>(filename): 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> kind &lt;span style="color:#f92672">=&lt;/span> filetype&lt;span style="color:#f92672">.&lt;/span>guess(filename) 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> kind &lt;span style="color:#f92672">is&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>: 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;unknown file type.&amp;#34;&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">f&lt;/span>&lt;span style="color:#e6db74">&amp;#34;type: &lt;/span>&lt;span style="color:#e6db74">{&lt;/span>kind&lt;span style="color:#f92672">.&lt;/span>mime&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">, extension: &lt;/span>&lt;span style="color:#e6db74">{&lt;/span>kind&lt;span style="color:#f92672">.&lt;/span>extension&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(&lt;span style="color:#e6db74">&amp;#34;done&amp;#34;&lt;/span>)
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Après avoir obtenu l&amp;rsquo;autre QR code grâce au script, je l&amp;rsquo;ai de nouveau analysé avec zxing, ce qui m&amp;rsquo;a donné le flag:&lt;/p></description></item><item><title>Huntress-CTF - TooManyBits</title><link>https://anthr4ce.github.io/posts/ctf-writeups/huntress-ctf/toomanybits/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/huntress-ctf/toomanybits/</guid><description>&lt;p>Dans ce challenge, on a cet énoncé :&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-t" data-lang="t">&lt;span style="display:flex;">&lt;span>Author: @JohnHammond 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>What &lt;span style="color:#66d9ef">do&lt;/span> all these ones &lt;span style="color:#f92672">and&lt;/span> zero&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>s mean&lt;span style="color:#f92672">!&lt;/span>?&lt;span style="color:#f92672">!&lt;/span> We are in the &lt;span style="color:#f92672">**&lt;/span>Warmups&lt;span style="color:#f92672">**&lt;/span> category after all&lt;span style="color:#f92672">...&lt;/span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">01100110&lt;/span> &lt;span style="color:#ae81ff">01101100&lt;/span> &lt;span style="color:#ae81ff">01100001&lt;/span> &lt;span style="color:#ae81ff">01100111&lt;/span> &lt;span style="color:#ae81ff">01111011&lt;/span> &lt;span style="color:#ae81ff">01100100&lt;/span> &lt;span style="color:#ae81ff">00110000&lt;/span> &lt;span style="color:#ae81ff">00110001&lt;/span> &lt;span style="color:#ae81ff">00110100&lt;/span> &lt;span style="color:#ae81ff">00110111&lt;/span> &lt;span style="color:#ae81ff">00110001&lt;/span> &lt;span style="color:#ae81ff">00110111&lt;/span> &lt;span style="color:#ae81ff">00110000&lt;/span> &lt;span style="color:#ae81ff">00110010&lt;/span> &lt;span style="color:#ae81ff">01100001&lt;/span> &lt;span style="color:#ae81ff">00110001&lt;/span> &lt;span style="color:#ae81ff">00110000&lt;/span> &lt;span style="color:#ae81ff">00110001&lt;/span> &lt;span style="color:#ae81ff">00110011&lt;/span> &lt;span style="color:#ae81ff">00110100&lt;/span> &lt;span style="color:#ae81ff">01100011&lt;/span> &lt;span style="color:#ae81ff">01100100&lt;/span> &lt;span style="color:#ae81ff">01100001&lt;/span> &lt;span style="color:#ae81ff">01100100&lt;/span> &lt;span style="color:#ae81ff">00110001&lt;/span> &lt;span style="color:#ae81ff">01100100&lt;/span> &lt;span style="color:#ae81ff">01100100&lt;/span> &lt;span style="color:#ae81ff">01100100&lt;/span> &lt;span style="color:#ae81ff">01100101&lt;/span> &lt;span style="color:#ae81ff">00110000&lt;/span> &lt;span style="color:#ae81ff">00110110&lt;/span> &lt;span style="color:#ae81ff">00110110&lt;/span> &lt;span style="color:#ae81ff">00110111&lt;/span> &lt;span style="color:#ae81ff">00111000&lt;/span> &lt;span style="color:#ae81ff">01100110&lt;/span> &lt;span style="color:#ae81ff">00110010&lt;/span> &lt;span style="color:#ae81ff">01100110&lt;/span> &lt;span style="color:#ae81ff">01111101&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>J&amp;rsquo;ai donc essayé de le convertir en texte sur &lt;a href="https://www.rapidtables.com/convert/number/binary-to-ascii.html" class="external-link" target="_blank" rel="noopener">https://www.rapidtables.com/convert/number/binary-to-ascii.html&lt;/a>, ce qui donne le flag :&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-t" data-lang="t">&lt;span style="display:flex;">&lt;span>flag{d01471702a10134cdad1ddde06678f2f}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>LA-CTF - I spy...</title><link>https://anthr4ce.github.io/posts/ctf-writeups/la-ctf/web/i-spy.../i_spy/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/la-ctf/web/i-spy.../i_spy/</guid><description>&lt;h2 id="-description-du-challenge">
- &lt;strong>📌 Description du Challenge&lt;/strong>
- &lt;a class="heading-link" href="#-description-du-challenge">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>filename &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;src/Half-Life_3_OST.mp3&amp;#39;&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(check_file_type(filename))
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Thanks to this script, I found out that the file was actually a PNG:&lt;/p></description></item><item><title>LA-CTF - I spy...</title><link>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/i-spy.../</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/i-spy.../</guid><description>&lt;hr>
+&lt;h2 id="challenge-description">
+ &lt;strong>Challenge Description&lt;/strong>
+ &lt;a class="heading-link" href="#challenge-description">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Dans ce challenge, il y a un formulaire où l&amp;rsquo;on doit soumettre des tokens.&lt;br>
-L&amp;rsquo;énoncé et les indices indiquent que plusieurs tokens sont cachés à différents endroits de l&amp;rsquo;application web.&lt;br>
-L&amp;rsquo;objectif est de &lt;strong>trouver et soumettre tous les tokens pour obtenir le flag&lt;/strong>.&lt;/p>
+&lt;p>In this challenge, there is a form where we must submit tokens.
+The description and hints indicate that multiple tokens are hidden in different parts of the web application.
+The objective is to &lt;strong>find and submit all the tokens to obtain the flag&lt;/strong>.&lt;/p>
 &lt;hr>
-&lt;h2 id="-étape-1--comprendre-où-chercher-les-tokens">
- &lt;strong>🛠️ Étape 1 : Comprendre où chercher les tokens&lt;/strong>
- &lt;a class="heading-link" href="#-%c3%a9tape-1--comprendre-o%c3%b9-chercher-les-tokens">
+&lt;h2 id="step-1-understand-where-to-look-for-tokens">
+ &lt;strong>Step 1: Understand Where to Look for Tokens&lt;/strong>
+ &lt;a class="heading-link" href="#step-1-understand-where-to-look-for-tokens">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Les tokens sont dispersés dans plusieurs endroits classiques où des informations cachées peuvent être stockées :&lt;/p></description></item><item><title>LA-CTF - Lucky flag</title><link>https://anthr4ce.github.io/posts/ctf-writeups/la-ctf/web/lucky-flag/lucky-flag/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/la-ctf/web/lucky-flag/lucky-flag/</guid><description>&lt;h2 id="-description-du-challenge">
- &lt;strong>📌 Description du challenge&lt;/strong>
- &lt;a class="heading-link" href="#-description-du-challenge">
+&lt;p>Tokens are scattered across several common locations where hidden data may reside:&lt;/p></description></item><item><title>LA-CTF - Lucky flag</title><link>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/lucky-flag/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/lucky-flag/</guid><description>&lt;hr>
+&lt;h2 id="challenge-description">
+ Challenge Description
+ &lt;a class="heading-link" href="#challenge-description">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Dans ce challenge, je suis face à une &lt;strong>page web remplie de milliers de boutons&lt;/strong> portant tous l’étiquette &amp;ldquo;flag&amp;rdquo;.&lt;/p>
+&lt;p>In this challenge, I was presented with a &lt;strong>web page filled with thousands of buttons&lt;/strong>, all labeled &amp;ldquo;flag&amp;rdquo;.&lt;/p>
 &lt;p>&lt;img src="images/flag1.png" alt="Screenshot">&lt;/p>
-&lt;p>L&amp;rsquo;objectif est de &lt;strong>trouver le bon bouton qui affiche le flag&lt;/strong>.&lt;/p>
+&lt;p>The goal was to &lt;strong>find the correct button that reveals the flag&lt;/strong>.&lt;/p>
 &lt;hr>
-&lt;h2 id="-étape-1--inspection-du-code-source">
- &lt;strong>🔍 Étape 1 : Inspection du code source&lt;/strong>
- &lt;a class="heading-link" href="#-%c3%a9tape-1--inspection-du-code-source">
+&lt;h2 id="step-1-inspecting-the-source-code">
+ Step 1: Inspecting the Source Code
+ &lt;a class="heading-link" href="#step-1-inspecting-the-source-code">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Plutôt que de cliquer sur &lt;strong>des milliers de boutons&lt;/strong> je trouve un fichier &lt;strong>&lt;code>main.js&lt;/code>&lt;/strong> qui gère le fonctionnement des boutons.&lt;/p></description></item><item><title>Midnight-Flag-Finals - Osint</title><link>https://anthr4ce.github.io/posts/ctf-writeups/midnight-flag-finals/osint/operationsilenthunt/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/midnight-flag-finals/osint/operationsilenthunt/</guid><description>&lt;h1 id="operation-silent-hunt">
+&lt;p>Instead of clicking every single button, I looked into the &lt;code>main.js&lt;/code> file which controls the behavior of the buttons.&lt;/p></description></item><item><title>Midnight-Flag-Finals - Osint</title><link>https://anthr4ce.github.io/ctf-writeups/midnight-flag-finals/osint/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/midnight-flag-finals/osint/</guid><description>&lt;h1 id="operation-silent-hunt">
  Operation Silent Hunt
  &lt;a class="heading-link" href="#operation-silent-hunt">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
@@ -409,8 +356,9 @@ L&amp;rsquo;objectif est de &lt;strong>trouver et soumettre tous les tokens pour
 &lt;p>During the theft of a hard drive containing sensitive data, the attacker made a mistake: they lost their phone at the scene.&lt;br>
 &lt;strong>Your mission:&lt;/strong> follow the clues and locate the &lt;strong>exact address&lt;/strong> where the hard drive is hidden.&lt;/p>
 &lt;p>But be careful&amp;hellip; getting caught could compromise the entire operation.&lt;/p>
-&lt;p>🔍 Only use the following websites for your investigation:&lt;/p></description></item><item><title>Nullcon-Goa-HackIM-2025 - Web</title><link>https://anthr4ce.github.io/posts/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/crahp/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/crahp/</guid><description>&lt;h1 id="web-challenge---crc-hash-collision-exploit">
- &lt;strong>Web Challenge - CRC Hash Collision Exploit&lt;/strong>
+&lt;p>🔍 Only use the following websites for your investigation:&lt;/p></description></item><item><title>Nullcon-Goa-HackIM-2025 - Web</title><link>https://anthr4ce.github.io/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/</guid><description>&lt;hr>
+&lt;h1 id="web-challenge---crc-hash-collision-exploit">
+ Web Challenge - CRC Hash Collision Exploit
  &lt;a class="heading-link" href="#web-challenge---crc-hash-collision-exploit">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
@@ -418,25 +366,25 @@ L&amp;rsquo;objectif est de &lt;strong>trouver et soumettre tous les tokens pour
 &lt;/h1>
 &lt;hr>
 &lt;h2 id="challenge-description">
- &lt;strong>Challenge Description&lt;/strong>
+ Challenge Description
  &lt;a class="heading-link" href="#challenge-description">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>Dans ce challenge, nous avons accès au code source d&amp;rsquo;un script PHP ainsi qu&amp;rsquo;à deux indices :&lt;/p>
+&lt;p>In this challenge, we are provided with the source code of a PHP script along with two hints:&lt;/p>
 &lt;ul>
-&lt;li>&lt;strong>Indice 1&lt;/strong> : &lt;a href="https://www.php.net/manual/en/function.crc32.php#28012" class="external-link" target="_blank" rel="noopener">Lien vers la documentation PHP sur crc32()&lt;/a>&lt;/li>
-&lt;li>&lt;strong>Indice 2&lt;/strong> : &lt;a href="https://stackoverflow.com/questions/507041/crc8-check-in-php/73305496#73305496" class="external-link" target="_blank" rel="noopener">Lien vers une implémentation CRC8 en PHP&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Hint 1&lt;/strong>: &lt;a href="https://www.php.net/manual/en/function.crc32.php#28012" class="external-link" target="_blank" rel="noopener">PHP documentation link for crc32()&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Hint 2&lt;/strong>: &lt;a href="https://stackoverflow.com/questions/507041/crc8-check-in-php/73305496#73305496" class="external-link" target="_blank" rel="noopener">A PHP CRC8 implementation&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;p>L&amp;rsquo;objectif est d&amp;rsquo;obtenir le &lt;strong>flag&lt;/strong> en contournant un mécanisme d&amp;rsquo;authentification basé sur des &lt;strong>hashes CRC&lt;/strong>.&lt;/p></description></item><item><title>RootMeCTF-20K - WEB-TraineeTrainee</title><link>https://anthr4ce.github.io/posts/ctf-writeups/rootmectf-20k/web-traineetrainee/traineetrainee/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/rootmectf-20k/web-traineetrainee/traineetrainee/</guid><description>&lt;p>Description:&lt;/p>
+&lt;p>The goal is to retrieve the &lt;strong>flag&lt;/strong> by bypassing an authentication mechanism based on &lt;strong>CRC hashes&lt;/strong>.&lt;/p></description></item><item><title>RootMeCTF-20K - WEB-TraineeTrainee</title><link>https://anthr4ce.github.io/ctf-writeups/rootmectf-20k/web-traineetrainee/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/rootmectf-20k/web-traineetrainee/</guid><description>&lt;p>Description:&lt;/p>
 &lt;p>&lt;img src="images/trainee-desc.png" alt="Screenshot">&lt;/p>
 &lt;p>The trainee made a weird commit that’s flooding the server with requests—and eventually blocking connections. We’re hinted that something strange is lurking in their Nginx setup.&lt;/p>
 &lt;p>As soon as we connect we have a file reader form.
 I stared with a whatweb&lt;/p>
 &lt;p>&lt;img src="images/trainee-whatweb.png" alt="Screenshot">&lt;/p>
 &lt;p>With this we know the backend runs a Nginx 1.24.0.
-I tried to research for a file like a file.txt, example.txt localhost and /etc/nginx because of what could be anginx misconfiguration.&lt;/p></description></item><item><title>THCon - Crypto</title><link>https://anthr4ce.github.io/posts/ctf-writeups/thcon/crypto/otpas_ouf/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/thcon/crypto/otpas_ouf/</guid><description>&lt;p>&lt;img src="images/image1.png" alt="Screenshot">&lt;/p>
+I tried to research for a file like a file.txt, example.txt localhost and /etc/nginx because of what could be a nginx misconfiguration.&lt;/p></description></item><item><title>THCon - Crypto</title><link>https://anthr4ce.github.io/ctf-writeups/thcon/crypto/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/thcon/crypto/</guid><description>&lt;p>&lt;img src="images/image1.png" alt="Screenshot">&lt;/p>
 &lt;h1 id="overview-of-the-challenge">
  Overview of the Challenge
  &lt;a class="heading-link" href="#overview-of-the-challenge">
@@ -467,20 +415,31 @@ I tried to research for a file like a file.txt, example.txt localhost and /etc/n
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h3>
-&lt;p>The script reads the input file in binary mode and encrypts it by XORing each byte with a corresponding byte from the OTP (repeating the OTP cyclically).&lt;/p></description></item><item><title/><link>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/web/java-weak-token/java-weak-token/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/e-ctf-2025/web/java-weak-token/java-weak-token/</guid><description/></item><item><title/><link>https://anthr4ce.github.io/posts/ctf-writeups/readme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/readme/</guid><description>&lt;h1 id="ctf-writeups">
- CTF Writeups
- &lt;a class="heading-link" href="#ctf-writeups">
+&lt;p>The script reads the input file in binary mode and encrypts it by XORing each byte with a corresponding byte from the OTP (repeating the OTP cyclically).&lt;/p></description></item><item><title>Whoami</title><link>https://anthr4ce.github.io/whoami/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/whoami/</guid><description>&lt;h1 id="blog">
+ Blog
+ &lt;a class="heading-link" href="#blog">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h1>
-&lt;p>Welcome to my collection of CTF writeups! I&amp;rsquo;m currently a Bac+5 student at &lt;a href="https://www.2600.eu" class="external-link" target="_blank" rel="noopener">École 2600&lt;/a>, and I regularly participate in Capture The Flag competitions — mostly focused on &lt;strong>Web&lt;/strong>, &lt;strong>OSINT&lt;/strong>, and some &lt;strong>Forensics&lt;/strong> challenges.&lt;/p>
-&lt;h2 id="why-i-do-ctfs">
- Why I Do CTFs
- &lt;a class="heading-link" href="#why-i-do-ctfs">
+&lt;p>Welcome to my blog! Here, you&amp;rsquo;ll find write-ups from Capture The Flag (CTF) competitions, articles about cybersecurity topics, and explorations of interesting vulnerabilities. I&amp;rsquo;m currently pursuing a Master&amp;rsquo;s degree (Bac+5) at &lt;a href="https://www.2600.eu" class="external-link" target="_blank" rel="noopener">École 2600&lt;/a>, specializing in &lt;strong>Web&lt;/strong> (mostly), &lt;strong>OSINT&lt;/strong> and &lt;strong>Forensics&lt;/strong>.&lt;/p>
+&lt;h2 id="who-am-i">
+ Who Am I?
+ &lt;a class="heading-link" href="#who-am-i">
  &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
  &lt;span class="sr-only">Link to heading&lt;/span>
  &lt;/a>
 &lt;/h2>
-&lt;p>I genuinely enjoy the CTF format because it&amp;rsquo;s a fun and challenging way to &lt;strong>learn&lt;/strong>, &lt;strong>improve&lt;/strong>, and &lt;strong>push my limits&lt;/strong> in cybersecurity. These challenges allow me to go beyond theory and get hands-on with real-world scenarios. Even better, I get to solve them alongside my classmates — it’s both a collaborative and competitive experience that I love.&lt;br>
-And lastly, I get to meet incredible and inspiring people.&lt;/p></description></item></channel></rss>
+&lt;ul>
+&lt;li>Cybersecurity Master&amp;rsquo;s student at École 2600&lt;/li>
+&lt;li>Former professional cook with over 5 years of experience&lt;/li>
+&lt;li>Fluent in Italian, French, English and Arabic&lt;/li>
+&lt;/ul>
+&lt;h2 id="how-did-i-end-up-in-infosec">
+ How Did I End Up in Infosec?
+ &lt;a class="heading-link" href="#how-did-i-end-up-in-infosec">
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
+ &lt;span class="sr-only">Link to heading&lt;/span>
+ &lt;/a>
+&lt;/h2>
+&lt;p>After several years in the culinary field, I took some time to reconsider my career. This reflection led me to the IT industry, starting with a bootcamp that ultimately helped me secure a role as a web developer. My previous career taught me to approach problems with a critical mindset, carefully assessing potential repercussions and security implications (surprisingly similar to the rigorous safety and certification standards required in professional kitchens). This mindset naturally drew me deeper into cybersecurity during my time as a web developer, leading me directly into the infosec field.&lt;/p></description></item></channel></rss>

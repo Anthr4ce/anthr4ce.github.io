@@ -1,0 +1,105 @@
+<!doctype html><html lang=en><head><title>HeroCTF - DataScience · Anthrace | CTF Writeups</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Anthrace"><meta name=description content='
+In this challenge, we had to sort data and calculate specific values.
+After several attempts, I arrived at the following code:
+import pandas as pd  
+import math  
+
+df = pd.read_csv("orders.csv", parse_dates=["date"])  
+
+df = df[df["date"] < "2023-01-01"]  
+
+initial_balance = 10000  
+user_balances = {}  
+
+unique_users = pd.concat([df["buyer_id"], df["seller_id"]]).unique()  
+user_balances = {}
+for user_id in unique_users:
+    user_balances[user_id] = initial_balance
+
+total_discount_spared = 0  
+
+for _, row in df.iterrows():  
+    buyer_id = row["buyer_id"]  
+    seller_id = row["seller_id"]  
+    price = row["price"]  
+    discount = row["discount"]  
+
+    discounted_price = price * (1 - discount / 100)  
+    amount_spared = price - discounted_price  
+    total_discount_spared += amount_spared  
+
+    user_balances[buyer_id] -= discounted_price  
+    user_balances[seller_id] += discounted_price  
+
+# resp 1  
+richest_user = max(user_balances, key=user_balances.get)  
+
+# resp 2  
+total_discount_spared = math.floor(total_discount_spared)  
+
+# resp 3  
+negative_balance_count = 0
+for balance in user_balances.values():
+    if balance < 0:
+        negative_balance_count += 1
+
+#print the flag  
+flag = f"Hero{{{richest_user}_{total_discount_spared}_{negative_balance_count}}}"  
+print(flag)
+Hero{732669_188098001_3468}
+'><meta name=keywords content="ctf,hacking,cybersecurity,writeups,web,osint,forensic,crypto"><meta name=twitter:card content="summary"><meta name=twitter:title content="HeroCTF - DataScience"><meta name=twitter:description content='In this challenge, we had to sort data and calculate specific values. After several attempts, I arrived at the following code:
+import pandas as pd import math df = pd.read_csv("orders.csv", parse_dates=["date"]) df = df[df["date"] < "2023-01-01"] initial_balance = 10000 user_balances = {} unique_users = pd.concat([df["buyer_id"], df["seller_id"]]).unique() user_balances = {} for user_id in unique_users: user_balances[user_id] = initial_balance total_discount_spared = 0 for _, row in df.iterrows(): buyer_id = row["buyer_id"] seller_id = row["seller_id"] price = row["price"] discount = row["discount"] discounted_price = price * (1 - discount / 100) amount_spared = price - discounted_price total_discount_spared += amount_spared user_balances[buyer_id] -= discounted_price user_balances[seller_id] += discounted_price # resp 1 richest_user = max(user_balances, key=user_balances.get) # resp 2 total_discount_spared = math.floor(total_discount_spared) # resp 3 negative_balance_count = 0 for balance in user_balances.values(): if balance < 0: negative_balance_count += 1 #print the flag flag = f"Hero{{{richest_user}_{total_discount_spared}_{negative_balance_count}}}" print(flag) Hero{732669_188098001_3468}'><meta property="og:url" content="https://anthr4ce.github.io/ctf-writeups/heroctf/"><meta property="og:site_name" content="Anthrace | CTF Writeups"><meta property="og:title" content="HeroCTF - DataScience"><meta property="og:description" content='In this challenge, we had to sort data and calculate specific values. After several attempts, I arrived at the following code:
+import pandas as pd import math df = pd.read_csv("orders.csv", parse_dates=["date"]) df = df[df["date"] < "2023-01-01"] initial_balance = 10000 user_balances = {} unique_users = pd.concat([df["buyer_id"], df["seller_id"]]).unique() user_balances = {} for user_id in unique_users: user_balances[user_id] = initial_balance total_discount_spared = 0 for _, row in df.iterrows(): buyer_id = row["buyer_id"] seller_id = row["seller_id"] price = row["price"] discount = row["discount"] discounted_price = price * (1 - discount / 100) amount_spared = price - discounted_price total_discount_spared += amount_spared user_balances[buyer_id] -= discounted_price user_balances[seller_id] += discounted_price # resp 1 richest_user = max(user_balances, key=user_balances.get) # resp 2 total_discount_spared = math.floor(total_discount_spared) # resp 3 negative_balance_count = 0 for balance in user_balances.values(): if balance < 0: negative_balance_count += 1 #print the flag flag = f"Hero{{{richest_user}_{total_discount_spared}_{negative_balance_count}}}" print(flag) Hero{732669_188098001_3468}'><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ctf-writeups"><meta property="article:published_time" content="2025-07-01T00:00:00+00:00"><meta property="article:modified_time" content="2025-07-01T00:00:00+00:00"><meta property="article:tag" content="Heroctf"><meta property="article:tag" content="Datascience"><meta property="article:tag" content="Writeup"><link rel=canonical href=https://anthr4ce.github.io/ctf-writeups/heroctf/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.6445a802b9389c9660e1b07b724dcf5718b1065ed2d71b4eeaf981cc7cc5fc46.css integrity="sha256-ZEWoArk4nJZg4bB7ck3PVxixBl7S1xtO6vmBzHzF/EY=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/custom.min.92a8af9d939d71a5316be0e14fcee81d71b93ab020897940098bf1c492367587.css integrity="sha256-kqivnZOdcaUxa+DhT87oHXG5OrAgiXlACYvxxJI2dYc=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-light"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://anthr4ce.github.io/>Anthrace | CTF Writeups
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/ctf-writeups/>Writeups</a></li><li class=navigation-item><a class=navigation-link href=/whoami/>Whoami</a></li></ul></section></nav><div class=content><section class="container page"><article><header><h1 class=title><a class=title-link href=https://anthr4ce.github.io/ctf-writeups/heroctf/>HeroCTF - DataScience</a></h1></header><hr><p>In this challenge, we had to sort data and calculate specific values.
+After several attempts, I arrived at the following code:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> pandas <span style=color:#66d9ef>as</span> pd  
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> math  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>df <span style=color:#f92672>=</span> pd<span style=color:#f92672>.</span>read_csv(<span style=color:#e6db74>&#34;orders.csv&#34;</span>, parse_dates<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;date&#34;</span>])  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>df <span style=color:#f92672>=</span> df[df[<span style=color:#e6db74>&#34;date&#34;</span>] <span style=color:#f92672>&lt;</span> <span style=color:#e6db74>&#34;2023-01-01&#34;</span>]  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>initial_balance <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>  
+</span></span><span style=display:flex><span>user_balances <span style=color:#f92672>=</span> {}  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>unique_users <span style=color:#f92672>=</span> pd<span style=color:#f92672>.</span>concat([df[<span style=color:#e6db74>&#34;buyer_id&#34;</span>], df[<span style=color:#e6db74>&#34;seller_id&#34;</span>]])<span style=color:#f92672>.</span>unique()  
+</span></span><span style=display:flex><span>user_balances <span style=color:#f92672>=</span> {}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> user_id <span style=color:#f92672>in</span> unique_users:
+</span></span><span style=display:flex><span>    user_balances[user_id] <span style=color:#f92672>=</span> initial_balance
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>total_discount_spared <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> _, row <span style=color:#f92672>in</span> df<span style=color:#f92672>.</span>iterrows():  
+</span></span><span style=display:flex><span>    buyer_id <span style=color:#f92672>=</span> row[<span style=color:#e6db74>&#34;buyer_id&#34;</span>]  
+</span></span><span style=display:flex><span>    seller_id <span style=color:#f92672>=</span> row[<span style=color:#e6db74>&#34;seller_id&#34;</span>]  
+</span></span><span style=display:flex><span>    price <span style=color:#f92672>=</span> row[<span style=color:#e6db74>&#34;price&#34;</span>]  
+</span></span><span style=display:flex><span>    discount <span style=color:#f92672>=</span> row[<span style=color:#e6db74>&#34;discount&#34;</span>]  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    discounted_price <span style=color:#f92672>=</span> price <span style=color:#f92672>*</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>-</span> discount <span style=color:#f92672>/</span> <span style=color:#ae81ff>100</span>)  
+</span></span><span style=display:flex><span>    amount_spared <span style=color:#f92672>=</span> price <span style=color:#f92672>-</span> discounted_price  
+</span></span><span style=display:flex><span>    total_discount_spared <span style=color:#f92672>+=</span> amount_spared  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    user_balances[buyer_id] <span style=color:#f92672>-=</span> discounted_price  
+</span></span><span style=display:flex><span>    user_balances[seller_id] <span style=color:#f92672>+=</span> discounted_price  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># resp 1  </span>
+</span></span><span style=display:flex><span>richest_user <span style=color:#f92672>=</span> max(user_balances, key<span style=color:#f92672>=</span>user_balances<span style=color:#f92672>.</span>get)  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># resp 2  </span>
+</span></span><span style=display:flex><span>total_discount_spared <span style=color:#f92672>=</span> math<span style=color:#f92672>.</span>floor(total_discount_spared)  
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># resp 3  </span>
+</span></span><span style=display:flex><span>negative_balance_count <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> balance <span style=color:#f92672>in</span> user_balances<span style=color:#f92672>.</span>values():
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> balance <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>        negative_balance_count <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#print the flag  </span>
+</span></span><span style=display:flex><span>flag <span style=color:#f92672>=</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Hero</span><span style=color:#ae81ff>{{</span><span style=color:#e6db74>{</span>richest_user<span style=color:#e6db74>}</span><span style=color:#e6db74>_</span><span style=color:#e6db74>{</span>total_discount_spared<span style=color:#e6db74>}</span><span style=color:#e6db74>_</span><span style=color:#e6db74>{</span>negative_balance_count<span style=color:#e6db74>}</span><span style=color:#ae81ff>}}</span><span style=color:#e6db74>&#34;</span>  
+</span></span><span style=display:flex><span>print(flag)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-t data-lang=t><span style=display:flex><span>Hero{<span style=color:#ae81ff>732669_188098001_3468</span>}
+</span></span></code></pre></div></article></section></div><footer class=footer><section class=container>©
+2025
+Anthrace
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>

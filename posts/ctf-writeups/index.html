@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+   · Anthrace | CTF Writeups
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Anthrace">
+<meta name="description" content="
+  CTF Writeups
+  
+    
+    Link to heading
+  
+
+Welcome to my collection of CTF writeups! I&rsquo;m currently a Bac&#43;5 student at École 2600, and I regularly participate in Capture The Flag competitions — mostly focused on Web, OSINT, and some Forensics challenges.
+
+  Why I Do CTFs
+  
+    
+    Link to heading
+  
+
+I genuinely enjoy the CTF format because it&rsquo;s a fun and challenging way to learn, improve, and push my limits in cybersecurity. These challenges allow me to go beyond theory and get hands-on with real-world scenarios. Even better, I get to solve them alongside my classmates — it’s both a collaborative and competitive experience that I love.
+And lastly, I get to meet incredible and inspiring people.">
+<meta name="keywords" content="ctf, hacking, cybersecurity, writeups, web, osint, forensic, crypto">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Anthrace | CTF Writeups">
+  <meta name="twitter:description" content="CTF Writeups Link to heading Welcome to my collection of CTF writeups! I’m currently a Bac&#43;5 student at École 2600, and I regularly participate in Capture The Flag competitions — mostly focused on Web, OSINT, and some Forensics challenges.
+Why I Do CTFs Link to heading I genuinely enjoy the CTF format because it’s a fun and challenging way to learn, improve, and push my limits in cybersecurity. These challenges allow me to go beyond theory and get hands-on with real-world scenarios. Even better, I get to solve them alongside my classmates — it’s both a collaborative and competitive experience that I love.
+And lastly, I get to meet incredible and inspiring people.">
+
+<meta property="og:url" content="http://localhost:1313/posts/ctf-writeups/">
+  <meta property="og:site_name" content="Anthrace | CTF Writeups">
+  <meta property="og:title" content="Anthrace | CTF Writeups">
+  <meta property="og:description" content="CTF Writeups Link to heading Welcome to my collection of CTF writeups! I’m currently a Bac&#43;5 student at École 2600, and I regularly participate in Capture The Flag competitions — mostly focused on Web, OSINT, and some Forensics challenges.
+Why I Do CTFs Link to heading I genuinely enjoy the CTF format because it’s a fun and challenging way to learn, improve, and push my limits in cybersecurity. These challenges allow me to go beyond theory and get hands-on with real-world scenarios. Even better, I get to solve them alongside my classmates — it’s both a collaborative and competitive experience that I love.
+And lastly, I get to meet incredible and inspiring people.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/posts/ctf-writeups/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+ 
+  
+    
+    <link rel="stylesheet" href="/css/custom.css" media="screen">
+  
+
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+<body class="preload-transitions colorscheme-light">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Anthrace | CTF Writeups
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Writeups</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/posts/ctf-writeups/">
+              
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="0001-01-01T00:00:00Z">
+                0001-01-01
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              One-minute read
+            </span>
+          </div>
+          
+          
+          
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h1 id="ctf-writeups">
+  CTF Writeups
+  <a class="heading-link" href="#ctf-writeups">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>Welcome to my collection of CTF writeups! I&rsquo;m currently a Bac+5 student at <a href="https://www.2600.eu"  class="external-link" target="_blank" rel="noopener">École 2600</a>, and I regularly participate in Capture The Flag competitions — mostly focused on <strong>Web</strong>, <strong>OSINT</strong>, and some <strong>Forensics</strong> challenges.</p>
+<h2 id="why-i-do-ctfs">
+  Why I Do CTFs
+  <a class="heading-link" href="#why-i-do-ctfs">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>I genuinely enjoy the CTF format because it&rsquo;s a fun and challenging way to <strong>learn</strong>, <strong>improve</strong>, and <strong>push my limits</strong> in cybersecurity. These challenges allow me to go beyond theory and get hands-on with real-world scenarios. Even better, I get to solve them alongside my classmates — it’s both a collaborative and competitive experience that I love.<br>
+And lastly, I get to meet incredible and inspiring people.</p>
+<h2 id="about-this-repo">
+  About This Repo
+  <a class="heading-link" href="#about-this-repo">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Each week, I document the challenges I work on — whether they&rsquo;re from school, public platforms, or online CTFs. My goal is not only to track my progress but also to help others who might be facing similar challenges.</p>
+<h2 id="platforms-i-use">
+  Platforms I Use
+  <a class="heading-link" href="#platforms-i-use">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li>🔍 <a href="https://www.root-me.org/Anthrace"  class="external-link" target="_blank" rel="noopener">Root-Me</a></li>
+<li>🧪 Hack The Box — <em>No boxes yet, still preparing for the CPTS&hellip;</em></li>
+</ul>
+<p>Feel free to explore, learn, or reach out if you want to collaborate on future CTFs!</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     Anthrace 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

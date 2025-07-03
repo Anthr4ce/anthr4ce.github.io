@@ -1,48 +1,49 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Datascience on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/datascience/</link><description>Recent content in Datascience on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/datascience/index.xml" rel="self" type="application/rss+xml"/><item><title>HeroCTF - DataScience</title><link>https://anthr4ce.github.io/posts/ctf-writeups/heroctf/datascience/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/posts/ctf-writeups/heroctf/datascience/</guid><description>&lt;p>Dans ce challenge, nous devons trier des données et obtenir certains nombres.
-Aprés plusieurs essays, je suis arrivé à ce code:&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Datascience on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/datascience/</link><description>Recent content in Datascience on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/datascience/index.xml" rel="self" type="application/rss+xml"/><item><title>HeroCTF - DataScience</title><link>https://anthr4ce.github.io/ctf-writeups/heroctf/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/heroctf/</guid><description>&lt;hr>
+&lt;p>In this challenge, we had to sort data and calculate specific values.
+After several attempts, I arrived at the following code:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> pandas &lt;span style="color:#66d9ef">as&lt;/span> pd 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> math 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>df &lt;span style="color:#f92672">=&lt;/span> pd&lt;span style="color:#f92672">.&lt;/span>read_csv(&lt;span style="color:#e6db74">&amp;#34;orders.csv&amp;#34;&lt;/span>, parse_dates&lt;span style="color:#f92672">=&lt;/span>[&lt;span style="color:#e6db74">&amp;#34;date&amp;#34;&lt;/span>]) 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>df &lt;span style="color:#f92672">=&lt;/span> df[df[&lt;span style="color:#e6db74">&amp;#34;date&amp;#34;&lt;/span>] &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;2023-01-01&amp;#34;&lt;/span>] 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>initial_balance &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">10000&lt;/span> 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>user_balances &lt;span style="color:#f92672">=&lt;/span> {} 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>unique_users &lt;span style="color:#f92672">=&lt;/span> pd&lt;span style="color:#f92672">.&lt;/span>concat([df[&lt;span style="color:#e6db74">&amp;#34;buyer_id&amp;#34;&lt;/span>], df[&lt;span style="color:#e6db74">&amp;#34;seller_id&amp;#34;&lt;/span>]])&lt;span style="color:#f92672">.&lt;/span>unique() 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>user_balances &lt;span style="color:#f92672">=&lt;/span> {}
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> user_id &lt;span style="color:#f92672">in&lt;/span> unique_users:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> user_balances[user_id] &lt;span style="color:#f92672">=&lt;/span> initial_balance
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>total_discount_spared &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> _, row &lt;span style="color:#f92672">in&lt;/span> df&lt;span style="color:#f92672">.&lt;/span>iterrows(): 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> buyer_id &lt;span style="color:#f92672">=&lt;/span> row[&lt;span style="color:#e6db74">&amp;#34;buyer_id&amp;#34;&lt;/span>] 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> seller_id &lt;span style="color:#f92672">=&lt;/span> row[&lt;span style="color:#e6db74">&amp;#34;seller_id&amp;#34;&lt;/span>] 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> price &lt;span style="color:#f92672">=&lt;/span> row[&lt;span style="color:#e6db74">&amp;#34;price&amp;#34;&lt;/span>] 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> discount &lt;span style="color:#f92672">=&lt;/span> row[&lt;span style="color:#e6db74">&amp;#34;discount&amp;#34;&lt;/span>] 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> discounted_price &lt;span style="color:#f92672">=&lt;/span> price &lt;span style="color:#f92672">*&lt;/span> (&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">-&lt;/span> discount &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">100&lt;/span>) 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> amount_spared &lt;span style="color:#f92672">=&lt;/span> price &lt;span style="color:#f92672">-&lt;/span> discounted_price 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> total_discount_spared &lt;span style="color:#f92672">+=&lt;/span> amount_spared 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> user_balances[buyer_id] &lt;span style="color:#f92672">-=&lt;/span> discounted_price 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> user_balances[seller_id] &lt;span style="color:#f92672">+=&lt;/span> discounted_price 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#resp 1 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># resp 1 &lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>richest_user &lt;span style="color:#f92672">=&lt;/span> max(user_balances, key&lt;span style="color:#f92672">=&lt;/span>user_balances&lt;span style="color:#f92672">.&lt;/span>get) 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#resp 2 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># resp 2 &lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>total_discount_spared &lt;span style="color:#f92672">=&lt;/span> math&lt;span style="color:#f92672">.&lt;/span>floor(total_discount_spared) 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#resp 3 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># resp 3 &lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>negative_balance_count &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> balance &lt;span style="color:#f92672">in&lt;/span> user_balances&lt;span style="color:#f92672">.&lt;/span>values(): 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> balance &lt;span style="color:#f92672">in&lt;/span> user_balances&lt;span style="color:#f92672">.&lt;/span>values():
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> balance &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> negative_balance_count &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#print du flag &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#print the flag &lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>flag &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">f&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Hero&lt;/span>&lt;span style="color:#ae81ff">{{&lt;/span>&lt;span style="color:#e6db74">{&lt;/span>richest_user&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">_&lt;/span>&lt;span style="color:#e6db74">{&lt;/span>total_discount_spared&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">_&lt;/span>&lt;span style="color:#e6db74">{&lt;/span>negative_balance_count&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#ae81ff">}}&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span> 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(flag)
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-t" data-lang="t">&lt;span style="display:flex;">&lt;span>Hero{&lt;span style="color:#ae81ff">732669_188098001_3468&lt;/span>}

@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>I Spy... on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/i-spy.../</link><description>Recent content in I Spy... on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/i-spy.../index.xml" rel="self" type="application/rss+xml"/><item><title>LA-CTF - I spy...</title><link>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/i-spy.../</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/i-spy.../</guid><description>&lt;hr>
-&lt;h2 id="challenge-description">
- &lt;strong>Challenge Description&lt;/strong>
- &lt;a class="heading-link" href="#challenge-description">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>In this challenge, there is a form where we must submit tokens.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>I Spy... on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/i-spy.../</link><description>Recent content in I Spy... on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 10 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/i-spy.../index.xml" rel="self" type="application/rss+xml"/><item><title>LA-CTF - I spy...</title><link>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/i-spy.../</link><pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/i-spy.../</guid><description>&lt;hr&gt;
+&lt;h2 id="challenge-description"&gt;
+ &lt;strong&gt;Challenge Description&lt;/strong&gt;
+ &lt;a class="heading-link" href="#challenge-description"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;In this challenge, there is a form where we must submit tokens.
 The description and hints indicate that multiple tokens are hidden in different parts of the web application.
-The objective is to &lt;strong>find and submit all the tokens to obtain the flag&lt;/strong>.&lt;/p>
-&lt;hr>
-&lt;h2 id="step-1-understand-where-to-look-for-tokens">
- &lt;strong>Step 1: Understand Where to Look for Tokens&lt;/strong>
- &lt;a class="heading-link" href="#step-1-understand-where-to-look-for-tokens">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>Tokens are scattered across several common locations where hidden data may reside:&lt;/p></description></item></channel></rss>
+The objective is to &lt;strong&gt;find and submit all the tokens to obtain the flag&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="step-1-understand-where-to-look-for-tokens"&gt;
+ &lt;strong&gt;Step 1: Understand Where to Look for Tokens&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-1-understand-where-to-look-for-tokens"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Tokens are scattered across several common locations where hidden data may reside:&lt;/p&gt;</description></item></channel></rss>

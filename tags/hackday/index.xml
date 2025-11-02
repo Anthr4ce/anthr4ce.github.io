@@ -1,98 +1,98 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hackday on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/hackday/</link><description>Recent content in Hackday on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/hackday/index.xml" rel="self" type="application/rss+xml"/><item><title>HackDay - Stegano</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/stegano/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/stegano/</guid><description>&lt;hr>
-&lt;p>In this challenge, we are provided with a &lt;code>.wav&lt;/code> file that, at first glance, appears to be a simple audio file. Our task is to analyze the file and uncover a hidden flag.&lt;/p>
-&lt;hr>
-&lt;h4 id="step-1-playing-the-audio">
- &lt;strong>Step 1: Playing the Audio&lt;/strong>
- &lt;a class="heading-link" href="#step-1-playing-the-audio">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h4>
-&lt;p>I started by playing the audio, expecting something unusual—perhaps some hidden message or distortion—but everything sounded normal. There was no apparent clue in the audio playback.&lt;/p></description></item><item><title>HackDay - Stegano &amp; Forensic</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/forensic/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/forensic/</guid><description>&lt;hr>
-&lt;h3 id="forensic-challenge---hidden-flag-extraction">
- &lt;strong>Forensic Challenge - Hidden Flag Extraction&lt;/strong>
- &lt;a class="heading-link" href="#forensic-challenge---hidden-flag-extraction">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>In this challenge, we have a &lt;strong>ZIP file&lt;/strong> containing a &lt;strong>log file&lt;/strong> and &lt;strong>two images&lt;/strong>.&lt;/p>
-&lt;hr>
-&lt;h3 id="step-1-log-file-analysis">
- &lt;strong>Step 1: Log File Analysis&lt;/strong>
- &lt;a class="heading-link" href="#step-1-log-file-analysis">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>I began by analyzing the log file and found &lt;strong>five encoded words&lt;/strong>. I used &lt;strong>dcode.fr&lt;/strong> to decode them:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>ercbafr&lt;/code> (ROT13) → &lt;strong>reponse&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="images/forensic_1.png" alt="Screenshot">&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>c29sdXRpb24=&lt;/code> (Base64) → &lt;strong>solution&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="images/forensic_2.png" alt="Screenshot">&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/internal-blog/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/internal-blog/</guid><description>&lt;h3 id="exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit">
- &lt;strong>Exploiting an XSS Vulnerability in a Blog with Moderator Visit&lt;/strong>
- &lt;a class="heading-link" href="#exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>&lt;img src="images/blog_chall.png" alt="Screenshot">&lt;/p>
-&lt;p>In this challenge, we have a blog with a user registration and login system.&lt;br>
-We know that the &lt;strong>admin (or the moderator bot) will visit our profile&lt;/strong> when we register and when we post an article.&lt;/p>
-&lt;p>A &lt;strong>source code leak&lt;/strong> is also available.&lt;/p>
-&lt;p>&lt;img src="images/blog_leak.png" alt="Screenshot">&lt;/p>
-&lt;hr>
-&lt;h3 id="step-1-analyzing-the-source-code">
- &lt;strong>Step 1: Analyzing the Source Code&lt;/strong>
- &lt;a class="heading-link" href="#step-1-analyzing-the-source-code">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>Looking at the leaked source code, we notice an &lt;strong>attempt at sanitization&lt;/strong> of the fields, but it is performed &lt;strong>after the .save()&lt;/strong>, meaning that &lt;strong>even if an error is displayed, the data is already stored in the database&lt;/strong>.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/open-the-door/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/open-the-door/</guid><description>&lt;h3 id="flask-web-challenge---template-injection-analysis">
- &lt;strong>Flask Web Challenge - Template Injection Analysis&lt;/strong>
- &lt;a class="heading-link" href="#flask-web-challenge---template-injection-analysis">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>In this challenge, we have a downloadable folder containing several files.&lt;/p>
-&lt;p>&lt;img src="images/door_files.png" alt="Screenshot">&lt;/p>
-&lt;hr>
-&lt;h3 id="step-1-identifying-the-web-framework">
- &lt;strong>Step 1: Identifying the Web Framework&lt;/strong>
- &lt;a class="heading-link" href="#step-1-identifying-the-web-framework">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>By examining the &lt;code>requirements.txt&lt;/code> and &lt;code>app.py&lt;/code> files, we confirm that the application is built using &lt;strong>Flask&lt;/strong>.&lt;/p>
-&lt;p>&lt;img src="images/door_flask_infos.png" alt="Screenshot">&lt;/p>
-&lt;hr>
-&lt;h3 id="step-2-examining-the-docker-configuration">
- &lt;strong>Step 2: Examining the Docker Configuration&lt;/strong>
- &lt;a class="heading-link" href="#step-2-examining-the-docker-configuration">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>Looking into the &lt;code>docker-compose.yaml&lt;/code> file, we notice that the application is using &lt;strong>templates&lt;/strong> as an environment variable, which could be a potential security risk.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/the-analytical-engine-leak/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/the-analytical-engine-leak/</guid><description>&lt;hr>
-&lt;p>&lt;strong>SQL Injection and Sensitive Data Retrieval&lt;/strong>&lt;/p>
-&lt;p>In this challenge, we are given a form with two fields: &lt;code>username&lt;/code> and &lt;code>password&lt;/code>. Our goal is to exploit a SQL Injection vulnerability to extract sensitive data from the database.&lt;/p>
-&lt;p>&lt;img src="images/web_chall_description.png" alt="Screenshot">&lt;/p>
-&lt;hr>
-&lt;h4 id="step-1-testing-basic-injection">
- &lt;strong>Step 1: Testing Basic Injection&lt;/strong>
- &lt;a class="heading-link" href="#step-1-testing-basic-injection">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h4>
-&lt;p>I started by testing a simple SQL injection in the &lt;code>password&lt;/code> field. Here&amp;rsquo;s the payload I used:&lt;/p>
-&lt;p>&lt;code>username=admin&amp;amp;password='OR''='&lt;/code>&lt;/p>
-&lt;p>&lt;strong>Result:&lt;/strong>
-The server returns a list of users present in the database:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hackday on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/hackday/</link><description>Recent content in Hackday on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/hackday/index.xml" rel="self" type="application/rss+xml"/><item><title>HackDay - Stegano</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/stegano/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/stegano/</guid><description>&lt;hr&gt;
+&lt;p&gt;In this challenge, we are provided with a &lt;code&gt;.wav&lt;/code&gt; file that, at first glance, appears to be a simple audio file. Our task is to analyze the file and uncover a hidden flag.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="step-1-playing-the-audio"&gt;
+ &lt;strong&gt;Step 1: Playing the Audio&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-1-playing-the-audio"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;I started by playing the audio, expecting something unusual—perhaps some hidden message or distortion—but everything sounded normal. There was no apparent clue in the audio playback.&lt;/p&gt;</description></item><item><title>HackDay - Stegano &amp; Forensic</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/forensic/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/forensic/</guid><description>&lt;hr&gt;
+&lt;h3 id="forensic-challenge---hidden-flag-extraction"&gt;
+ &lt;strong&gt;Forensic Challenge - Hidden Flag Extraction&lt;/strong&gt;
+ &lt;a class="heading-link" href="#forensic-challenge---hidden-flag-extraction"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;In this challenge, we have a &lt;strong&gt;ZIP file&lt;/strong&gt; containing a &lt;strong&gt;log file&lt;/strong&gt; and &lt;strong&gt;two images&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="step-1-log-file-analysis"&gt;
+ &lt;strong&gt;Step 1: Log File Analysis&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-1-log-file-analysis"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I began by analyzing the log file and found &lt;strong&gt;five encoded words&lt;/strong&gt;. I used &lt;strong&gt;dcode.fr&lt;/strong&gt; to decode them:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ercbafr&lt;/code&gt; (ROT13) → &lt;strong&gt;reponse&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="images/forensic_1.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;c29sdXRpb24=&lt;/code&gt; (Base64) → &lt;strong&gt;solution&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="images/forensic_2.png" alt="Screenshot"&gt;&lt;/p&gt;</description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/internal-blog/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/internal-blog/</guid><description>&lt;h3 id="exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit"&gt;
+ &lt;strong&gt;Exploiting an XSS Vulnerability in a Blog with Moderator Visit&lt;/strong&gt;
+ &lt;a class="heading-link" href="#exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;img src="images/blog_chall.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;p&gt;In this challenge, we have a blog with a user registration and login system.&lt;br&gt;
+We know that the &lt;strong&gt;admin (or the moderator bot) will visit our profile&lt;/strong&gt; when we register and when we post an article.&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;source code leak&lt;/strong&gt; is also available.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/blog_leak.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="step-1-analyzing-the-source-code"&gt;
+ &lt;strong&gt;Step 1: Analyzing the Source Code&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-1-analyzing-the-source-code"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Looking at the leaked source code, we notice an &lt;strong&gt;attempt at sanitization&lt;/strong&gt; of the fields, but it is performed &lt;strong&gt;after the .save()&lt;/strong&gt;, meaning that &lt;strong&gt;even if an error is displayed, the data is already stored in the database&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/open-the-door/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/open-the-door/</guid><description>&lt;h3 id="flask-web-challenge---template-injection-analysis"&gt;
+ &lt;strong&gt;Flask Web Challenge - Template Injection Analysis&lt;/strong&gt;
+ &lt;a class="heading-link" href="#flask-web-challenge---template-injection-analysis"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;In this challenge, we have a downloadable folder containing several files.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/door_files.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="step-1-identifying-the-web-framework"&gt;
+ &lt;strong&gt;Step 1: Identifying the Web Framework&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-1-identifying-the-web-framework"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;By examining the &lt;code&gt;requirements.txt&lt;/code&gt; and &lt;code&gt;app.py&lt;/code&gt; files, we confirm that the application is built using &lt;strong&gt;Flask&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/door_flask_infos.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="step-2-examining-the-docker-configuration"&gt;
+ &lt;strong&gt;Step 2: Examining the Docker Configuration&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-2-examining-the-docker-configuration"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Looking into the &lt;code&gt;docker-compose.yaml&lt;/code&gt; file, we notice that the application is using &lt;strong&gt;templates&lt;/strong&gt; as an environment variable, which could be a potential security risk.&lt;/p&gt;</description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/the-analytical-engine-leak/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/the-analytical-engine-leak/</guid><description>&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;SQL Injection and Sensitive Data Retrieval&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this challenge, we are given a form with two fields: &lt;code&gt;username&lt;/code&gt; and &lt;code&gt;password&lt;/code&gt;. Our goal is to exploit a SQL Injection vulnerability to extract sensitive data from the database.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/web_chall_description.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="step-1-testing-basic-injection"&gt;
+ &lt;strong&gt;Step 1: Testing Basic Injection&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-1-testing-basic-injection"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;I started by testing a simple SQL injection in the &lt;code&gt;password&lt;/code&gt; field. Here&amp;rsquo;s the payload I used:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;username=admin&amp;amp;password='OR''='&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Result:&lt;/strong&gt;
+The server returns a list of users present in the database:&lt;/p&gt;</description></item></channel></rss>

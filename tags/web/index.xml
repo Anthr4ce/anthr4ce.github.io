@@ -1,146 +1,146 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Web on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/web/</link><description>Recent content in Web on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/web/index.xml" rel="self" type="application/rss+xml"/><item><title>BrunnerCTF 2025 - WEB Recipe for Disaster</title><link>https://anthr4ce.github.io/ctf-writeups/brunnerctf-2025/web/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/brunnerctf-2025/web/</guid><description>&lt;hr>
-&lt;p>This challenge demonstrates a classic prototype pollution vulnerability that leads to remote code execution through PATH hijacking. We exploit a dangerous &lt;code>deepMerge&lt;/code> function to pollute &lt;code>Object.prototype.env&lt;/code>, hijack the system&amp;rsquo;s PATH variable, and execute a malicious binary disguised as the legitimate &lt;code>zip&lt;/code> command.&lt;/p>
-&lt;h2 id="overview--attribution">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Web on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/web/</link><description>Recent content in Web on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 24 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/web/index.xml" rel="self" type="application/rss+xml"/><item><title>BrunnerCTF 2025 - WEB Recipe for Disaster</title><link>https://anthr4ce.github.io/ctf-writeups/brunnerctf-2025/web/</link><pubDate>Sun, 24 Aug 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/brunnerctf-2025/web/</guid><description>&lt;hr&gt;
+&lt;p&gt;This challenge demonstrates a classic prototype pollution vulnerability that leads to remote code execution through PATH hijacking. We exploit a dangerous &lt;code&gt;deepMerge&lt;/code&gt; function to pollute &lt;code&gt;Object.prototype.env&lt;/code&gt;, hijack the system&amp;rsquo;s PATH variable, and execute a malicious binary disguised as the legitimate &lt;code&gt;zip&lt;/code&gt; command.&lt;/p&gt;
+&lt;h2 id="overview--attribution"&gt;
  Overview &amp;amp; Attribution
- &lt;a class="heading-link" href="#overview--attribution">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>When I first tackled this challenge, I had a gut feeling we were dealing with prototype pollution. But the real “enlightment” moment came when I found an epic writeup &lt;strong>Mizu&lt;/strong> at &lt;a href="https://mizu.re/post/infinite-mario" class="external-link" target="_blank" rel="noopener">mizu.re&lt;/a>. This absolute legend in the web security game, and his breakdown of a similar exploit was like finding the perfect recipe for this challenge. If you’re into this stuff, you have to check out Mizu’s work. His DOMPurify research is really insane.
-Huge props to them for sharing knowledge that helps us all level up!&lt;/p></description></item><item><title>DVCTF 2025 - WEB LouvreArchives</title><link>https://anthr4ce.github.io/ctf-writeups/dvctf-2025/web-louvrearchives/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/dvctf-2025/web-louvrearchives/</guid><description>&lt;hr>
-&lt;p>&lt;img src="images/img1.png" alt="Screenshot">&lt;/p>
-&lt;p>In this challenge, the goal is to access &lt;code>flag.webp&lt;/code> as indicated in the source code.&lt;/p>
-&lt;p>While exploring the page, I noticed a long base64-encoded string. Once decoded and reorganized, it contained several &lt;code>.webp&lt;/code> images with unusual names like &lt;code>1991781613.webp&lt;/code>, &lt;code>1273827392.webp&lt;/code>, etc.&lt;/p>
-&lt;p>Checking the source code:&lt;/p>
-&lt;p>&lt;img src="images/img2.png" alt="Screenshot">&lt;/p>
-&lt;p>We understand that filenames are generated using Python&amp;rsquo;s &lt;code>getrandbits(32)&lt;/code>, which produces 32 random bits via the &lt;code>random.getrandbits&lt;/code> function.&lt;/p>
-&lt;p>The interesting point here is that this function uses the &lt;strong>Mersenne Twister&lt;/strong> generator, a PRNG (Pseudo-Random Number Generator) that is &lt;strong>not cryptographically secure&lt;/strong>.&lt;/p></description></item><item><title>E-CTF-2025 - Web</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/web/chatroom/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/web/chatroom/</guid><description>&lt;hr>
-&lt;h2 id="chatroom">
- &lt;strong>Chatroom&lt;/strong>
- &lt;a class="heading-link" href="#chatroom">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>&lt;img src="images/chatroom_1.png" alt="Screenshot">&lt;/p>
-&lt;p>In this challenge, we are provided with access to a &lt;strong>chatroom&lt;/strong>, where a message indicates that the &lt;strong>admin will read our message in 30 seconds&lt;/strong>.&lt;/p>
-&lt;p>Upon seeing this, I immediately suspect a possible &lt;strong>XSS (Cross-Site Scripting) vulnerability&lt;/strong>, as if the message is stored and executed in the admin’s browser, we could potentially &lt;strong>inject malicious JavaScript&lt;/strong>.&lt;/p>
-&lt;hr>
-&lt;h2 id="step-1---testing-for-xss-injection">
- &lt;strong>Step 1 - Testing for XSS Injection&lt;/strong>
- &lt;a class="heading-link" href="#step-1---testing-for-xss-injection">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>To verify if the input is vulnerable to &lt;strong>XSS&lt;/strong>, I test a &lt;strong>simple payload&lt;/strong>:&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/internal-blog/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/internal-blog/</guid><description>&lt;h3 id="exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit">
- &lt;strong>Exploiting an XSS Vulnerability in a Blog with Moderator Visit&lt;/strong>
- &lt;a class="heading-link" href="#exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>&lt;img src="images/blog_chall.png" alt="Screenshot">&lt;/p>
-&lt;p>In this challenge, we have a blog with a user registration and login system.&lt;br>
-We know that the &lt;strong>admin (or the moderator bot) will visit our profile&lt;/strong> when we register and when we post an article.&lt;/p>
-&lt;p>A &lt;strong>source code leak&lt;/strong> is also available.&lt;/p>
-&lt;p>&lt;img src="images/blog_leak.png" alt="Screenshot">&lt;/p>
-&lt;hr>
-&lt;h3 id="step-1-analyzing-the-source-code">
- &lt;strong>Step 1: Analyzing the Source Code&lt;/strong>
- &lt;a class="heading-link" href="#step-1-analyzing-the-source-code">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>Looking at the leaked source code, we notice an &lt;strong>attempt at sanitization&lt;/strong> of the fields, but it is performed &lt;strong>after the .save()&lt;/strong>, meaning that &lt;strong>even if an error is displayed, the data is already stored in the database&lt;/strong>.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/open-the-door/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/open-the-door/</guid><description>&lt;h3 id="flask-web-challenge---template-injection-analysis">
- &lt;strong>Flask Web Challenge - Template Injection Analysis&lt;/strong>
- &lt;a class="heading-link" href="#flask-web-challenge---template-injection-analysis">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>In this challenge, we have a downloadable folder containing several files.&lt;/p>
-&lt;p>&lt;img src="images/door_files.png" alt="Screenshot">&lt;/p>
-&lt;hr>
-&lt;h3 id="step-1-identifying-the-web-framework">
- &lt;strong>Step 1: Identifying the Web Framework&lt;/strong>
- &lt;a class="heading-link" href="#step-1-identifying-the-web-framework">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>By examining the &lt;code>requirements.txt&lt;/code> and &lt;code>app.py&lt;/code> files, we confirm that the application is built using &lt;strong>Flask&lt;/strong>.&lt;/p>
-&lt;p>&lt;img src="images/door_flask_infos.png" alt="Screenshot">&lt;/p>
-&lt;hr>
-&lt;h3 id="step-2-examining-the-docker-configuration">
- &lt;strong>Step 2: Examining the Docker Configuration&lt;/strong>
- &lt;a class="heading-link" href="#step-2-examining-the-docker-configuration">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h3>
-&lt;p>Looking into the &lt;code>docker-compose.yaml&lt;/code> file, we notice that the application is using &lt;strong>templates&lt;/strong> as an environment variable, which could be a potential security risk.&lt;/p></description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/the-analytical-engine-leak/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/the-analytical-engine-leak/</guid><description>&lt;hr>
-&lt;p>&lt;strong>SQL Injection and Sensitive Data Retrieval&lt;/strong>&lt;/p>
-&lt;p>In this challenge, we are given a form with two fields: &lt;code>username&lt;/code> and &lt;code>password&lt;/code>. Our goal is to exploit a SQL Injection vulnerability to extract sensitive data from the database.&lt;/p>
-&lt;p>&lt;img src="images/web_chall_description.png" alt="Screenshot">&lt;/p>
-&lt;hr>
-&lt;h4 id="step-1-testing-basic-injection">
- &lt;strong>Step 1: Testing Basic Injection&lt;/strong>
- &lt;a class="heading-link" href="#step-1-testing-basic-injection">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h4>
-&lt;p>I started by testing a simple SQL injection in the &lt;code>password&lt;/code> field. Here&amp;rsquo;s the payload I used:&lt;/p>
-&lt;p>&lt;code>username=admin&amp;amp;password='OR''='&lt;/code>&lt;/p>
-&lt;p>&lt;strong>Result:&lt;/strong>
-The server returns a list of users present in the database:&lt;/p></description></item><item><title>LA-CTF - Lucky flag</title><link>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/lucky-flag/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/lucky-flag/</guid><description>&lt;hr>
-&lt;h2 id="challenge-description">
+ &lt;a class="heading-link" href="#overview--attribution"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;When I first tackled this challenge, I had a gut feeling we were dealing with prototype pollution. But the real “enlightment” moment came when I found an epic writeup &lt;strong&gt;Mizu&lt;/strong&gt; at &lt;a href="https://mizu.re/post/infinite-mario" class="external-link" target="_blank" rel="noopener"&gt;mizu.re&lt;/a&gt;. This absolute legend in the web security game, and his breakdown of a similar exploit was like finding the perfect recipe for this challenge. If you’re into this stuff, you have to check out Mizu’s work. His DOMPurify research is really insane.
+Huge props to them for sharing knowledge that helps us all level up!&lt;/p&gt;</description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/internal-blog/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/internal-blog/</guid><description>&lt;h3 id="exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit"&gt;
+ &lt;strong&gt;Exploiting an XSS Vulnerability in a Blog with Moderator Visit&lt;/strong&gt;
+ &lt;a class="heading-link" href="#exploiting-an-xss-vulnerability-in-a-blog-with-moderator-visit"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;img src="images/blog_chall.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;p&gt;In this challenge, we have a blog with a user registration and login system.&lt;br&gt;
+We know that the &lt;strong&gt;admin (or the moderator bot) will visit our profile&lt;/strong&gt; when we register and when we post an article.&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;source code leak&lt;/strong&gt; is also available.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/blog_leak.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="step-1-analyzing-the-source-code"&gt;
+ &lt;strong&gt;Step 1: Analyzing the Source Code&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-1-analyzing-the-source-code"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Looking at the leaked source code, we notice an &lt;strong&gt;attempt at sanitization&lt;/strong&gt; of the fields, but it is performed &lt;strong&gt;after the .save()&lt;/strong&gt;, meaning that &lt;strong&gt;even if an error is displayed, the data is already stored in the database&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/open-the-door/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/open-the-door/</guid><description>&lt;h3 id="flask-web-challenge---template-injection-analysis"&gt;
+ &lt;strong&gt;Flask Web Challenge - Template Injection Analysis&lt;/strong&gt;
+ &lt;a class="heading-link" href="#flask-web-challenge---template-injection-analysis"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;In this challenge, we have a downloadable folder containing several files.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/door_files.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="step-1-identifying-the-web-framework"&gt;
+ &lt;strong&gt;Step 1: Identifying the Web Framework&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-1-identifying-the-web-framework"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;By examining the &lt;code&gt;requirements.txt&lt;/code&gt; and &lt;code&gt;app.py&lt;/code&gt; files, we confirm that the application is built using &lt;strong&gt;Flask&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/door_flask_infos.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="step-2-examining-the-docker-configuration"&gt;
+ &lt;strong&gt;Step 2: Examining the Docker Configuration&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-2-examining-the-docker-configuration"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Looking into the &lt;code&gt;docker-compose.yaml&lt;/code&gt; file, we notice that the application is using &lt;strong&gt;templates&lt;/strong&gt; as an environment variable, which could be a potential security risk.&lt;/p&gt;</description></item><item><title>HackDay - Web</title><link>https://anthr4ce.github.io/ctf-writeups/hackday/web/the-analytical-engine-leak/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/hackday/web/the-analytical-engine-leak/</guid><description>&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;SQL Injection and Sensitive Data Retrieval&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this challenge, we are given a form with two fields: &lt;code&gt;username&lt;/code&gt; and &lt;code&gt;password&lt;/code&gt;. Our goal is to exploit a SQL Injection vulnerability to extract sensitive data from the database.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/web_chall_description.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="step-1-testing-basic-injection"&gt;
+ &lt;strong&gt;Step 1: Testing Basic Injection&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-1-testing-basic-injection"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;I started by testing a simple SQL injection in the &lt;code&gt;password&lt;/code&gt; field. Here&amp;rsquo;s the payload I used:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;username=admin&amp;amp;password='OR''='&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Result:&lt;/strong&gt;
+The server returns a list of users present in the database:&lt;/p&gt;</description></item><item><title>E-CTF-2025 - Web</title><link>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/web/chatroom/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/e-ctf-2025/web/chatroom/</guid><description>&lt;hr&gt;
+&lt;h2 id="chatroom"&gt;
+ &lt;strong&gt;Chatroom&lt;/strong&gt;
+ &lt;a class="heading-link" href="#chatroom"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;img src="images/chatroom_1.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;p&gt;In this challenge, we are provided with access to a &lt;strong&gt;chatroom&lt;/strong&gt;, where a message indicates that the &lt;strong&gt;admin will read our message in 30 seconds&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Upon seeing this, I immediately suspect a possible &lt;strong&gt;XSS (Cross-Site Scripting) vulnerability&lt;/strong&gt;, as if the message is stored and executed in the admin’s browser, we could potentially &lt;strong&gt;inject malicious JavaScript&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="step-1---testing-for-xss-injection"&gt;
+ &lt;strong&gt;Step 1 - Testing for XSS Injection&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-1---testing-for-xss-injection"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;To verify if the input is vulnerable to &lt;strong&gt;XSS&lt;/strong&gt;, I test a &lt;strong&gt;simple payload&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>DVCTF 2025 - WEB LouvreArchives</title><link>https://anthr4ce.github.io/ctf-writeups/dvctf-2025/web-louvrearchives/</link><pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/dvctf-2025/web-louvrearchives/</guid><description>&lt;hr&gt;
+&lt;p&gt;&lt;img src="images/img1.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;p&gt;In this challenge, the goal is to access &lt;code&gt;flag.webp&lt;/code&gt; as indicated in the source code.&lt;/p&gt;
+&lt;p&gt;While exploring the page, I noticed a long base64-encoded string. Once decoded and reorganized, it contained several &lt;code&gt;.webp&lt;/code&gt; images with unusual names like &lt;code&gt;1991781613.webp&lt;/code&gt;, &lt;code&gt;1273827392.webp&lt;/code&gt;, etc.&lt;/p&gt;
+&lt;p&gt;Checking the source code:&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/img2.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;p&gt;We understand that filenames are generated using Python&amp;rsquo;s &lt;code&gt;getrandbits(32)&lt;/code&gt;, which produces 32 random bits via the &lt;code&gt;random.getrandbits&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;The interesting point here is that this function uses the &lt;strong&gt;Mersenne Twister&lt;/strong&gt; generator, a PRNG (Pseudo-Random Number Generator) that is &lt;strong&gt;not cryptographically secure&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>RootMeCTF-20K - WEB-TraineeTrainee</title><link>https://anthr4ce.github.io/ctf-writeups/rootmectf-20k/web-traineetrainee/</link><pubDate>Mon, 12 May 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/rootmectf-20k/web-traineetrainee/</guid><description>&lt;p&gt;Description:&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/trainee-desc.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;p&gt;The trainee made a weird commit that’s flooding the server with requests—and eventually blocking connections. We’re hinted that something strange is lurking in their Nginx setup.&lt;/p&gt;
+&lt;p&gt;As soon as we connect we have a file reader form.
+I stared with a whatweb&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/trainee-whatweb.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;p&gt;With this we know the backend runs a Nginx 1.24.0.
+I tried to research for a file like a file.txt, example.txt localhost and /etc/nginx because of what could be a nginx misconfiguration.&lt;/p&gt;</description></item><item><title>LA-CTF - Lucky flag</title><link>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/lucky-flag/</link><pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/lucky-flag/</guid><description>&lt;hr&gt;
+&lt;h2 id="challenge-description"&gt;
  Challenge Description
- &lt;a class="heading-link" href="#challenge-description">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>In this challenge, I was presented with a &lt;strong>web page filled with thousands of buttons&lt;/strong>, all labeled &amp;ldquo;flag&amp;rdquo;.&lt;/p>
-&lt;p>&lt;img src="images/flag1.png" alt="Screenshot">&lt;/p>
-&lt;p>The goal was to &lt;strong>find the correct button that reveals the flag&lt;/strong>.&lt;/p>
-&lt;hr>
-&lt;h2 id="step-1-inspecting-the-source-code">
+ &lt;a class="heading-link" href="#challenge-description"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;In this challenge, I was presented with a &lt;strong&gt;web page filled with thousands of buttons&lt;/strong&gt;, all labeled &amp;ldquo;flag&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/flag1.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;p&gt;The goal was to &lt;strong&gt;find the correct button that reveals the flag&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="step-1-inspecting-the-source-code"&gt;
  Step 1: Inspecting the Source Code
- &lt;a class="heading-link" href="#step-1-inspecting-the-source-code">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>Instead of clicking every single button, I looked into the &lt;code>main.js&lt;/code> file which controls the behavior of the buttons.&lt;/p></description></item><item><title>Nullcon-Goa-HackIM-2025 - Web</title><link>https://anthr4ce.github.io/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/</guid><description>&lt;hr>
-&lt;h1 id="web-challenge---crc-hash-collision-exploit">
+ &lt;a class="heading-link" href="#step-1-inspecting-the-source-code"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Instead of clicking every single button, I looked into the &lt;code&gt;main.js&lt;/code&gt; file which controls the behavior of the buttons.&lt;/p&gt;</description></item><item><title>Nullcon-Goa-HackIM-2025 - Web</title><link>https://anthr4ce.github.io/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/</link><pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/nullcon-goa-hackim-2025/web/crahp/</guid><description>&lt;hr&gt;
+&lt;h1 id="web-challenge---crc-hash-collision-exploit"&gt;
  Web Challenge - CRC Hash Collision Exploit
- &lt;a class="heading-link" href="#web-challenge---crc-hash-collision-exploit">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h1>
-&lt;hr>
-&lt;h2 id="challenge-description">
+ &lt;a class="heading-link" href="#web-challenge---crc-hash-collision-exploit"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h2 id="challenge-description"&gt;
  Challenge Description
- &lt;a class="heading-link" href="#challenge-description">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>In this challenge, we are provided with the source code of a PHP script along with two hints:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Hint 1&lt;/strong>: &lt;a href="https://www.php.net/manual/en/function.crc32.php#28012" class="external-link" target="_blank" rel="noopener">PHP documentation link for crc32()&lt;/a>&lt;/li>
-&lt;li>&lt;strong>Hint 2&lt;/strong>: &lt;a href="https://stackoverflow.com/questions/507041/crc8-check-in-php/73305496#73305496" class="external-link" target="_blank" rel="noopener">A PHP CRC8 implementation&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The goal is to retrieve the &lt;strong>flag&lt;/strong> by bypassing an authentication mechanism based on &lt;strong>CRC hashes&lt;/strong>.&lt;/p></description></item><item><title>RootMeCTF-20K - WEB-TraineeTrainee</title><link>https://anthr4ce.github.io/ctf-writeups/rootmectf-20k/web-traineetrainee/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/rootmectf-20k/web-traineetrainee/</guid><description>&lt;p>Description:&lt;/p>
-&lt;p>&lt;img src="images/trainee-desc.png" alt="Screenshot">&lt;/p>
-&lt;p>The trainee made a weird commit that’s flooding the server with requests—and eventually blocking connections. We’re hinted that something strange is lurking in their Nginx setup.&lt;/p>
-&lt;p>As soon as we connect we have a file reader form.
-I stared with a whatweb&lt;/p>
-&lt;p>&lt;img src="images/trainee-whatweb.png" alt="Screenshot">&lt;/p>
-&lt;p>With this we know the backend runs a Nginx 1.24.0.
-I tried to research for a file like a file.txt, example.txt localhost and /etc/nginx because of what could be a nginx misconfiguration.&lt;/p></description></item></channel></rss>
+ &lt;a class="heading-link" href="#challenge-description"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;In this challenge, we are provided with the source code of a PHP script along with two hints:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hint 1&lt;/strong&gt;: &lt;a href="https://www.php.net/manual/en/function.crc32.php#28012" class="external-link" target="_blank" rel="noopener"&gt;PHP documentation link for crc32()&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hint 2&lt;/strong&gt;: &lt;a href="https://stackoverflow.com/questions/507041/crc8-check-in-php/73305496#73305496" class="external-link" target="_blank" rel="noopener"&gt;A PHP CRC8 implementation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The goal is to retrieve the &lt;strong&gt;flag&lt;/strong&gt; by bypassing an authentication mechanism based on &lt;strong&gt;CRC hashes&lt;/strong&gt;.&lt;/p&gt;</description></item></channel></rss>

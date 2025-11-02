@@ -1,39 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>La-Ctf on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/la-ctf/</link><description>Recent content in La-Ctf on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/la-ctf/index.xml" rel="self" type="application/rss+xml"/><item><title>LA-CTF - I spy...</title><link>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/i-spy.../</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/i-spy.../</guid><description>&lt;hr>
-&lt;h2 id="challenge-description">
- &lt;strong>Challenge Description&lt;/strong>
- &lt;a class="heading-link" href="#challenge-description">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>In this challenge, there is a form where we must submit tokens.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>La-Ctf on Anthrace | CTF Writeups</title><link>https://anthr4ce.github.io/tags/la-ctf/</link><description>Recent content in La-Ctf on Anthrace | CTF Writeups</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 10 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://anthr4ce.github.io/tags/la-ctf/index.xml" rel="self" type="application/rss+xml"/><item><title>LA-CTF - I spy...</title><link>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/i-spy.../</link><pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/i-spy.../</guid><description>&lt;hr&gt;
+&lt;h2 id="challenge-description"&gt;
+ &lt;strong&gt;Challenge Description&lt;/strong&gt;
+ &lt;a class="heading-link" href="#challenge-description"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;In this challenge, there is a form where we must submit tokens.
 The description and hints indicate that multiple tokens are hidden in different parts of the web application.
-The objective is to &lt;strong>find and submit all the tokens to obtain the flag&lt;/strong>.&lt;/p>
-&lt;hr>
-&lt;h2 id="step-1-understand-where-to-look-for-tokens">
- &lt;strong>Step 1: Understand Where to Look for Tokens&lt;/strong>
- &lt;a class="heading-link" href="#step-1-understand-where-to-look-for-tokens">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>Tokens are scattered across several common locations where hidden data may reside:&lt;/p></description></item><item><title>LA-CTF - Lucky flag</title><link>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/lucky-flag/</link><pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/lucky-flag/</guid><description>&lt;hr>
-&lt;h2 id="challenge-description">
+The objective is to &lt;strong&gt;find and submit all the tokens to obtain the flag&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="step-1-understand-where-to-look-for-tokens"&gt;
+ &lt;strong&gt;Step 1: Understand Where to Look for Tokens&lt;/strong&gt;
+ &lt;a class="heading-link" href="#step-1-understand-where-to-look-for-tokens"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Tokens are scattered across several common locations where hidden data may reside:&lt;/p&gt;</description></item><item><title>LA-CTF - Lucky flag</title><link>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/lucky-flag/</link><pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate><guid>https://anthr4ce.github.io/ctf-writeups/la-ctf/web/lucky-flag/</guid><description>&lt;hr&gt;
+&lt;h2 id="challenge-description"&gt;
  Challenge Description
- &lt;a class="heading-link" href="#challenge-description">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>In this challenge, I was presented with a &lt;strong>web page filled with thousands of buttons&lt;/strong>, all labeled &amp;ldquo;flag&amp;rdquo;.&lt;/p>
-&lt;p>&lt;img src="images/flag1.png" alt="Screenshot">&lt;/p>
-&lt;p>The goal was to &lt;strong>find the correct button that reveals the flag&lt;/strong>.&lt;/p>
-&lt;hr>
-&lt;h2 id="step-1-inspecting-the-source-code">
+ &lt;a class="heading-link" href="#challenge-description"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;In this challenge, I was presented with a &lt;strong&gt;web page filled with thousands of buttons&lt;/strong&gt;, all labeled &amp;ldquo;flag&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/flag1.png" alt="Screenshot"&gt;&lt;/p&gt;
+&lt;p&gt;The goal was to &lt;strong&gt;find the correct button that reveals the flag&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="step-1-inspecting-the-source-code"&gt;
  Step 1: Inspecting the Source Code
- &lt;a class="heading-link" href="#step-1-inspecting-the-source-code">
- &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading">&lt;/i>
- &lt;span class="sr-only">Link to heading&lt;/span>
- &lt;/a>
-&lt;/h2>
-&lt;p>Instead of clicking every single button, I looked into the &lt;code>main.js&lt;/code> file which controls the behavior of the buttons.&lt;/p></description></item></channel></rss>
+ &lt;a class="heading-link" href="#step-1-inspecting-the-source-code"&gt;
+ &lt;i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"&gt;&lt;/i&gt;
+ &lt;span class="sr-only"&gt;Link to heading&lt;/span&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Instead of clicking every single button, I looked into the &lt;code&gt;main.js&lt;/code&gt; file which controls the behavior of the buttons.&lt;/p&gt;</description></item></channel></rss>
